@@ -1,6 +1,6 @@
-# DataForge Scenario Execution Architecture
+# Errdain Scenario Execution Architecture
 
-DataForge now separates scenario specification from runtime execution.
+Errdain now separates scenario specification from runtime execution.
 
 The catalog can contain hundreds of enterprise scenarios, while the runtime
 only executes scenarios whose tables, columns, primitives, validators, and
@@ -9,32 +9,32 @@ parameters are currently supported.
 ## Layers
 
 1. **Scenario catalog**
-   - Source: `dataforge/scenarios/catalog/scenario_library.yaml`
+   - Source: `errdain/scenarios/catalog/scenario_library.yaml`
    - Contract: `MasterScenarioMetadata`
    - Purpose: business taxonomy, failure primitive, validator pattern, evidence,
      scoring, readiness, and execution status.
 
 2. **Requirement resolver**
-   - Source: `dataforge/scenarios/requirements.py`
+   - Source: `errdain/scenarios/requirements.py`
    - Determines whether a scenario is executable now.
    - Reports missing tables, columns, primitives, validators, unsupported
      parameters, and custom-logic requirements.
 
 3. **Primitive registry**
-   - Source: `dataforge/scenarios/primitives.py`
+   - Source: `errdain/scenarios/primitives.py`
    - Maps canonical and legacy primitive names to executable mutation functions
      where generic execution is safe.
    - Legacy reference primitives are preserved as aliases/adapters instead of
      deleting working reference implementations.
 
 4. **Validator registry**
-   - Source: `dataforge/scenarios/validator_registry.py`
+   - Source: `errdain/scenarios/validator_registry.py`
    - Maps validator patterns to generic validators where possible.
    - Scenario-specific validators remain authoritative for the 10 deeply
      implemented reference scenarios.
 
 5. **Generic executor**
-   - Source: `dataforge/scenarios/generic_executor.py`
+   - Source: `errdain/scenarios/generic_executor.py`
    - Executes only scenarios resolved as supported.
    - Flow: generate clean data, apply realism, execute primitive, run validator,
      return evidence and reconciliation.

@@ -1,4 +1,4 @@
-# DataForge Beta Feedback Form
+# Errdain Beta Feedback Form
 
 Use this as the internal beta feedback form structure.
 
@@ -28,11 +28,11 @@ Free text.
 
 ## Section 2 — first impression
 
-How easy was it to understand DataForge?
+How easy was it to understand Errdain?
 
 1 / 2 / 3 / 4 / 5
 
-Could you understand what DataForge does?
+Could you understand what Errdain does?
 
 - Yes
 - Partially
@@ -134,7 +134,7 @@ Free text.
 
 ## Section 8 — missing features
 
-What did you expect DataForge to do that it does not currently do?
+What did you expect Errdain to do that it does not currently do?
 
 Free text.
 
@@ -161,7 +161,7 @@ Would this help your team?
 
 1 / 2 / 3 / 4 / 5
 
-Would you use DataForge monthly?
+Would you use Errdain monthly?
 
 - Yes
 - Maybe

@@ -1,9 +1,9 @@
 import json
 
-from dataforge.cli import main
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.modes import build_artifacts
+from errdain.cli import main
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_healthcare_event_stream_generates_visit_claim_payment_events():

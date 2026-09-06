@@ -33,7 +33,7 @@ export function GenerationProgress({
         <p className="mt-5 text-xs font-semibold uppercase tracking-[0.24em] text-primary">Live generation</p>
         <h2 className="mt-2 text-3xl font-bold tracking-tight">Generating files...</h2>
         <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
-          DataForge is creating the selected dataset, running validation, and preparing downloadable files.
+          Errdain is creating the selected dataset, running validation, and preparing downloadable files.
         </p>
 
         <div className="mx-auto mt-5 grid max-w-2xl gap-3 rounded-2xl border border-border bg-muted/30 p-4 text-left sm:grid-cols-2 lg:grid-cols-4">

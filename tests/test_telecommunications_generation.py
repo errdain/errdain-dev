@@ -1,7 +1,7 @@
-from dataforge.domains.telecommunications.generators import TelecommunicationsGenerator
-from dataforge.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
-from dataforge.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
-from dataforge.validation import schema_report, validate
+from errdain.domains.telecommunications.generators import TelecommunicationsGenerator
+from errdain.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
+from errdain.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
+from errdain.validation import schema_report, validate
 
 
 EXPECTED_TABLES = {

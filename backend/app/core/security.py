@@ -7,7 +7,7 @@ from backend.app.core.rate_limit import enforce_rate_limit
 
 
 def require_api_key(request: Request, x_api_key: str | None = Header(default=None, alias="X-API-Key")) -> None:
-    """Require an API key only when DATAFORGE_API_KEY is configured.
+    """Require an API key only when ERRDAIN_API_KEY is configured.
 
     This gives local development a zero-friction default while providing a
     deployment-ready protection point for generation, history, downloads, and

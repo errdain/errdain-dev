@@ -1,6 +1,6 @@
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.manufacturing.schemas import MANUFACTURING_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.manufacturing.schemas import MANUFACTURING_SPEC
+from errdain.validation import relationship_report
 
 
 def test_manufacturing_relationships_have_no_orphans():

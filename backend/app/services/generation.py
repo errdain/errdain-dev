@@ -12,21 +12,21 @@ from backend.app.core.config import get_settings
 from backend.app.repositories import DatasetRunRepository, GeneratedFileRepository, IssueManifestRepository, UserRepository, ValidationResultRepository
 from backend.app.schemas.api import GenerateRequest
 from backend.app.services.storage import get_storage_service
-from dataforge.canonical import empty_dataset, realism_report
-from dataforge.ddl import generate_ddl_package
-from dataforge.domains import DOMAIN_GENERATORS, DOMAIN_SPECS
-from dataforge.exporter import alignment_report, export_run
-from dataforge.injector import FailureInjector
-from dataforge.modes import build_artifacts, normalize_load_type
-from dataforge.realism import apply_realism
-from dataforge.scenarios.builder import execute_failure_plan, get_expanded_scenario
-from dataforge.scenarios.configuration import FailurePlan
-from dataforge.scenarios.models import ScenarioRunConfig
-from dataforge.scenarios.mutations import REFERENCE_SCENARIO_IDS, apply_reference_scenario_mutations
-from dataforge.scenarios.registry import get_scenario
-from dataforge.scenarios.validators import scenario_outcome_from_validations, validate_scenario_dataset
-from dataforge.schema_drift import export_schema_versions
-from dataforge.validation import reconciliation_report, relationship_report, schema_report, validate
+from errdain.canonical import empty_dataset, realism_report
+from errdain.ddl import generate_ddl_package
+from errdain.domains import DOMAIN_GENERATORS, DOMAIN_SPECS
+from errdain.exporter import alignment_report, export_run
+from errdain.injector import FailureInjector
+from errdain.modes import build_artifacts, normalize_load_type
+from errdain.realism import apply_realism
+from errdain.scenarios.builder import execute_failure_plan, get_expanded_scenario
+from errdain.scenarios.configuration import FailurePlan
+from errdain.scenarios.models import ScenarioRunConfig
+from errdain.scenarios.mutations import REFERENCE_SCENARIO_IDS, apply_reference_scenario_mutations
+from errdain.scenarios.registry import get_scenario
+from errdain.scenarios.validators import scenario_outcome_from_validations, validate_scenario_dataset
+from errdain.schema_drift import export_schema_versions
+from errdain.validation import reconciliation_report, relationship_report, schema_report, validate
 
 logger = logging.getLogger(__name__)
 
@@ -162,7 +162,7 @@ class DatasetGenerationService:
                     "requested_issues": requested_issue_rates,
                 }
             metadata = {
-                "generator": "dataforge-api",
+                "generator": "errdain-api",
                 "version": "0.6.0",
                 "domain": request.domain,
                 "dataset_name": run.id,

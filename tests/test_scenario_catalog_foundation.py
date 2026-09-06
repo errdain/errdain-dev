@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataforge.domains import DOMAIN_SPECS
-from dataforge.scenarios import all_scenarios, find_scenarios
-from dataforge.scenarios.catalog import (
+from errdain.domains import DOMAIN_SPECS
+from errdain.scenarios import all_scenarios, find_scenarios
+from errdain.scenarios.catalog import (
     build_master_scenario_registry,
     load_domain_table_catalog,
     load_failure_taxonomy,
@@ -10,8 +10,8 @@ from dataforge.scenarios.catalog import (
     validate_master_scenario_registry,
     validate_scenario_catalogs,
 )
-from dataforge.scenarios.catalog.loader import validate_master_scenario_registry as validate_registry_items
-from dataforge.scenarios.catalog.models import MasterScenarioMetadata
+from errdain.scenarios.catalog.loader import validate_master_scenario_registry as validate_registry_items
+from errdain.scenarios.catalog.models import MasterScenarioMetadata
 
 
 def test_scenario_taxonomy_catalog_validates_against_runtime_domains() -> None:
@@ -43,7 +43,7 @@ def test_failure_taxonomy_distinguishes_categories_from_primitives() -> None:
     assert "duplicate_entity" in taxonomy["categories"]["duplication"]["primitives"]
     assert "schema_drift" in taxonomy["categories"]["data_format"]["primitives"]
     assert "temperature_threshold_breach" in taxonomy["categories"]["threshold_violation"]["primitives"]
-    assert "dataforge.injector.FailureInjector" in taxonomy["existing_generic_implementation"]["module"]
+    assert "errdain.injector.FailureInjector" in taxonomy["existing_generic_implementation"]["module"]
 
 
 def test_master_registry_maps_all_existing_50_scenarios() -> None:

@@ -3,6 +3,7 @@ import path from "node:path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  allowedDevOrigins: ["127.0.0.1"],
   outputFileTracingRoot: path.join(__dirname),
   poweredByHeader: false,
   productionBrowserSourceMaps: false,

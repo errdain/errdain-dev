@@ -1,8 +1,8 @@
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.domains import DOMAIN_SPECS
-from dataforge.reporting import quality_score, quality_score_details
-from dataforge.validation import validate
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.domains import DOMAIN_SPECS
+from errdain.reporting import quality_score, quality_score_details
+from errdain.validation import validate
 
 
 def test_validation_report_has_standard_contract_for_every_domain():

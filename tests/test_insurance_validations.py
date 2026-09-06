@@ -1,6 +1,6 @@
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.insurance.schemas import INSURANCE_SPEC
-from dataforge.validation import validate
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.insurance.schemas import INSURANCE_SPEC
+from errdain.validation import validate
 
 
 def test_insurance_validations_catch_invalid_policy_and_claim_status():

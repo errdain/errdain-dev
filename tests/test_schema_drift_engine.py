@@ -1,9 +1,9 @@
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.modes import build_artifacts
-from dataforge.schema_drift import export_schema_versions
-from dataforge.validation import schema_report, validate
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.injector import FailureInjector
+from errdain.modes import build_artifacts
+from errdain.schema_drift import export_schema_versions
+from errdain.validation import schema_report, validate
 
 
 def test_schema_drift_is_injectable_and_reported(tmp_path):

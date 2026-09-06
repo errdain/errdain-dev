@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import yaml
 
-from dataforge.scenarios.capability_analysis import build_capability_leverage_report
+from errdain.scenarios.capability_analysis import build_capability_leverage_report
 
 
 def test_capability_leverage_report_ranks_reusable_capabilities() -> None:
-    report = yaml.safe_load(open("dataforge/scenarios/catalog/capability_leverage_report.yaml", encoding="utf-8"))
+    report = yaml.safe_load(open("errdain/scenarios/catalog/capability_leverage_report.yaml", encoding="utf-8"))
     assert report["baseline_counts"]["runtime_capable"] == 623
     assert report["after_batch_1_counts"]["runtime_capable"] == 151
     assert report["after_batch_2_counts"]["runtime_capable"] == 179
@@ -22,7 +22,7 @@ def test_capability_leverage_report_ranks_reusable_capabilities() -> None:
 
 
 def test_batch_definitions_include_batch_2_reconciliation_scope() -> None:
-    report = yaml.safe_load(open("dataforge/scenarios/catalog/capability_leverage_report.yaml", encoding="utf-8"))
+    report = yaml.safe_load(open("errdain/scenarios/catalog/capability_leverage_report.yaml", encoding="utf-8"))
     batches = report["implementation_batches"]
     assert [batch["batch"] for batch in batches] == [1, 2, 3, 5, 6, 7, 8, 9]
     assert batches[0]["primitives"] == ["timestamp_out_of_order", "sequence_gap", "duplicate_event"]

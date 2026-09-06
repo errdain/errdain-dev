@@ -4,8 +4,8 @@ import pytest
 import yaml
 from pydantic import ValidationError
 
-from dataforge.scenarios.catalog import expanded_scenario_items
-from dataforge.scenarios.configuration import (
+from errdain.scenarios.catalog import expanded_scenario_items
+from errdain.scenarios.configuration import (
     FailurePlan,
     FailurePlanItem,
     compatible_primitives_for_scenario,
@@ -13,7 +13,7 @@ from dataforge.scenarios.configuration import (
     scenario_configuration_metadata,
     validate_failure_plan,
 )
-from dataforge.scenarios.generic_executor import execute_generic_scenario
+from errdain.scenarios.generic_executor import execute_generic_scenario
 
 
 def _scenario():
@@ -21,7 +21,7 @@ def _scenario():
 
 
 def test_failure_plan_yaml_contract_documents_safe_controls() -> None:
-    contract = yaml.safe_load(open("dataforge/scenarios/catalog/failure_plan_contract.yaml", encoding="utf-8"))
+    contract = yaml.safe_load(open("errdain/scenarios/catalog/failure_plan_contract.yaml", encoding="utf-8"))
     assert contract["fields"]["overlap_mode"] == ["non_overlapping", "allow_overlap"]
     assert "primitive must be runtime implemented" in " ".join(contract["validation_rules"])
 

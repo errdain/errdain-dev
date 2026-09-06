@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def test_all_domains_have_standard_folder_structure():
-    root = Path("dataforge/domains")
+    root = Path("errdain/domains")
     expected = {
         "__init__.py",
         "schemas.py",

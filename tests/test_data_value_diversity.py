@@ -3,22 +3,22 @@ from __future__ import annotations
 import csv
 from collections import Counter
 
-from dataforge.domains import DOMAIN_GENERATORS, DOMAIN_SPECS
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.ecommerce.generators import EcommerceGenerator
-from dataforge.domains.education.generators import EducationGenerator
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.logistics.generators import LogisticsGenerator
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.retail.generators import RetailGenerator
-from dataforge.domains.telecommunications.generators import TelecommunicationsGenerator
-from dataforge.exporter import export_run
-from dataforge.model import SCENARIO_SUPPORT_COLUMNS
-from dataforge.modes import build_artifacts
-from dataforge.synthetic_values import full_name
-from dataforge.validation import validate
+from errdain.domains import DOMAIN_GENERATORS, DOMAIN_SPECS
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.ecommerce.generators import EcommerceGenerator
+from errdain.domains.education.generators import EducationGenerator
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.logistics.generators import LogisticsGenerator
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.retail.generators import RetailGenerator
+from errdain.domains.telecommunications.generators import TelecommunicationsGenerator
+from errdain.exporter import export_run
+from errdain.model import SCENARIO_SUPPORT_COLUMNS
+from errdain.modes import build_artifacts
+from errdain.synthetic_values import full_name
+from errdain.validation import validate
 
 
 def _assert_no_small_sample_repetition(values: list[str]) -> None:

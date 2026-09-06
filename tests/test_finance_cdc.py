@@ -1,8 +1,8 @@
 import json
 
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.modes import build_artifacts
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_finance_cdc_generates_insert_update_delete_for_transactions():

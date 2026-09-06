@@ -1,8 +1,8 @@
 import json
 
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.modes import build_artifacts
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_banking_cdc_generates_insert_update_delete_for_payments():

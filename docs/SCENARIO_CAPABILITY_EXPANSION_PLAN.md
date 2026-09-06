@@ -1,4 +1,4 @@
-# DataForge Scenario Capability Expansion Plan
+# Errdain Scenario Capability Expansion Plan
 
 Prompt 4 expands executable scenario coverage by implementing reusable
 capabilities, not one-off scenario branches.
@@ -9,7 +9,7 @@ capabilities, not one-off scenario branches.
 
 The full machine-readable report is generated at:
 
-`dataforge/scenarios/catalog/capability_leverage_report.yaml`
+`errdain/scenarios/catalog/capability_leverage_report.yaml`
 
 ## Baseline
 
@@ -104,8 +104,8 @@ Potential schema additions:
 
 Metadata added:
 
-- `dataforge/scenarios/catalog/state_machines.yaml`
-- `dataforge/scenarios/catalog/sla_policies.yaml`
+- `errdain/scenarios/catalog/state_machines.yaml`
+- `errdain/scenarios/catalog/sla_policies.yaml`
 
 Outcome:
 

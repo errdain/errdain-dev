@@ -1,7 +1,7 @@
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.insurance.schemas import INSURANCE_SPEC
-from dataforge.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
-from dataforge.validation import schema_report, validate
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.insurance.schemas import INSURANCE_SPEC
+from errdain.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
+from errdain.validation import schema_report, validate
 
 
 def test_insurance_generation_has_expected_tables_and_enterprise_columns():

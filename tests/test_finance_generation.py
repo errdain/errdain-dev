@@ -1,7 +1,7 @@
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
-from dataforge.validation import schema_report, validate
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
+from errdain.validation import schema_report, validate
 
 
 def test_finance_generation_has_expected_tables_and_enterprise_columns():

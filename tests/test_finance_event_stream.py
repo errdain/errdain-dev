@@ -1,9 +1,9 @@
 import json
 
-from dataforge.cli import main
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.modes import build_artifacts
+from errdain.cli import main
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_finance_event_stream_generates_transaction_card_payment_fraud_events():

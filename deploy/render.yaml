@@ -1,12 +1,13 @@
 services:
   - type: web
-    name: dataforge-backend
+    name: errdain-backend
     runtime: docker
     dockerContext: .
     dockerfilePath: ./backend/Dockerfile
     plan: starter
-    healthCheckPath: /health
-    autoDeploy: false
+    preDeployCommand: python -m alembic -c backend/alembic.ini upgrade head
+    healthCheckPath: /ready
+    autoDeployTrigger: checksPass
     envVars:
       - key: APP_ENV
         value: production
@@ -14,12 +15,12 @@ services:
         value: INFO
       - key: DATABASE_URL
         fromDatabase:
-          name: dataforge-postgres
+          name: errdain-postgres
           property: connectionString
-      - key: DATAFORGE_API_KEY
+      - key: ERRDAIN_API_KEY
         generateValue: true
       - key: OUTPUT_DIR
-        value: /var/lib/dataforge/output
+        value: /var/lib/errdain/output
       - key: CORS_ORIGINS
         value: https://your-frontend-domain.example
       - key: GENERATED_FILE_RETENTION_DAYS
@@ -48,5 +49,5 @@ services:
         value: "60"
 
 databases:
-  - name: dataforge-postgres
+  - name: errdain-postgres
     plan: starter

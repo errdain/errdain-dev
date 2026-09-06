@@ -4,14 +4,14 @@ from datetime import datetime, timezone
 
 import pytest
 
-from dataforge.cli import create_run_directory, main
-from dataforge.domains.logistics.generators import LogisticsGenerator
-from dataforge.domains.logistics.schemas import LOGISTICS_SPEC
-from dataforge.generator import RetailGenerator
-from dataforge.injector import FailureInjector
-from dataforge.model import AUDIT_COLUMNS, FACT_TABLES, SCHEMAS, TIME_HIERARCHY_COLUMNS
-from dataforge.modes import build_artifacts
-from dataforge.validation import reconciliation_report, relationship_report, schema_report, validate
+from errdain.cli import create_run_directory, main
+from errdain.domains.logistics.generators import LogisticsGenerator
+from errdain.domains.logistics.schemas import LOGISTICS_SPEC
+from errdain.generator import RetailGenerator
+from errdain.injector import FailureInjector
+from errdain.model import AUDIT_COLUMNS, FACT_TABLES, SCHEMAS, TIME_HIERARCHY_COLUMNS
+from errdain.modes import build_artifacts
+from errdain.validation import reconciliation_report, relationship_report, schema_report, validate
 
 
 def test_clean_dataset_has_enterprise_contract_and_valid_relationships():

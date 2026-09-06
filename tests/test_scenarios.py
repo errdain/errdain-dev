@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from dataforge.scenarios import all_scenarios, find_scenarios, validate_catalog
-from dataforge.scenarios.executor import build_generation_payload, failure_rates_for_config, resolve_scenario_run
-from dataforge.scenarios.matcher import match_scenarios
-from dataforge.scenarios.models import ScenarioRunConfig
-from dataforge.scenarios.validator import resolve_config
+from errdain.scenarios import all_scenarios, find_scenarios, validate_catalog
+from errdain.scenarios.executor import build_generation_payload, failure_rates_for_config, resolve_scenario_run
+from errdain.scenarios.matcher import match_scenarios
+from errdain.scenarios.models import ScenarioRunConfig
+from errdain.scenarios.validator import resolve_config
 
 
 REFERENCE_SCENARIOS = [

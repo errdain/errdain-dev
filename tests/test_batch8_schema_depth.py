@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.domains.logistics.generators import LogisticsGenerator
-from dataforge.domains.logistics.schemas import LOGISTICS_SPEC
-from dataforge.scenarios.catalog import expanded_scenario_items
-from dataforge.scenarios.generic_executor import execute_generic_scenario
-from dataforge.scenarios.requirements import REQUIREMENT_RESOLVER
-from dataforge.validation import relationship_report, validate
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.domains.logistics.generators import LogisticsGenerator
+from errdain.domains.logistics.schemas import LOGISTICS_SPEC
+from errdain.scenarios.catalog import expanded_scenario_items
+from errdain.scenarios.generic_executor import execute_generic_scenario
+from errdain.scenarios.requirements import REQUIREMENT_RESOLVER
+from errdain.validation import relationship_report, validate
 
 
 def test_batch_8_banking_card_authorizations_generate_with_valid_lifecycle() -> None:

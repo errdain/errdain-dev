@@ -7,6 +7,7 @@ import uuid
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
 from backend.app.analytics import AnalyticsAggregator
@@ -22,7 +23,7 @@ def create_app() -> FastAPI:
     settings = get_settings()
     if settings.app_env.lower() == "production":
         if not settings.api_key:
-            raise RuntimeError("DATAFORGE_API_KEY is required when APP_ENV=production")
+            raise RuntimeError("ERRDAIN_API_KEY is required when APP_ENV=production")
         if not settings.cors_origins:
             raise RuntimeError("CORS_ORIGINS must include at least one exact https:// origin when APP_ENV=production")
         if "*" in settings.cors_origins:
@@ -30,7 +31,7 @@ def create_app() -> FastAPI:
         if not all(origin.startswith("https://") for origin in settings.cors_origins):
             raise RuntimeError("CORS_ORIGINS must use exact https:// origins when APP_ENV=production")
     configure_logging(settings.log_level)
-    app = FastAPI(title="DataForge Backend", version="0.6.0")
+    app = FastAPI(title="Errdain Backend", version="0.6.0")
     app.state.SessionLocal = SessionLocal
     app.add_middleware(
         CORSMiddleware,
@@ -84,7 +85,7 @@ def create_app() -> FastAPI:
 
     @app.exception_handler(ValueError)
     async def value_error_handler(_: Request, exc: ValueError) -> JSONResponse:
-        return JSONResponse(status_code=400, content={"error": str(exc), "code": "DATAFORGE_ERROR"})
+        return JSONResponse(status_code=400, content={"error": str(exc), "code": "ERRDAIN_ERROR"})
 
     @app.exception_handler(HTTPException)
     async def http_error_handler(_: Request, exc: HTTPException) -> JSONResponse:
@@ -94,16 +95,35 @@ def create_app() -> FastAPI:
     @app.exception_handler(SQLAlchemyError)
     async def database_error_handler(_: Request, exc: SQLAlchemyError) -> JSONResponse:
         logger.exception("database_error")
-        return JSONResponse(status_code=500, content={"error": "Database error", "code": "DATAFORGE_ERROR"})
+        return JSONResponse(status_code=500, content={"error": "Database error", "code": "ERRDAIN_ERROR"})
 
     @app.exception_handler(Exception)
     async def generic_error_handler(_: Request, exc: Exception) -> JSONResponse:
         logger.exception("unhandled_error")
-        return JSONResponse(status_code=500, content={"error": "Internal server error", "code": "DATAFORGE_ERROR"})
+        return JSONResponse(status_code=500, content={"error": "Internal server error", "code": "ERRDAIN_ERROR"})
 
     @app.get("/health")
     def health() -> dict[str, str]:
-        return {"status": "healthy", "service": "dataforge"}
+        return {"status": "healthy", "service": "errdain"}
+
+    @app.get("/ready")
+    def readiness() -> JSONResponse:
+        try:
+            with app.state.SessionLocal() as db:
+                # A connection-only check can pass before Alembic migrations
+                # have created the application schema. Query a foundational
+                # table so traffic is accepted only after migrations complete.
+                db.execute(text("SELECT 1 FROM users LIMIT 1"))
+        except SQLAlchemyError:
+            logger.exception("readiness_database_unavailable")
+            return JSONResponse(
+                status_code=503,
+                content={"status": "not_ready", "service": "errdain", "database": "unavailable"},
+            )
+        return JSONResponse(
+            status_code=200,
+            content={"status": "ready", "service": "errdain", "database": "available"},
+        )
 
     app.include_router(v1_router)
     return app

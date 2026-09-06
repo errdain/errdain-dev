@@ -34,6 +34,6 @@ export const usePreferencesStore = create<PreferencesState>()(
       addRecentDomain: (domain) =>
         set((state) => ({ recentDomains: [domain, ...state.recentDomains.filter((item) => item !== domain)].slice(0, 5) })),
     }),
-    { name: "dataforge-preferences" },
+    { name: "errdain-preferences" },
   ),
 );

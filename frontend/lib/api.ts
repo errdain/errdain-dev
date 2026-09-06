@@ -37,7 +37,7 @@ export const api = axios.create({
   timeout: 120000,
 });
 
-const browserApiKey = process.env.NEXT_PUBLIC_ENABLE_DEMO_API_KEY === "true" ? process.env.NEXT_PUBLIC_DATAFORGE_API_KEY : undefined;
+const browserApiKey = process.env.NEXT_PUBLIC_ENABLE_DEMO_API_KEY === "true" ? process.env.NEXT_PUBLIC_ERRDAIN_API_KEY : undefined;
 if (browserApiKey) {
   api.defaults.headers.common["X-API-Key"] = browserApiKey;
 }
@@ -45,7 +45,7 @@ if (browserApiKey) {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    const message = error.response?.data?.error ?? error.message ?? "Unable to reach DataForge backend.";
+    const message = error.response?.data?.error ?? error.message ?? "Unable to reach Errdain backend.";
     return Promise.reject(new Error(message));
   },
 );

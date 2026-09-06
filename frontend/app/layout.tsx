@@ -5,7 +5,7 @@ import { Providers } from "@/app/providers";
 import { MobileNav, Sidebar } from "@/components/layout/sidebar";
 
 export const metadata: Metadata = {
-  title: "DataForge",
+  title: "Errdain",
   description: "Generate, inject, validate, and export enterprise test datasets.",
 };
 

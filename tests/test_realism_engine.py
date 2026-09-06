@@ -5,28 +5,28 @@ from collections import defaultdict
 from datetime import datetime
 from decimal import Decimal
 
-from dataforge.domains.ecommerce.generators import EcommerceGenerator
-from dataforge.domains.ecommerce.schemas import ECOMMERCE_SPEC
-from dataforge.domains.education.generators import EducationGenerator
-from dataforge.domains.education.schemas import EDUCATION_SPEC
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.insurance.schemas import INSURANCE_SPEC
-from dataforge.domains.logistics.generators import LogisticsGenerator
-from dataforge.domains.logistics.schemas import LOGISTICS_SPEC
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.manufacturing.schemas import MANUFACTURING_SPEC
-from dataforge.domains.retail.generators import RetailGenerator
-from dataforge.domains.retail.schemas import RETAIL_SPEC
-from dataforge.domains.telecommunications.generators import TelecommunicationsGenerator
-from dataforge.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.realism import (
+from errdain.domains.ecommerce.generators import EcommerceGenerator
+from errdain.domains.ecommerce.schemas import ECOMMERCE_SPEC
+from errdain.domains.education.generators import EducationGenerator
+from errdain.domains.education.schemas import EDUCATION_SPEC
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.insurance.schemas import INSURANCE_SPEC
+from errdain.domains.logistics.generators import LogisticsGenerator
+from errdain.domains.logistics.schemas import LOGISTICS_SPEC
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.manufacturing.schemas import MANUFACTURING_SPEC
+from errdain.domains.retail.generators import RetailGenerator
+from errdain.domains.retail.schemas import RETAIL_SPEC
+from errdain.domains.telecommunications.generators import TelecommunicationsGenerator
+from errdain.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
+from errdain.injector import FailureInjector
+from errdain.realism import (
     BANKING_PROFILES,
     ECOMMERCE_SOURCE_RATIOS,
     EDUCATION_PROFILES,
@@ -38,7 +38,7 @@ from dataforge.realism import (
     TELECOM_PROFILES,
     apply_realism,
 )
-from dataforge.validation import validate
+from errdain.validation import validate
 
 REALISM_CONTRACT_KEYS = {
     "realism_profile",

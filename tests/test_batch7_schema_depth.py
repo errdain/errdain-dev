@@ -1,17 +1,17 @@
 from __future__ import annotations
 
-from dataforge.domains.ecommerce.generators import EcommerceGenerator
-from dataforge.domains.ecommerce.schemas import ECOMMERCE_SPEC
-from dataforge.domains.education.generators import EducationGenerator
-from dataforge.domains.education.schemas import EDUCATION_SPEC
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.manufacturing.schemas import MANUFACTURING_SPEC
-from dataforge.scenarios.catalog import expanded_scenario_items
-from dataforge.scenarios.generic_executor import execute_generic_scenario
-from dataforge.scenarios.requirements import REQUIREMENT_RESOLVER
-from dataforge.validation import validate
+from errdain.domains.ecommerce.generators import EcommerceGenerator
+from errdain.domains.ecommerce.schemas import ECOMMERCE_SPEC
+from errdain.domains.education.generators import EducationGenerator
+from errdain.domains.education.schemas import EDUCATION_SPEC
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.manufacturing.schemas import MANUFACTURING_SPEC
+from errdain.scenarios.catalog import expanded_scenario_items
+from errdain.scenarios.generic_executor import execute_generic_scenario
+from errdain.scenarios.requirements import REQUIREMENT_RESOLVER
+from errdain.validation import validate
 
 
 def test_batch_7_new_domain_native_tables_generate_cleanly() -> None:

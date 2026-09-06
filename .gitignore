@@ -24,7 +24,7 @@ env/
 !.env.example
 .env.local
 
-# DataForge generated outputs
+# Errdain generated outputs
 output/
 outputs/
 generated/

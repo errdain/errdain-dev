@@ -1,27 +1,27 @@
 services:
   postgres:
     image: postgres:16
-    container_name: dataforge-postgres
+    container_name: errdain-postgres
     environment:
-      POSTGRES_DB: dataforge
-      POSTGRES_USER: dataforge
-      POSTGRES_PASSWORD: dataforge123
+      POSTGRES_DB: errdain
+      POSTGRES_USER: errdain
+      POSTGRES_PASSWORD: errdain123
     ports:
       - "55434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dataforge -d dataforge"]
+      test: ["CMD-SHELL", "pg_isready -U errdain -d errdain"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   pgadmin:
     image: dpage/pgadmin4:8
-    container_name: dataforge-pgadmin
+    container_name: errdain-pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@dataforge.local
-      PGADMIN_DEFAULT_PASSWORD: dataforge123
+      PGADMIN_DEFAULT_EMAIL: admin@errdain.example
+      PGADMIN_DEFAULT_PASSWORD: errdain123
     ports:
       - "5051:80"
     volumes:

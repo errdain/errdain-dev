@@ -6,29 +6,23 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-RUN addgroup --system dataforge && adduser --system --ingroup dataforge dataforge
+RUN addgroup --system errdain && adduser --system --ingroup errdain errdain
 
 COPY pyproject.toml README.md ./
 COPY backend ./backend
 COPY config ./config
-COPY dataforge ./dataforge
+COPY errdain ./errdain
 COPY retail_generator.py ./retail_generator.py
 
-RUN pip install --upgrade pip && pip install \
-    "fastapi>=0.115" \
-    "pydantic>=2.9" \
-    "pydantic-settings>=2.6" \
-    "sqlalchemy>=2.0" \
-    "alembic>=1.13" \
-    "psycopg[binary]>=3.2" \
-    "uvicorn>=0.30" \
-    "pyarrow>=14" \
-    "boto3>=1.34"
+RUN pip install --upgrade pip && pip install ".[parquet]"
 
-RUN mkdir -p /var/lib/dataforge/output && chown -R dataforge:dataforge /var/lib/dataforge /app
+RUN mkdir -p /var/lib/errdain/output && chown -R errdain:errdain /var/lib/errdain /app
 
-USER dataforge
+USER errdain
 
 EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+    CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=3)"]
 
 CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]

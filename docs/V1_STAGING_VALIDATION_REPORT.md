@@ -1,4 +1,4 @@
-# DataForge V1 Staging Validation Report
+# Errdain V1 Staging Validation Report
 
 Date: 2026-08-08  
 Decision: READY FOR LIMITED BETA
@@ -31,7 +31,7 @@ No Phase 2 features were added.
 ## Staging stack validated
 
 - PostgreSQL: Docker `postgres:16`
-- Database: `dataforge_v1_staging`
+- Database: `errdain_v1_staging`
 - Port: `55435 -> 5432`
 - Backend: FastAPI on `http://127.0.0.1:8020`
 - Frontend: Next.js production server on `http://127.0.0.1:3001`
@@ -51,20 +51,20 @@ Alembic migration status:
 
 ```bash
 docker run -d \
-  --name dataforge-postgres-v1-staging \
-  -e POSTGRES_DB=dataforge_v1_staging \
-  -e POSTGRES_USER=dataforge \
-  -e POSTGRES_PASSWORD=dataforge123 \
+  --name errdain-postgres-v1-staging \
+  -e POSTGRES_DB=errdain_v1_staging \
+  -e POSTGRES_USER=errdain \
+  -e POSTGRES_PASSWORD=errdain123 \
   -p 55435:5432 \
   postgres:16
 
-DATABASE_URL='postgresql+psycopg://dataforge:dataforge123@127.0.0.1:55435/dataforge_v1_staging' \
+DATABASE_URL='postgresql+psycopg://errdain:errdain123@127.0.0.1:55435/errdain_v1_staging' \
   /opt/anaconda3/bin/python3.12 -m alembic -c backend/alembic.ini upgrade head
 
 APP_ENV=staging \
-DATAFORGE_API_KEY=v1-staging-key \
-DATABASE_URL='postgresql+psycopg://dataforge:dataforge123@127.0.0.1:55435/dataforge_v1_staging' \
-OUTPUT_DIR='/private/tmp/dataforge-v1-staging-output' \
+ERRDAIN_API_KEY=v1-staging-key \
+DATABASE_URL='postgresql+psycopg://errdain:errdain123@127.0.0.1:55435/errdain_v1_staging' \
+OUTPUT_DIR='/private/tmp/errdain-v1-staging-output' \
 CORS_ORIGINS='http://127.0.0.1:3001' \
 STREAM_QUERY_TOKEN_ENABLED=false \
 RATE_LIMIT_ENABLED=false \
@@ -75,12 +75,12 @@ BENCHMARK_DETECTOR_UPLOAD_MAX_BYTES=5000000 \
 cd frontend
 NEXT_PUBLIC_API_BASE_URL='http://127.0.0.1:8020' \
 NEXT_PUBLIC_ENABLE_DEMO_API_KEY=true \
-NEXT_PUBLIC_DATAFORGE_API_KEY='v1-staging-key' \
+NEXT_PUBLIC_ERRDAIN_API_KEY='v1-staging-key' \
   npm run build
 
 NEXT_PUBLIC_API_BASE_URL='http://127.0.0.1:8020' \
 NEXT_PUBLIC_ENABLE_DEMO_API_KEY=true \
-NEXT_PUBLIC_DATAFORGE_API_KEY='v1-staging-key' \
+NEXT_PUBLIC_ERRDAIN_API_KEY='v1-staging-key' \
   npm run start -- --hostname 127.0.0.1 --port 3001
 ```
 
@@ -89,8 +89,8 @@ Playwright validation harness:
 ```bash
 FRONTEND_URL='http://127.0.0.1:3001' \
 BACKEND_URL='http://127.0.0.1:8020' \
-DATAFORGE_API_KEY='v1-staging-key' \
-  node /private/tmp/dataforge-v1-playwright-audit/v1-staging-validation.js
+ERRDAIN_API_KEY='v1-staging-key' \
+  node /private/tmp/errdain-v1-playwright-audit/v1-staging-validation.js
 ```
 
 ## Automated validation results

@@ -5,13 +5,13 @@ import json
 
 import pytest
 
-from dataforge.canonical import canonical_metadata, empty_dataset
-from dataforge.cli import main
-from dataforge.domains import DOMAIN_SPECS
-from dataforge.injector import FailureInjector
-from dataforge.modes import build_artifacts
-from dataforge.schema_drift import export_schema_versions
-from dataforge.validation import validate
+from errdain.canonical import canonical_metadata, empty_dataset
+from errdain.cli import main
+from errdain.domains import DOMAIN_SPECS
+from errdain.injector import FailureInjector
+from errdain.modes import build_artifacts
+from errdain.schema_drift import export_schema_versions
+from errdain.validation import validate
 
 
 @pytest.mark.parametrize("domain", sorted(DOMAIN_SPECS))
@@ -81,7 +81,7 @@ def test_canonical_metadata_contains_reference_profiles_for_all_domains():
 
 def test_schema_drift_exports_v1_v2_without_mutating_ordinary_output(tmp_path):
     spec = DOMAIN_SPECS["retail"]
-    clean = __import__("dataforge.domains.retail.generators", fromlist=["RetailGenerator"]).RetailGenerator(25, seed=5).generate()
+    clean = __import__("errdain.domains.retail.generators", fromlist=["RetailGenerator"]).RetailGenerator(25, seed=5).generate()
     injected, failures = FailureInjector({"schema_drift": 0.1}, seed=5, spec=spec).apply(clean, {"customers"})
     artifacts = build_artifacts(injected, "bulk", 5, {"customers"}, spec)
     diff = export_schema_versions(tmp_path, artifacts, ["csv", "json"], spec, failures)
@@ -95,7 +95,7 @@ def test_schema_drift_exports_v1_v2_without_mutating_ordinary_output(tmp_path):
 
 def test_issue_manifest_events_include_alignment_fields():
     spec = DOMAIN_SPECS["retail"]
-    clean = __import__("dataforge.domains.retail.generators", fromlist=["RetailGenerator"]).RetailGenerator(100, seed=7).generate()
+    clean = __import__("errdain.domains.retail.generators", fromlist=["RetailGenerator"]).RetailGenerator(100, seed=7).generate()
     _, failures = FailureInjector({"foreign_key_break": 0.03, "duplicate_records": 0.03}, seed=7, spec=spec).apply(clean, {"sales"})
 
     assert failures

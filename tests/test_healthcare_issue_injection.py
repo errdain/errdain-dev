@@ -2,11 +2,11 @@ import json
 
 import pytest
 
-from dataforge.cli import main
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.validation import validate
+from errdain.cli import main
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.injector import FailureInjector
+from errdain.validation import validate
 
 
 def test_healthcare_issue_injection_uses_shared_engine_for_selected_tables():

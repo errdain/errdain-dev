@@ -1,6 +1,6 @@
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.validation import relationship_report
 
 
 def test_healthcare_relationships_have_no_orphans():

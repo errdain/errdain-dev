@@ -1,4 +1,4 @@
-# DataForge Beta Feature Request Template
+# Errdain Beta Feature Request Template
 
 ## Problem
 
@@ -10,7 +10,7 @@ How do you solve this today?
 
 ## Requested feature
 
-What should DataForge add or change?
+What should Errdain add or change?
 
 ## Business value
 

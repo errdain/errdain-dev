@@ -1,6 +1,6 @@
-from dataforge.domains.telecommunications.generators import TelecommunicationsGenerator
-from dataforge.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
-from dataforge.validation import validate
+from errdain.domains.telecommunications.generators import TelecommunicationsGenerator
+from errdain.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
+from errdain.validation import validate
 
 
 def test_telecommunications_validations_catch_invalid_call_and_invoice():

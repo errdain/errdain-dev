@@ -2,11 +2,11 @@ import json
 
 import pytest
 
-from dataforge.cli import main
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.manufacturing.schemas import MANUFACTURING_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.validation import validate
+from errdain.cli import main
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.manufacturing.schemas import MANUFACTURING_SPEC
+from errdain.injector import FailureInjector
+from errdain.validation import validate
 
 
 def test_manufacturing_issue_injection_uses_shared_engine_for_selected_tables():

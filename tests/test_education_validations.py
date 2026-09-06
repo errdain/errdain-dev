@@ -1,6 +1,6 @@
-from dataforge.domains.education.generators import EducationGenerator
-from dataforge.domains.education.schemas import EDUCATION_SPEC
-from dataforge.validation import validate
+from errdain.domains.education.generators import EducationGenerator
+from errdain.domains.education.schemas import EDUCATION_SPEC
+from errdain.validation import validate
 
 
 def test_education_validations_catch_dates_scores_and_payment_errors():

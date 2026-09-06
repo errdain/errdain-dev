@@ -1,6 +1,6 @@
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.validation import relationship_report
 
 
 def test_finance_relationships_have_no_orphans():

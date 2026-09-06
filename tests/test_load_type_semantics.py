@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from dataforge.domains.retail.generators import RetailGenerator
-from dataforge.modes import build_artifacts
+from errdain.domains.retail.generators import RetailGenerator
+from errdain.modes import build_artifacts
 
 
 def test_incremental_load_contains_late_arriving_events():

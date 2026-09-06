@@ -1,8 +1,8 @@
 import json
 
-from dataforge.domains.healthcare.generators import HealthcareGenerator
-from dataforge.domains.healthcare.schemas import HEALTHCARE_SPEC
-from dataforge.modes import build_artifacts
+from errdain.domains.healthcare.generators import HealthcareGenerator
+from errdain.domains.healthcare.schemas import HEALTHCARE_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_healthcare_cdc_generates_insert_update_delete_for_claims():

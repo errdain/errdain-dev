@@ -16,7 +16,7 @@ class GenerateRequest(BaseModel):
     records: int = Field(default=1000, ge=0)
     selected_tables: list[str] | None = None
     issues: dict[str, float] = Field(default_factory=dict)
-    user_email: str = "anonymous@dataforge.local"
+    user_email: str = "anonymous@errdain.local"
     scenario_id: str | None = None
     scenario_run_config: dict[str, Any] | None = None
     scenario_definition: dict[str, Any] | None = None
@@ -168,7 +168,7 @@ class ScenarioConfigRequest(BaseModel):
     include_clean_baseline: bool = True
     include_failed_record_samples: bool = False
     generate_reports: bool = True
-    requested_by: str = "anonymous@dataforge.local"
+    requested_by: str = "anonymous@errdain.local"
     source_text: str | None = None
     confidence: float | None = Field(default=None, ge=0, le=1)
     warnings: list[str] = Field(default_factory=list)
@@ -181,7 +181,7 @@ class ScenarioBuilderGenerateRequest(BaseModel):
     seed: int = Field(default=42, ge=0)
     severity: str = "medium"
     failure_plan: dict[str, Any]
-    requested_by: str = "anonymous@dataforge.local"
+    requested_by: str = "anonymous@errdain.local"
 
 
 class ScenarioTemplateCreateRequest(BaseModel):

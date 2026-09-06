@@ -65,7 +65,7 @@ export const useGeneratorStore = create<GeneratorState>()(
         })),
     }),
     {
-      name: "dataforge-generator",
+      name: "errdain-generator",
       version: 4,
       migrate: (persisted) => ({ ...(persisted as GeneratorState), selectedTables: [] }),
     },

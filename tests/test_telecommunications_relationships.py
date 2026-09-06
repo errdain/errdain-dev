@@ -1,6 +1,6 @@
-from dataforge.domains.telecommunications.generators import TelecommunicationsGenerator
-from dataforge.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.telecommunications.generators import TelecommunicationsGenerator
+from errdain.domains.telecommunications.schemas import TELECOMMUNICATIONS_SPEC
+from errdain.validation import relationship_report
 
 
 def test_telecommunications_relationships_have_no_orphans():

@@ -17,4 +17,4 @@ def test_validation_api_persists_results(client):
 def test_validation_api_missing_run_returns_error(client):
     response = client.post("/api/v1/validate", json={"run_id": "missing"})
     assert response.status_code == 400
-    assert response.json()["code"] == "DATAFORGE_ERROR"
+    assert response.json()["code"] == "ERRDAIN_ERROR"

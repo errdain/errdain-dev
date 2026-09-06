@@ -1,6 +1,6 @@
-from dataforge.domains.education.generators import EducationGenerator
-from dataforge.domains.education.schemas import EDUCATION_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.education.generators import EducationGenerator
+from errdain.domains.education.schemas import EDUCATION_SPEC
+from errdain.validation import relationship_report
 
 
 def test_education_relationships_have_no_orphans():

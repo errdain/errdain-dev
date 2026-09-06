@@ -1,4 +1,4 @@
-name: DataForge CI
+name: Errdain CI
 
 on:
   push:
@@ -26,9 +26,9 @@ jobs:
         run: python -m pytest -q
       - name: Check Alembic migrations
         run: |
-          DATABASE_URL=sqlite:////tmp/dataforge-ci.db alembic -c backend/alembic.ini upgrade head
-          DATABASE_URL=sqlite:////tmp/dataforge-ci.db alembic -c backend/alembic.ini downgrade base
-          DATABASE_URL=sqlite:////tmp/dataforge-ci.db alembic -c backend/alembic.ini upgrade head
+          DATABASE_URL=sqlite:////tmp/errdain-ci.db alembic -c backend/alembic.ini upgrade head
+          DATABASE_URL=sqlite:////tmp/errdain-ci.db alembic -c backend/alembic.ini downgrade base
+          DATABASE_URL=sqlite:////tmp/errdain-ci.db alembic -c backend/alembic.ini upgrade head
 
   frontend:
     name: Frontend checks

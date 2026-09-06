@@ -1,6 +1,6 @@
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.validation import validate
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.validation import validate
 
 
 def test_banking_business_rules_pass_for_clean_data():

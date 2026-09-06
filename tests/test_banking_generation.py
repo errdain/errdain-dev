@@ -1,7 +1,7 @@
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
-from dataforge.validation import schema_report, validate
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
+from errdain.validation import schema_report, validate
 
 
 def test_banking_generation_has_expected_tables_and_enterprise_columns():

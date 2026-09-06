@@ -1,4 +1,4 @@
-# DataForge V1 Limited Beta Launch Plan
+# Errdain V1 Limited Beta Launch Plan
 
 Status: V1 feature-frozen  
 Recommended release label: `v1.0.0-beta`  
@@ -10,7 +10,7 @@ Treat the V1 beta as a product validation program, not only a software test.
 
 The beta should answer:
 
-1. Do users understand DataForge?
+1. Do users understand Errdain?
 2. Can users complete the scenario and benchmark workflow?
 3. Would users return and reuse it?
 4. Would users or teams pay for it?
@@ -90,7 +90,7 @@ Validate repeat use, benchmark comprehension, detector upload flow, artifact use
 
 Objective:
 
-Decide whether DataForge is ready for external beta, needs a short V1 patch cycle, or should pivot the V2 roadmap.
+Decide whether Errdain is ready for external beta, needs a short V1 patch cycle, or should pivot the V2 roadmap.
 
 ## Feature exposure during beta
 
@@ -270,8 +270,8 @@ Move from internal beta to external beta only if:
 - High-priority issues are resolved or have acceptable workarounds.
 - At least 80% of internal testers complete the core workflow without assistance.
 - Most testers rate usability positively, target >= 4 / 5.
-- Multiple testers say they would use DataForge again.
-- Multiple testers say their company/team would evaluate DataForge.
+- Multiple testers say they would use Errdain again.
+- Multiple testers say their company/team would evaluate Errdain.
 - Phase 2 roadmap is prioritized from real feedback, not assumptions.
 
 ## Limited beta decision framing

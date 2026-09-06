@@ -126,12 +126,12 @@ export default function HomePage() {
       <section className="overflow-hidden rounded-[2rem] border border-border bg-card shadow-sm">
         <div className="grid gap-8 p-8 lg:grid-cols-[1.25fr_0.75fr] lg:p-10">
           <div className="max-w-4xl">
-            <Badge>DataForge v0.9 beta · Batch + scenarios + streaming MVP</Badge>
+            <Badge>Errdain v0.9 beta · Batch + scenarios + streaming MVP</Badge>
             <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-tight md:text-6xl">
               Generate, break, validate, preview, and download enterprise test data.
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-muted-foreground">
-              DataForge helps data engineers, data scientists, ML engineers, QA teams, students, and trainers create realistic synthetic data with controlled quality problems before pipelines reach production.
+              Errdain helps data engineers, data scientists, ML engineers, QA teams, students, and trainers create realistic synthetic data with controlled quality problems before pipelines reach production.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <PrimaryLink href="/generator">Start generating</PrimaryLink>
@@ -162,7 +162,7 @@ export default function HomePage() {
           <div>
             <Badge>Features</Badge>
             <h2 className="mt-3 text-3xl font-bold tracking-tight">Click into any capability</h2>
-            <p className="mt-2 text-muted-foreground">Each card routes to the relevant DataForge screen.</p>
+            <p className="mt-2 text-muted-foreground">Each card routes to the relevant Errdain screen.</p>
           </div>
           <SecondaryLink href="/generator">Open main workflow</SecondaryLink>
         </div>

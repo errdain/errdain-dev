@@ -1,5 +1,5 @@
 [project]
-name = "dataforge"
+name = "errdain"
 version = "0.6.0"
 description = "Deterministic multi-domain test-data generation, issue injection, validation, and export"
 requires-python = ">=3.11"
@@ -22,16 +22,16 @@ tests = ["httpx2>=2.5", "pip-audit>=2.7", "pytest>=8"]
 e2e = ["selenium>=4.22"]
 
 [project.scripts]
-dataforge = "dataforge.cli:main"
-dataforge-retail = "dataforge.cli:main"
-dataforge-cleanup = "backend.app.services.retention:main"
+errdain = "errdain.cli:main"
+errdain-retail = "errdain.cli:main"
+errdain-cleanup = "backend.app.services.retention:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["dataforge*", "backend*"]
+include = ["errdain*", "backend*"]
 exclude = ["config*", "deploy*", "frontend*", "output*", "tests*"]
 
 [tool.pytest.ini_options]

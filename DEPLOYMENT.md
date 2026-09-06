@@ -1,4 +1,4 @@
-# DataForge Deployment Readiness
+# Errdain Deployment Readiness
 
 This document captures the current deployment contract without adding new
 product features.
@@ -14,6 +14,12 @@ Recommended local/dev ports:
 | Next.js frontend | `127.0.0.1:3000` |
 | pgAdmin | `127.0.0.1:5051` |
 
+The backend exposes separate platform probes:
+
+- `GET /health` is a process liveness check.
+- `GET /ready` verifies the process can query the migrated application schema
+  and is the correct load-balancer/container health check.
+
 ## Required environment
 
 Backend:
@@ -22,8 +28,8 @@ Backend:
 APP_ENV=production
 LOG_LEVEL=INFO
 DATABASE_URL=postgresql+psycopg://<user>:<password>@<host>:5432/<db>
-DATAFORGE_API_KEY=<long-random-secret>
-OUTPUT_DIR=/var/lib/dataforge/output
+ERRDAIN_API_KEY=<long-random-secret>
+OUTPUT_DIR=/var/lib/errdain/output
 MAX_BATCH_RECORDS=500000
 CORS_ORIGINS=https://<frontend-domain>
 GENERATED_FILE_RETENTION_DAYS=7
@@ -48,16 +54,16 @@ Frontend:
 NEXT_PUBLIC_API_BASE_URL=https://<backend-domain>
 # Internal/demo deployments only; public browser env vars are visible.
 NEXT_PUBLIC_ENABLE_DEMO_API_KEY=false
-NEXT_PUBLIC_DATAFORGE_API_KEY=
+NEXT_PUBLIC_ERRDAIN_API_KEY=
 ```
 
 ## Authentication foundation
 
-If `DATAFORGE_API_KEY` is empty, API-key enforcement is disabled for local
+If `ERRDAIN_API_KEY` is empty, API-key enforcement is disabled for local
 development. If it is set, protected endpoints require:
 
 ```http
-X-API-Key: <DATAFORGE_API_KEY>
+X-API-Key: <ERRDAIN_API_KEY>
 ```
 
 Protected endpoint groups:
@@ -72,7 +78,7 @@ Protected endpoint groups:
 This is a foundation only. Before public beta, replace or augment this with
 user/session-based auth if multiple users need separate access control.
 For an internal demo UI, set `NEXT_PUBLIC_ENABLE_DEMO_API_KEY=true` and
-`NEXT_PUBLIC_DATAFORGE_API_KEY=<demo-key>` to send the header from the browser.
+`NEXT_PUBLIC_ERRDAIN_API_KEY=<demo-key>` to send the header from the browser.
 Do not enable this for public users. Public browser-exposed keys are not real
 authorization. For beta/public multi-user access, place Supabase/Auth.js/Clerk
 or another identity provider in front of the backend and validate user sessions
@@ -196,7 +202,7 @@ Generated file metadata stores:
 
 ```bash
 STORAGE_BACKEND=local
-OUTPUT_DIR=/var/lib/dataforge/output
+OUTPUT_DIR=/var/lib/errdain/output
 ```
 
 The download endpoint validates object keys and paths stay inside `OUTPUT_DIR`.
@@ -258,7 +264,7 @@ designed once user-facing retention semantics are finalized.
 Build the production backend image from the repository root:
 
 ```bash
-docker build -f backend/Dockerfile -t dataforge-backend:0.6.0 .
+docker build -f backend/Dockerfile -t errdain-backend:0.6.0 .
 ```
 
 Run locally against the Docker Compose PostgreSQL service:
@@ -268,13 +274,14 @@ docker compose up -d postgres
 alembic -c backend/alembic.ini upgrade head
 docker run --rm -p 8010:8000 \
   --env-file .env \
-  dataforge-backend:0.6.0
+  errdain-backend:0.6.0
 ```
 
-Health check:
+Liveness and readiness checks:
 
 ```bash
 curl http://127.0.0.1:8010/health
+curl http://127.0.0.1:8010/ready
 ```
 
 Run migrations before starting a production container:
@@ -301,13 +308,18 @@ Recommended flow:
 3. Select the repository.
 4. Use `deploy/render.yaml`.
 5. Replace `CORS_ORIGINS` with the real frontend URL.
-6. Keep `DATAFORGE_API_KEY` secret and copy it into the frontend environment
+6. Keep `ERRDAIN_API_KEY` secret and copy it into the frontend environment
    only for internal/demo deployments.
-7. Run Alembic migrations after the database is created:
+7. Confirm the Blueprint's pre-deploy migration succeeds before the service is
+   marked ready. It runs:
 
 ```bash
 alembic -c backend/alembic.ini upgrade head
 ```
+
+The Blueprint deploys only after repository checks pass and uses `/ready` for
+traffic readiness. On other platforms, configure the same migration command as
+a release/pre-deploy step.
 
 Render uses:
 
@@ -339,7 +351,7 @@ npm run build
 
 ```bash
 NEXT_PUBLIC_API_BASE_URL=https://<render-backend-domain>
-NEXT_PUBLIC_DATAFORGE_API_KEY=<demo-api-key-if-needed>
+NEXT_PUBLIC_ERRDAIN_API_KEY=<demo-api-key-if-needed>
 ```
 
 6. In the backend environment, set:
@@ -362,9 +374,9 @@ Before a live demo:
 alembic -c backend/alembic.ini upgrade head
 ```
 
-- `DATAFORGE_API_KEY` is set on backend.
+- `ERRDAIN_API_KEY` is set on backend.
 - Frontend `NEXT_PUBLIC_API_BASE_URL` points to the backend URL.
-- Frontend `NEXT_PUBLIC_DATAFORGE_API_KEY` matches backend key for internal demo.
+- Frontend `NEXT_PUBLIC_ERRDAIN_API_KEY` matches backend key for internal demo.
 - Backend `CORS_ORIGINS` includes the Vercel frontend URL.
 - `RATE_LIMIT_ENABLED=true` with demo-safe limits.
 - `STORAGE_BACKEND` is `local` for single-instance demo or `s3-compatible` for

@@ -2,11 +2,11 @@ import json
 
 import pytest
 
-from dataforge.cli import main
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.validation import validate
+from errdain.cli import main
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.injector import FailureInjector
+from errdain.validation import validate
 
 
 def test_finance_issue_injection_uses_shared_engine_for_selected_tables():

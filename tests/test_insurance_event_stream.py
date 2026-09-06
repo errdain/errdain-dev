@@ -1,9 +1,9 @@
 import json
 
-from dataforge.cli import main
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.insurance.schemas import INSURANCE_SPEC
-from dataforge.modes import build_artifacts
+from errdain.cli import main
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.insurance.schemas import INSURANCE_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_insurance_event_stream_generates_policy_claim_settlement_premium_fraud_events():

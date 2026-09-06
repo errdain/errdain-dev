@@ -1,4 +1,4 @@
-# DataForge Beta Tester Missions
+# Errdain Beta Tester Missions
 
 Use this mission pack for internal beta testers. Each tester should complete at least missions 1–5. Missions 6–8 are recommended for advanced users.
 
@@ -20,7 +20,7 @@ Goal: verify first-run comprehension.
 
 Task:
 
-1. Open DataForge.
+1. Open Errdain.
 2. Go to Scenario Library / Scenario Builder.
 3. Choose a Featured Retail scenario, such as duplicate order/payment.
 4. Generate a dataset with the default settings.
@@ -145,8 +145,8 @@ Goal: collect product-market signal.
 
 Ask:
 
-- What current problem could DataForge solve for you?
-- What tool/process would DataForge replace or improve?
+- What current problem could Errdain solve for you?
+- What tool/process would Errdain replace or improve?
 - Would your team evaluate this?
 - Would you use it monthly?
 - Would you pay for it?

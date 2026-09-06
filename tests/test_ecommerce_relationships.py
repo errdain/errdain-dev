@@ -1,6 +1,6 @@
-from dataforge.domains.ecommerce.generators import EcommerceGenerator
-from dataforge.domains.ecommerce.schemas import ECOMMERCE_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.ecommerce.generators import EcommerceGenerator
+from errdain.domains.ecommerce.schemas import ECOMMERCE_SPEC
+from errdain.validation import relationship_report
 
 
 def test_ecommerce_relationships_have_no_orphans():

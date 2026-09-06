@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import pytest
 
-from dataforge.scenarios.catalog import expanded_scenario_items
-from dataforge.scenarios.generic_executor import execute_generic_scenario
-from dataforge.scenarios.primitives import PRIMITIVE_REGISTRY
-from dataforge.scenarios.requirements import REQUIREMENT_RESOLVER
-from dataforge.scenarios.validator_registry import VALIDATOR_REGISTRY
+from errdain.scenarios.catalog import expanded_scenario_items
+from errdain.scenarios.generic_executor import execute_generic_scenario
+from errdain.scenarios.primitives import PRIMITIVE_REGISTRY
+from errdain.scenarios.requirements import REQUIREMENT_RESOLVER
+from errdain.scenarios.validator_registry import VALIDATOR_REGISTRY
 
 
 def test_primitive_registry_resolves_legacy_aliases_to_canonical_primitives() -> None:

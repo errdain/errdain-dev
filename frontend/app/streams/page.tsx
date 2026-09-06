@@ -299,7 +299,7 @@ export default function StreamsPage() {
               </label>
               {webhookEnabled ? (
                 <div className="grid min-w-0 gap-4 md:grid-cols-2">
-                  <TextField label="Webhook URL" value={webhookUrl} placeholder="https://example.com/dataforge-webhook" onChange={setWebhookUrl} />
+                  <TextField label="Webhook URL" value={webhookUrl} placeholder="https://example.com/errdain-webhook" onChange={setWebhookUrl} />
                   <TextField label="Webhook Secret" value={webhookSecret} placeholder="Used for HMAC signature" onChange={setWebhookSecret} type="password" />
                 </div>
               ) : null}

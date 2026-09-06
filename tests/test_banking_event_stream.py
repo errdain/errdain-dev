@@ -1,9 +1,9 @@
 import json
 
-from dataforge.cli import main
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.modes import build_artifacts
+from errdain.cli import main
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_banking_event_stream_generates_payment_transfer_treasury_fraud_events():

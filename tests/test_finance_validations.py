@@ -1,6 +1,6 @@
-from dataforge.domains.finance.generators import FinanceGenerator
-from dataforge.domains.finance.schemas import FINANCE_SPEC
-from dataforge.validation import validate
+from errdain.domains.finance.generators import FinanceGenerator
+from errdain.domains.finance.schemas import FINANCE_SPEC
+from errdain.validation import validate
 
 
 def test_finance_validations_catch_invalid_interest_and_transaction_status():

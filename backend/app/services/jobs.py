@@ -12,8 +12,8 @@ from backend.app.db.session import SessionLocal
 from backend.app.repositories import GenerationJobRepository
 from backend.app.schemas.api import GenerateRequest
 from backend.app.services.generation import DatasetGenerationService
-from dataforge.domains import DOMAIN_SPECS
-from dataforge.modes import normalize_load_type
+from errdain.domains import DOMAIN_SPECS
+from errdain.modes import normalize_load_type
 
 logger = logging.getLogger(__name__)
 

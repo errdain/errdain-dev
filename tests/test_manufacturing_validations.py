@@ -1,6 +1,6 @@
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.manufacturing.schemas import MANUFACTURING_SPEC
-from dataforge.validation import validate
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.manufacturing.schemas import MANUFACTURING_SPEC
+from errdain.validation import validate
 
 
 def test_manufacturing_validations_catch_invalid_quantities_and_statuses():

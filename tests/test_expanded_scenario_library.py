@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import yaml
 
-from dataforge.domains import DOMAIN_SPECS
-from dataforge.scenarios import all_scenarios
-from dataforge.scenarios.catalog import (
+from errdain.domains import DOMAIN_SPECS
+from errdain.scenarios import all_scenarios
+from errdain.scenarios.catalog import (
     expanded_scenario_items,
     load_domain_table_catalog,
     load_expanded_scenario_library,
@@ -127,29 +127,29 @@ def test_mutation_and_validator_plans_cover_all_active_scenarios() -> None:
 
 def test_all_yaml_catalogs_parse_successfully() -> None:
     catalog_files = [
-        "dataforge/scenarios/catalog/scenario_taxonomy.yaml",
-        "dataforge/scenarios/catalog/domain_table_catalog.yaml",
-        "dataforge/scenarios/catalog/failure_taxonomy.yaml",
-        "dataforge/scenarios/catalog/scenario_library.yaml",
-        "dataforge/scenarios/catalog/rejected_scenarios.yaml",
-        "dataforge/scenarios/catalog/scenario_table_coverage.yaml",
-        "dataforge/scenarios/catalog/column_gap_analysis.yaml",
-        "dataforge/scenarios/catalog/mutation_primitive_plan.yaml",
-        "dataforge/scenarios/catalog/validator_pattern_plan.yaml",
-        "dataforge/scenarios/catalog/scenario_library_coverage_report.yaml",
-        "dataforge/scenarios/catalog/state_machines.yaml",
-        "dataforge/scenarios/catalog/sla_policies.yaml",
-        "dataforge/scenarios/catalog/business_policies.yaml",
-        "dataforge/scenarios/catalog/column_blocker_report.yaml",
-        "dataforge/scenarios/catalog/domain_column_semantics.yaml",
-        "dataforge/scenarios/catalog/schema_leverage_report.yaml",
-        "dataforge/scenarios/catalog/remaining_scenario_dependency_report.yaml",
-        "dataforge/scenarios/catalog/scenario_performance_smoke_report.yaml",
-        "dataforge/scenarios/catalog/scenario_quality_audit.yaml",
-        "dataforge/scenarios/catalog/scenario_quality_summary.yaml",
-        "dataforge/scenarios/catalog/failure_plan_contract.yaml",
-        "dataforge/scenarios/catalog/ground_truth_contract.yaml",
-        "dataforge/scenarios/catalog/scenario_configuration_contract.yaml",
+        "errdain/scenarios/catalog/scenario_taxonomy.yaml",
+        "errdain/scenarios/catalog/domain_table_catalog.yaml",
+        "errdain/scenarios/catalog/failure_taxonomy.yaml",
+        "errdain/scenarios/catalog/scenario_library.yaml",
+        "errdain/scenarios/catalog/rejected_scenarios.yaml",
+        "errdain/scenarios/catalog/scenario_table_coverage.yaml",
+        "errdain/scenarios/catalog/column_gap_analysis.yaml",
+        "errdain/scenarios/catalog/mutation_primitive_plan.yaml",
+        "errdain/scenarios/catalog/validator_pattern_plan.yaml",
+        "errdain/scenarios/catalog/scenario_library_coverage_report.yaml",
+        "errdain/scenarios/catalog/state_machines.yaml",
+        "errdain/scenarios/catalog/sla_policies.yaml",
+        "errdain/scenarios/catalog/business_policies.yaml",
+        "errdain/scenarios/catalog/column_blocker_report.yaml",
+        "errdain/scenarios/catalog/domain_column_semantics.yaml",
+        "errdain/scenarios/catalog/schema_leverage_report.yaml",
+        "errdain/scenarios/catalog/remaining_scenario_dependency_report.yaml",
+        "errdain/scenarios/catalog/scenario_performance_smoke_report.yaml",
+        "errdain/scenarios/catalog/scenario_quality_audit.yaml",
+        "errdain/scenarios/catalog/scenario_quality_summary.yaml",
+        "errdain/scenarios/catalog/failure_plan_contract.yaml",
+        "errdain/scenarios/catalog/ground_truth_contract.yaml",
+        "errdain/scenarios/catalog/scenario_configuration_contract.yaml",
     ]
     for path in catalog_files:
         with open(path, encoding="utf-8") as handle:

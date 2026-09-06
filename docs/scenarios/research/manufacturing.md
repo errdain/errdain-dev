@@ -15,7 +15,7 @@ References:
 - NASA Prognostics Center of Excellence — NASA — https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/ — reviewed 2026-07-11 — reference metadata only — derived degradation/downtime/sensor failure themes — no_copied_rows=true
 - ISA-95 overview — ISA — https://www.isa.org/standards-and-publications/isa-standards/isa-95-standard — reviewed 2026-07-11 — standards reference only — derived manufacturing operations categories — no_copied_rows=true
 
-Assumptions: DataForge uses current schema fields to represent manufacturing operational tests.
+Assumptions: Errdain uses current schema fields to represent manufacturing operational tests.
 
 Unresolved questions: future beta users may request explicit sensor readings.
 

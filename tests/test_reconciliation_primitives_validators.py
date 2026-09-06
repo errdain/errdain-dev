@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataforge.domains.retail.schemas import RETAIL_SPEC
-from dataforge.scenarios.primitives import PRIMITIVE_REGISTRY, PrimitiveExecutionContext
-from dataforge.scenarios.validator_registry import VALIDATOR_REGISTRY, ValidatorExecutionContext
+from errdain.domains.retail.schemas import RETAIL_SPEC
+from errdain.scenarios.primitives import PRIMITIVE_REGISTRY, PrimitiveExecutionContext
+from errdain.scenarios.validator_registry import VALIDATOR_REGISTRY, ValidatorExecutionContext
 
 
 def _retail_dataset() -> dict[str, list[dict]]:

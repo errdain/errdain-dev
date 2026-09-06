@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 
-from dataforge.scenarios.benchmarking import detector_payload_from_csv, detector_payload_from_jsonl, evaluate_detector_output
+from errdain.scenarios.benchmarking import detector_payload_from_csv, detector_payload_from_jsonl, evaluate_detector_output
 
 
 def _scenario_run(client, *, records: int = 140, seed: int = 1717) -> str:

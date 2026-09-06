@@ -1,6 +1,6 @@
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.validation import relationship_report
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.validation import relationship_report
 
 
 def test_banking_relationships_have_no_orphans():

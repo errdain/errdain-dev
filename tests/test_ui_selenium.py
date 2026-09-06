@@ -48,7 +48,7 @@ def test_generator_live_generation_and_centered_files(driver):
     pytest.importorskip("selenium")
     from selenium.webdriver.common.by import By
 
-    base_url = os.getenv("DATAFORGE_UI_BASE_URL", "http://127.0.0.1:3000")
+    base_url = os.getenv("ERRDAIN_UI_BASE_URL", "http://127.0.0.1:3000")
     driver.get(f"{base_url}/generator")
 
     wait_until(driver, lambda: "Generate Enterprise Datasets" in driver.find_element(By.TAG_NAME, "body").text)
@@ -78,7 +78,7 @@ def test_generator_live_generation_and_centered_files(driver):
 def test_generator_navigation_stability(driver):
     from selenium.webdriver.common.by import By
 
-    base_url = os.getenv("DATAFORGE_UI_BASE_URL", "http://127.0.0.1:3000")
+    base_url = os.getenv("ERRDAIN_UI_BASE_URL", "http://127.0.0.1:3000")
     routes = ["/generator", "/history", "/generator", "/history", "/generator"]
     timings: list[float] = []
 
@@ -99,7 +99,7 @@ def test_generator_navigation_stability(driver):
 def test_generator_repeated_small_generation_stability(driver):
     from selenium.webdriver.common.by import By
 
-    base_url = os.getenv("DATAFORGE_UI_BASE_URL", "http://127.0.0.1:3000")
+    base_url = os.getenv("ERRDAIN_UI_BASE_URL", "http://127.0.0.1:3000")
     iterations = int(os.getenv("SELENIUM_GENERATION_ITERATIONS", "3"))
     durations: list[float] = []
 

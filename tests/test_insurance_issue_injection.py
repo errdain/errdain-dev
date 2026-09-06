@@ -2,11 +2,11 @@ import json
 
 import pytest
 
-from dataforge.cli import main
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.insurance.schemas import INSURANCE_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.validation import validate
+from errdain.cli import main
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.insurance.schemas import INSURANCE_SPEC
+from errdain.injector import FailureInjector
+from errdain.validation import validate
 
 
 def test_insurance_issue_injection_uses_shared_engine_for_selected_tables():

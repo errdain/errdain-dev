@@ -1,4 +1,4 @@
-# DataForge Enterprise Benchmark API
+# Errdain Enterprise Benchmark API
 
 Batch 13 turns a benchmark definition into an executable, reproducible test specification.
 
@@ -15,15 +15,15 @@ The enterprise workflow is:
 All protected examples assume:
 
 ```bash
-export DATAFORGE_API=http://127.0.0.1:8010
-export DATAFORGE_API_KEY=your-api-key
+export ERRDAIN_API=http://127.0.0.1:8010
+export ERRDAIN_API_KEY=your-api-key
 ```
 
 ## 1. Create a benchmark definition
 
 ```bash
-curl -s -X POST "$DATAFORGE_API/api/v1/benchmarks" \
-  -H "X-API-Key: $DATAFORGE_API_KEY" \
+curl -s -X POST "$ERRDAIN_API/api/v1/benchmarks" \
+  -H "X-API-Key: $ERRDAIN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Payment Retry Detector Benchmark",
@@ -57,8 +57,8 @@ curl -s -X POST "$DATAFORGE_API/api/v1/benchmarks" \
 This creates a benchmark run, snapshots benchmark configuration, starts Scenario Builder generation in the background, and returns quickly.
 
 ```bash
-curl -s -X POST "$DATAFORGE_API/api/v1/benchmarks/<benchmark_id>/runs" \
-  -H "X-API-Key: $DATAFORGE_API_KEY" \
+curl -s -X POST "$ERRDAIN_API/api/v1/benchmarks/<benchmark_id>/runs" \
+  -H "X-API-Key: $ERRDAIN_API_KEY" \
   -H "Idempotency-Key: payment-retry-run-001" \
   -H "Content-Type: application/json" \
   -d '{
@@ -80,8 +80,8 @@ Response:
 ## 3. Poll benchmark run status
 
 ```bash
-curl -s "$DATAFORGE_API/api/v1/benchmark-runs/<benchmark_run_id>" \
-  -H "X-API-Key: $DATAFORGE_API_KEY"
+curl -s "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>" \
+  -H "X-API-Key: $ERRDAIN_API_KEY"
 ```
 
 Lifecycle:
@@ -105,8 +105,8 @@ When status is `waiting_for_detector`, the dataset, ground truth, and artifact m
 Get artifact manifest:
 
 ```bash
-curl -s "$DATAFORGE_API/api/v1/benchmark-runs/<benchmark_run_id>/artifact-manifest" \
-  -H "X-API-Key: $DATAFORGE_API_KEY"
+curl -s "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/artifact-manifest" \
+  -H "X-API-Key: $ERRDAIN_API_KEY"
 ```
 
 Common artifact URLs in the manifest:
@@ -120,8 +120,8 @@ Common artifact URLs in the manifest:
 ## 5. Detector output contract
 
 ```bash
-curl -s "$DATAFORGE_API/api/v1/evaluations/detector-contract" \
-  -H "X-API-Key: $DATAFORGE_API_KEY"
+curl -s "$ERRDAIN_API/api/v1/evaluations/detector-contract" \
+  -H "X-API-Key: $ERRDAIN_API_KEY"
 ```
 
 Detector JSON shape:
@@ -152,8 +152,8 @@ entity,PAY123,true,duplicate_payment,0.98
 ## 6. Submit detector output by API
 
 ```bash
-curl -s -X POST "$DATAFORGE_API/api/v1/benchmark-runs/<benchmark_run_id>/detector-output" \
-  -H "X-API-Key: $DATAFORGE_API_KEY" \
+curl -s -X POST "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/detector-output" \
+  -H "X-API-Key: $ERRDAIN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "detector_name": "my-detector",
@@ -180,8 +180,8 @@ Supported extensions:
 - `.csv`
 
 ```bash
-curl -s -X POST "$DATAFORGE_API/api/v1/benchmark-runs/<benchmark_run_id>/detector-output/upload?detector_name=my-detector" \
-  -H "X-API-Key: $DATAFORGE_API_KEY" \
+curl -s -X POST "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/detector-output/upload?detector_name=my-detector" \
+  -H "X-API-Key: $ERRDAIN_API_KEY" \
   -F "file=@detector_output.jsonl"
 ```
 
@@ -190,8 +190,8 @@ Uploads are UTF-8 text only, size-limited by `BENCHMARK_DETECTOR_UPLOAD_MAX_BYTE
 ## 8. Read final result
 
 ```bash
-curl -s "$DATAFORGE_API/api/v1/benchmark-runs/<benchmark_run_id>" \
-  -H "X-API-Key: $DATAFORGE_API_KEY"
+curl -s "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>" \
+  -H "X-API-Key: $ERRDAIN_API_KEY"
 ```
 
 Completed run fields include:
@@ -213,11 +213,11 @@ Use `Idempotency-Key` when launching benchmark runs. Same key + same request ret
 ## Cancellation
 
 ```bash
-curl -s -X POST "$DATAFORGE_API/api/v1/benchmark-runs/<benchmark_run_id>/cancel" \
-  -H "X-API-Key: $DATAFORGE_API_KEY"
+curl -s -X POST "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/cancel" \
+  -H "X-API-Key: $ERRDAIN_API_KEY"
 ```
 
-Queued runs can be cancelled immediately. Running generation may become `cancellation_requested`; DataForge does not claim hard cancellation unless the underlying generation step has actually stopped.
+Queued runs can be cancelled immediately. Running generation may become `cancellation_requested`; Errdain does not claim hard cancellation unless the underlying generation step has actually stopped.
 
 ## Polling recommendation
 
@@ -231,4 +231,4 @@ Phase 2 should move benchmark execution to a durable worker/queue model before p
 
 ## Current authorization note
 
-Benchmark APIs use the current DataForge API-key protection. Fine-grained scopes such as `benchmark:execute`, `evaluation:submit`, and `artifact:read` are documented future hardening work and are not yet enforced as separate permissions.
+Benchmark APIs use the current Errdain API-key protection. Fine-grained scopes such as `benchmark:execute`, `evaluation:submit`, and `artifact:read` are documented future hardening work and are not yet enforced as separate permissions.

@@ -19,11 +19,11 @@ from backend.app.services.retention import cleanup_expired_run_history, cleanup_
 
 def test_production_requires_api_key(monkeypatch):
     monkeypatch.setenv("APP_ENV", "production")
-    monkeypatch.delenv("DATAFORGE_API_KEY", raising=False)
+    monkeypatch.delenv("ERRDAIN_API_KEY", raising=False)
     get_settings.cache_clear()
 
     try:
-        with pytest.raises(RuntimeError, match="DATAFORGE_API_KEY is required"):
+        with pytest.raises(RuntimeError, match="ERRDAIN_API_KEY is required"):
             create_app()
     finally:
         get_settings.cache_clear()
@@ -39,7 +39,7 @@ def test_production_requires_api_key(monkeypatch):
 )
 def test_production_rejects_unsafe_cors_origins(monkeypatch, cors_origins, error):
     monkeypatch.setenv("APP_ENV", "production")
-    monkeypatch.setenv("DATAFORGE_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
     monkeypatch.setenv("CORS_ORIGINS", cors_origins)
     get_settings.cache_clear()
 
@@ -51,7 +51,7 @@ def test_production_rejects_unsafe_cors_origins(monkeypatch, cors_origins, error
 
 
 def test_api_key_is_required_when_configured(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATAFORGE_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
     monkeypatch.setenv("OUTPUT_DIR", str(tmp_path / "backend-output"))
     get_settings.cache_clear()
     engine = create_engine(f"sqlite:///{tmp_path / 'auth.db'}", connect_args={"check_same_thread": False})
@@ -100,7 +100,7 @@ def test_generate_rejects_records_above_configured_limit(client, monkeypatch):
 
 
 def test_rate_limit_allows_requests_under_configured_limit(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATAFORGE_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
     monkeypatch.setenv("RATE_LIMIT_REQUESTS", "2")
     monkeypatch.setenv("RATE_LIMIT_WINDOW_SECONDS", "60")
     monkeypatch.setenv("OUTPUT_DIR", str(tmp_path / "backend-output"))
@@ -132,7 +132,7 @@ def test_rate_limit_allows_requests_under_configured_limit(tmp_path, monkeypatch
 
 
 def test_rate_limit_blocks_requests_over_configured_limit(tmp_path, monkeypatch):
-    monkeypatch.setenv("DATAFORGE_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
     monkeypatch.setenv("RATE_LIMIT_REQUESTS", "1")
     monkeypatch.setenv("RATE_LIMIT_WINDOW_SECONDS", "60")
     monkeypatch.setenv("OUTPUT_DIR", str(tmp_path / "backend-output"))

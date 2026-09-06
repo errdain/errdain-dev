@@ -1,4 +1,4 @@
-from dataforge.cli import main
+from errdain.cli import main
 
 
 if __name__ == "__main__":

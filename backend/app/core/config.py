@@ -10,9 +10,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     app_env: str = Field(default="development", alias="APP_ENV")
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
-    api_key: str | None = Field(default=None, alias="DATAFORGE_API_KEY")
+    api_key: str | None = Field(default=None, alias="ERRDAIN_API_KEY")
     database_url: str = Field(
-        default="postgresql+psycopg://dataforge:dataforge123@127.0.0.1:55434/dataforge",
+        default="postgresql+psycopg://errdain:errdain123@127.0.0.1:55434/errdain",
         alias="DATABASE_URL",
     )
     output_dir: Path = Field(default=Path("output/backend"), alias="OUTPUT_DIR")

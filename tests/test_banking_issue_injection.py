@@ -2,11 +2,11 @@ import json
 
 import pytest
 
-from dataforge.cli import main
-from dataforge.domains.banking.generators import BankingGenerator
-from dataforge.domains.banking.schemas import BANKING_SPEC
-from dataforge.injector import FailureInjector
-from dataforge.validation import validate
+from errdain.cli import main
+from errdain.domains.banking.generators import BankingGenerator
+from errdain.domains.banking.schemas import BANKING_SPEC
+from errdain.injector import FailureInjector
+from errdain.validation import validate
 
 
 def test_banking_issue_injection_uses_shared_engine_for_selected_tables():

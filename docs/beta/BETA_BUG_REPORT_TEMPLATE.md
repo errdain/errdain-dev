@@ -1,4 +1,4 @@
-# DataForge Beta Bug Report Template
+# Errdain Beta Bug Report Template
 
 ## Summary
 

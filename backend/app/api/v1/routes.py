@@ -64,9 +64,9 @@ from backend.app.services.retention import cleanup_expired_run_history
 from backend.app.services.storage import LocalStorageService, get_storage_service
 from backend.app.services.streaming import StreamSessionService, run_stream_session, stream_validation_report
 from backend.app.services.streaming import STREAM_EVENT_TYPES
-from dataforge.domains import DOMAIN_SPECS
-from dataforge.scenarios.builder import build_scenario_configuration, compare_scenario_runs, get_expanded_scenario, preview_failure_plan, primitive_display_name, summarize_ground_truth, validate_template_compatibility
-from dataforge.scenarios.benchmarking import (
+from errdain.domains import DOMAIN_SPECS
+from errdain.scenarios.builder import build_scenario_configuration, compare_scenario_runs, get_expanded_scenario, preview_failure_plan, primitive_display_name, summarize_ground_truth, validate_template_compatibility
+from errdain.scenarios.benchmarking import (
     acceptance_status,
     checksum_bytes,
     dataset_manifest,
@@ -78,17 +78,17 @@ from dataforge.scenarios.benchmarking import (
     ground_truth_to_jsonl,
     normalize_detector_output,
 )
-from dataforge.scenarios.catalog import expanded_scenario_items, load_scenario_quality_summary
-from dataforge.scenarios.configuration import FailurePlan
-from dataforge.scenarios.executor import build_generation_payload
-from dataforge.scenarios.matcher import match_scenarios
-from dataforge.scenarios.models import ScenarioRunConfig
-from dataforge.scenarios.primitives import PRIMITIVE_REGISTRY
-from dataforge.scenarios.registry import all_scenarios, find_scenarios, get_scenario, scenario_summary
-from dataforge.scenarios.requirements import REQUIREMENT_RESOLVER
-from dataforge.scenarios.schema_semantics import COLUMN_SEMANTIC_RESOLVER
-from dataforge.scenarios.validator import resolve_config
-from dataforge.scenarios.validator_registry import VALIDATOR_REGISTRY
+from errdain.scenarios.catalog import expanded_scenario_items, load_scenario_quality_summary
+from errdain.scenarios.configuration import FailurePlan
+from errdain.scenarios.executor import build_generation_payload
+from errdain.scenarios.matcher import match_scenarios
+from errdain.scenarios.models import ScenarioRunConfig
+from errdain.scenarios.primitives import PRIMITIVE_REGISTRY
+from errdain.scenarios.registry import all_scenarios, find_scenarios, get_scenario, scenario_summary
+from errdain.scenarios.requirements import REQUIREMENT_RESOLVER
+from errdain.scenarios.schema_semantics import COLUMN_SEMANTIC_RESOLVER
+from errdain.scenarios.validator import resolve_config
+from errdain.scenarios.validator_registry import VALIDATOR_REGISTRY
 from backend.app.services.validation import ValidationService
 
 router = APIRouter(prefix="/api/v1")
@@ -447,13 +447,13 @@ def export_scenario_ground_truth(run_id: str, format: str = Query(default="json"
         return Response(
             content=payload,
             media_type="application/x-ndjson",
-            headers={"Content-Disposition": f'attachment; filename="dataforge-{run_id}-ground-truth.jsonl"'},
+            headers={"Content-Disposition": f'attachment; filename="errdain-{run_id}-ground-truth.jsonl"'},
         )
     payload = ground_truth_to_csv(ground_truth)
     return Response(
         content=payload,
         media_type="text/csv",
-        headers={"Content-Disposition": f'attachment; filename="dataforge-{run_id}-ground-truth.csv"'},
+        headers={"Content-Disposition": f'attachment; filename="errdain-{run_id}-ground-truth.csv"'},
     )
 
 
@@ -746,7 +746,7 @@ def scenario_library_items(
     quality_summary = load_scenario_quality_summary()
     v1_ready_ids = set()
     try:
-        from dataforge.scenarios.catalog import load_scenario_quality_audit
+        from errdain.scenarios.catalog import load_scenario_quality_audit
 
         v1_ready_ids = {row["scenario_id"] for row in load_scenario_quality_audit().get("scenarios", []) if row.get("quality_status") == "v1_ready"}
     except Exception:
@@ -1259,7 +1259,7 @@ def _generation_payload_for_benchmark(benchmark, snapshot: dict) -> GenerateRequ
         records=records,
         selected_tables=selected_tables,
         issues={},
-        user_email="benchmark@dataforge.local",
+        user_email="benchmark@errdain.local",
         scenario_id=scenario.scenario_id,
         scenario_run_config={
             "scenario_id": scenario.scenario_id,
@@ -1990,7 +1990,7 @@ def download_run_files(run_id: str, db: Session = Depends(get_db)) -> Response:
     if not isinstance(storage, LocalStorageService):
         raise ValueError("Run ZIP downloads are currently available for local generated files only")
 
-    temp_file = tempfile.NamedTemporaryFile(prefix=f"dataforge-{run_id}-", suffix=".zip", delete=False)
+    temp_file = tempfile.NamedTemporaryFile(prefix=f"errdain-{run_id}-", suffix=".zip", delete=False)
     temp_path = Path(temp_file.name)
     temp_file.close()
 
@@ -2009,7 +2009,7 @@ def download_run_files(run_id: str, db: Session = Depends(get_db)) -> Response:
 
     return FileResponse(
         path=temp_path,
-        filename=f"dataforge-{run.domain}-{run_id}.zip",
+        filename=f"errdain-{run.domain}-{run_id}.zip",
         media_type="application/zip",
         background=BackgroundTask(temp_path.unlink, missing_ok=True),
     )
@@ -2150,7 +2150,7 @@ def _run_download_readme(run) -> str:
         ]
     return "\n".join(
         [
-            f"# DataForge {run.domain.title()} Run",
+            f"# Errdain {run.domain.title()} Run",
             "",
             "This ZIP contains generated data files plus reports that explain validation results and intentionally injected failures.",
             "",

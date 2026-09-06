@@ -1,6 +1,6 @@
-# DataForge UI
+# Errdain UI
 
-Phase 1 Next.js frontend for DataForge.
+Phase 1 Next.js frontend for Errdain.
 
 ```bash
 cd frontend

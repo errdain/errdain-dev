@@ -132,7 +132,7 @@ def cleanup_expired_run_history(
 
 def main(argv: list[str] | None = None) -> int:
     settings = get_settings()
-    parser = argparse.ArgumentParser(description="Clean up expired DataForge generated files")
+    parser = argparse.ArgumentParser(description="Clean up expired Errdain generated files")
     parser.add_argument("--output-dir", type=Path, default=settings.output_dir)
     parser.add_argument("--retention-days", type=int, default=settings.generated_file_retention_days)
     parser.add_argument("--apply", action="store_true", help="delete files; omit for dry-run")

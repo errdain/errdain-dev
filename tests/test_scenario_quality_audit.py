@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import yaml
 
-from dataforge.domains.manufacturing.generators import ManufacturingGenerator
-from dataforge.domains.manufacturing.schemas import MANUFACTURING_SPEC
-from dataforge.scenarios.catalog import expanded_scenario_items
-from dataforge.scenarios.generic_executor import execute_generic_scenario
-from dataforge.scenarios.quality import build_scenario_quality_summary, validator_independence_class
-from dataforge.validation import relationship_report, validate
+from errdain.domains.manufacturing.generators import ManufacturingGenerator
+from errdain.domains.manufacturing.schemas import MANUFACTURING_SPEC
+from errdain.scenarios.catalog import expanded_scenario_items
+from errdain.scenarios.generic_executor import execute_generic_scenario
+from errdain.scenarios.quality import build_scenario_quality_summary, validator_independence_class
+from errdain.validation import relationship_report, validate
 
 
 BATCH_9_SCENARIOS = {
@@ -24,7 +24,7 @@ BATCH_9_SCENARIOS = {
 
 
 def test_quality_audit_covers_every_runtime_capable_scenario() -> None:
-    audit = yaml.safe_load(open("dataforge/scenarios/catalog/scenario_quality_audit.yaml", encoding="utf-8"))
+    audit = yaml.safe_load(open("errdain/scenarios/catalog/scenario_quality_audit.yaml", encoding="utf-8"))
     runtime = [item for item in expanded_scenario_items() if item.execution_status in {"executable", "custom_reference"}]
     assert audit["total_runtime_capable"] == len(runtime) == 623
     assert len(audit["scenarios"]) == len(runtime)
@@ -40,7 +40,7 @@ def test_quality_audit_covers_every_runtime_capable_scenario() -> None:
 
 
 def test_quality_summary_matches_audit_artifact() -> None:
-    audit = yaml.safe_load(open("dataforge/scenarios/catalog/scenario_quality_audit.yaml", encoding="utf-8"))
+    audit = yaml.safe_load(open("errdain/scenarios/catalog/scenario_quality_audit.yaml", encoding="utf-8"))
     summary = build_scenario_quality_summary(audit)
     assert summary["total_runtime_capable"] == 623
     assert summary["v1_ready"] == 623

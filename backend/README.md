@@ -1,6 +1,6 @@
-# DataForge Backend Foundation
+# Errdain Backend Foundation
 
-Phase 1 backend foundation for DataForge. This wraps the existing domain
+Phase 1 backend foundation for Errdain. This wraps the existing domain
 generation engine with FastAPI, SQLAlchemy persistence, Alembic migrations,
 Dockerized PostgreSQL, and admin analytics APIs.
 
@@ -28,13 +28,13 @@ cp .env.example .env
 The default local database URL is:
 
 ```bash
-DATABASE_URL=postgresql+psycopg://dataforge:dataforge123@127.0.0.1:55434/dataforge
+DATABASE_URL=postgresql+psycopg://errdain:errdain123@127.0.0.1:55434/errdain
 ```
 
-For deployment, set `DATAFORGE_API_KEY` to require `X-API-Key` on protected
+For deployment, set `ERRDAIN_API_KEY` to require `X-API-Key` on protected
 generation, validation, run history, download, and admin endpoints.
 
-If you see `password authentication failed for user "dataforge"`, the
+If you see `password authentication failed for user "errdain"`, the
 PostgreSQL server or Docker volume on the configured port was probably
 initialized with a different password. For a disposable local development
 database, reset it with:

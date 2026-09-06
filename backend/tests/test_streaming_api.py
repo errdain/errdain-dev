@@ -183,7 +183,7 @@ def test_stream_webhook_push_signs_payload_and_stores_summary(client, monkeypatc
             "duration_minutes": 1,
             "format": "json",
             "seed": 19,
-            "webhook_url": "https://example.com/dataforge-webhook",
+            "webhook_url": "https://example.com/errdain-webhook",
             "webhook_secret": secret,
         },
     )
@@ -193,7 +193,7 @@ def test_stream_webhook_push_signs_payload_and_stores_summary(client, monkeypatc
     first = calls[0]
     body = first.data.decode("utf-8")
     expected_signature = hmac.new(secret.encode("utf-8"), body.encode("utf-8"), hashlib.sha256).hexdigest()
-    assert first.headers["X-dataforge-signature"] == f"sha256={expected_signature}"
+    assert first.headers["X-errdain-signature"] == f"sha256={expected_signature}"
     assert json.loads(body)["event"]["event_type"] == "shipment_created_event"
 
     status = client.get(f"/api/v1/streams/{started.json()['stream_id']}")
@@ -212,10 +212,10 @@ def test_stream_webhook_push_signs_payload_and_stores_summary(client, monkeypatc
 @pytest.mark.parametrize(
     "webhook_url",
     [
-        "http://example.com/dataforge-webhook",
-        "https://localhost/dataforge-webhook",
-        "https://127.0.0.1/dataforge-webhook",
-        "https://10.0.0.5/dataforge-webhook",
+        "http://example.com/errdain-webhook",
+        "https://localhost/errdain-webhook",
+        "https://127.0.0.1/errdain-webhook",
+        "https://10.0.0.5/errdain-webhook",
         "https://169.254.169.254/latest/meta-data",
     ],
 )
@@ -240,25 +240,25 @@ def test_stream_webhook_rejects_unsafe_targets(client, webhook_url):
 def test_webhook_production_requires_allowlisted_domain(monkeypatch):
     monkeypatch.setattr("backend.app.services.streaming.socket.getaddrinfo", lambda *args, **kwargs: [(None, None, None, None, ("93.184.216.34", 443))])
     monkeypatch.setenv("APP_ENV", "production")
-    monkeypatch.setenv("DATAFORGE_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
     monkeypatch.setenv("CORS_ORIGINS", "https://app.example.com")
     monkeypatch.delenv("WEBHOOK_ALLOWED_DOMAINS", raising=False)
     get_settings.cache_clear()
     with pytest.raises(ValueError, match="WEBHOOK_ALLOWED_DOMAINS"):
-        validate_webhook_url("https://hooks.example.com/dataforge")
+        validate_webhook_url("https://hooks.example.com/errdain")
 
     monkeypatch.setenv("WEBHOOK_ALLOWED_DOMAINS", "hooks.example.com")
     get_settings.cache_clear()
-    assert validate_webhook_url("https://hooks.example.com/dataforge") == "https://hooks.example.com/dataforge"
+    assert validate_webhook_url("https://hooks.example.com/errdain") == "https://hooks.example.com/errdain"
     with pytest.raises(ValueError, match="not in WEBHOOK_ALLOWED_DOMAINS"):
-        validate_webhook_url("https://other.example.com/dataforge")
+        validate_webhook_url("https://other.example.com/errdain")
     get_settings.cache_clear()
 
 
 def test_query_stream_token_is_rejected_in_production(client, monkeypatch):
     started = _start_stream(client, "logistics", seed=44)
     monkeypatch.setenv("APP_ENV", "production")
-    monkeypatch.setenv("DATAFORGE_API_KEY", "secret-test-key")
+    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
     monkeypatch.setenv("CORS_ORIGINS", "https://app.example.com")
     get_settings.cache_clear()
 

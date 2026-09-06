@@ -1,6 +1,6 @@
-from dataforge.domains.ecommerce.generators import EcommerceGenerator
-from dataforge.domains.ecommerce.schemas import ECOMMERCE_SPEC
-from dataforge.validation import validate
+from errdain.domains.ecommerce.generators import EcommerceGenerator
+from errdain.domains.ecommerce.schemas import ECOMMERCE_SPEC
+from errdain.validation import validate
 
 
 def test_ecommerce_validations_catch_amount_date_quantity_and_rating_errors():

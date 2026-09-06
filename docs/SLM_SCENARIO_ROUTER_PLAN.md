@@ -1,22 +1,22 @@
-# DataForge SLM Scenario Router Plan
+# Errdain SLM Scenario Router Plan
 
-This plan prepares DataForge for a future small language model or deterministic
+This plan prepares Errdain for a future small language model or deterministic
 router that maps user intent to scenario configuration.
 
 No LLM/SLM inference is implemented in this phase.
 
 ## Training artifacts
 
-- `dataforge/training/scenario_knowledge.jsonl`
+- `errdain/training/scenario_knowledge.jsonl`
   - One row per active scenario.
   - Contains canonical scenario metadata, execution readiness, dependencies, and
     routing-relevant fields.
 
-- `dataforge/training/scenario_instruction_seed.jsonl`
+- `errdain/training/scenario_instruction_seed.jsonl`
   - Five synthetic user-instruction variants per scenario.
   - Each row contains an expected structured router output.
 
-- `dataforge/training/scenario_router_output.schema.json`
+- `errdain/training/scenario_router_output.schema.json`
   - JSON Schema generated from `ScenarioRouterOutput`.
   - Defines the future router response contract.
 

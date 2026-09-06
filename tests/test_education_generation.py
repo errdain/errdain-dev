@@ -1,7 +1,7 @@
-from dataforge.domains.education.generators import EducationGenerator
-from dataforge.domains.education.schemas import EDUCATION_SPEC
-from dataforge.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
-from dataforge.validation import schema_report, validate
+from errdain.domains.education.generators import EducationGenerator
+from errdain.domains.education.schemas import EDUCATION_SPEC
+from errdain.model import AUDIT_COLUMNS, TIME_HIERARCHY_COLUMNS
+from errdain.validation import schema_report, validate
 
 
 EXPECTED_TABLES = {

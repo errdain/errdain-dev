@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from dataforge.domains import DOMAIN_GENERATORS, DOMAIN_SPECS
-from dataforge.scenarios.executor import failure_rates_for_config, resolve_scenario_run
-from dataforge.scenarios.models import ScenarioRunConfig
-from dataforge.scenarios.mutations import apply_reference_scenario_mutations
-from dataforge.scenarios.validators import scenario_outcome_from_validations, validate_scenario_dataset
-from dataforge.validation import validate
+from errdain.domains import DOMAIN_GENERATORS, DOMAIN_SPECS
+from errdain.scenarios.executor import failure_rates_for_config, resolve_scenario_run
+from errdain.scenarios.models import ScenarioRunConfig
+from errdain.scenarios.mutations import apply_reference_scenario_mutations
+from errdain.scenarios.validators import scenario_outcome_from_validations, validate_scenario_dataset
+from errdain.validation import validate
 
 
 REFERENCE_SCENARIOS = [

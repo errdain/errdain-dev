@@ -23,10 +23,10 @@ from backend.app.db.session import SessionLocal
 from backend.app.core.config import get_settings
 from backend.app.repositories import StreamSessionRepository
 from backend.app.schemas.api import StreamStartRequest
-from dataforge.scenarios.models import ScenarioRunConfig
-from dataforge.scenarios.registry import get_scenario
-from dataforge.scenarios.validator import SEVERITY_RATES
-from dataforge.scenarios.validators import scenario_outcome_from_validations, validate_scenario_events
+from errdain.scenarios.models import ScenarioRunConfig
+from errdain.scenarios.registry import get_scenario
+from errdain.scenarios.validator import SEVERITY_RATES
+from errdain.scenarios.validators import scenario_outcome_from_validations, validate_scenario_events
 
 STREAM_EVENT_TYPES: dict[str, tuple[str, ...]] = {
     "manufacturing": ("machine_sensor", "production_event", "quality_event", "maintenance_alert", "downtime_event"),
@@ -427,7 +427,7 @@ def deliver_webhook_event(webhook_url: str, webhook_secret: str | None, event: d
         data=body.encode("utf-8"),
         headers={
             "Content-Type": "application/json",
-            "X-DataForge-Signature": f"sha256={signature}",
+            "X-Errdain-Signature": f"sha256={signature}",
         },
         method="POST",
     )
@@ -600,7 +600,7 @@ def _should_inject(sequence: int, total: int, rate: float, rng: random.Random) -
 
 
 def _event_id(domain: str, seed: int, sequence: int, event_type: str) -> str:
-    deterministic = uuid.uuid5(uuid.NAMESPACE_URL, f"dataforge:{domain}:{seed}:{sequence}:{event_type}")
+    deterministic = uuid.uuid5(uuid.NAMESPACE_URL, f"errdain:{domain}:{seed}:{sequence}:{event_type}")
     return str(deterministic)
 
 

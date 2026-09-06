@@ -1,8 +1,8 @@
 import json
 
-from dataforge.domains.insurance.generators import InsuranceGenerator
-from dataforge.domains.insurance.schemas import INSURANCE_SPEC
-from dataforge.modes import build_artifacts
+from errdain.domains.insurance.generators import InsuranceGenerator
+from errdain.domains.insurance.schemas import INSURANCE_SPEC
+from errdain.modes import build_artifacts
 
 
 def test_insurance_cdc_generates_insert_update_delete_for_claims():

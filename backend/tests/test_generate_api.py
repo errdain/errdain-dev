@@ -208,7 +208,7 @@ def test_generate_api_rejects_unknown_domain_before_queueing_job(client):
         json={"domain": "unknown", "load_type": "bulk", "format": "json", "records": 10},
     )
     assert response.status_code == 400
-    assert response.json()["code"] == "DATAFORGE_ERROR"
+    assert response.json()["code"] == "ERRDAIN_ERROR"
     assert response.json()["error"] == "Unsupported domain: unknown"
 
 

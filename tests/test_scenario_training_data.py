@@ -3,12 +3,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from dataforge.scenarios.catalog import expanded_scenario_items
-from dataforge.training.router_schema import ScenarioRouterOutput
-from dataforge.training.validation import validate_instruction_seed_file, validate_scenario_knowledge_file
+from errdain.scenarios.catalog import expanded_scenario_items
+from errdain.training.router_schema import ScenarioRouterOutput
+from errdain.training.validation import validate_instruction_seed_file, validate_scenario_knowledge_file
 
 
-TRAINING_DIR = Path("dataforge/training")
+TRAINING_DIR = Path("errdain/training")
 
 
 def test_scenario_knowledge_jsonl_matches_active_catalog() -> None:

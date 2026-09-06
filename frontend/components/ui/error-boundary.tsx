@@ -18,7 +18,7 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
       return (
         <div className="m-8 rounded-3xl border border-border bg-card p-8">
           <h2 className="text-2xl font-semibold">Something went sideways.</h2>
-          <p className="mt-2 text-muted-foreground">DataForge caught the UI error before it reached your workflow.</p>
+          <p className="mt-2 text-muted-foreground">Errdain caught the UI error before it reached your workflow.</p>
           <Button className="mt-6" onClick={() => this.setState({ hasError: false })}>Try again</Button>
         </div>
       );

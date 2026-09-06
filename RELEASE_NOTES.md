@@ -1,4 +1,4 @@
-# DataForge Release Notes
+# Errdain Release Notes
 
 ## 0.6.0
 

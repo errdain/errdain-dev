@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import yaml
 
-from dataforge.scenarios.catalog import expanded_scenario_items, load_domain_column_semantics
-from dataforge.scenarios.generic_executor import execute_generic_scenario
-from dataforge.scenarios.schema_semantics import COLUMN_SEMANTIC_RESOLVER
+from errdain.scenarios.catalog import expanded_scenario_items, load_domain_column_semantics
+from errdain.scenarios.generic_executor import execute_generic_scenario
+from errdain.scenarios.schema_semantics import COLUMN_SEMANTIC_RESOLVER
 
 
 def test_domain_column_semantic_catalog_covers_every_domain_table_and_column() -> None:
@@ -70,7 +70,7 @@ def test_batch_5_metadata_only_promotions_execute_with_resolved_columns() -> Non
 
 
 def test_schema_leverage_report_documents_batch_9_manufacturing_depth_unlocks() -> None:
-    report = yaml.safe_load(open("dataforge/scenarios/catalog/schema_leverage_report.yaml", encoding="utf-8"))
+    report = yaml.safe_load(open("errdain/scenarios/catalog/schema_leverage_report.yaml", encoding="utf-8"))
     assert report["executable_scenarios_gained_by_physical_schema_changes"] == 9
     assert report["tables_added_this_batch"] == []
     assert report["newly_executable_by_domain"] == {"manufacturing": 9}

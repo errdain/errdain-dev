@@ -1,6 +1,6 @@
-# DataForge Enterprise Dataset Generator
+# Errdain Enterprise Dataset Generator
 
-DataForge generates coherent domain datasets, injects known data-quality
+Errdain generates coherent domain datasets, injects known data-quality
 failures, validates expected vs. actual results, and exports pipeline-ready
 artifacts. Retail, Logistics, Healthcare, Finance, Insurance, and Banking now
 run through the same shared framework.
@@ -90,7 +90,7 @@ python3 retail_generator.py \
 ```
 
 `retail_generator.py` is kept as the compatibility entry point. If installed as
-a package, the new script name is `dataforge`.
+a package, the new script name is `errdain`.
 
 ## Phase 1 UI
 
@@ -353,23 +353,23 @@ See [backend/README.md](backend/README.md) for backend-specific details.
 
 ## Architecture notes
 
-The refactor keeps the package rooted at `dataforge/` and separates:
+The refactor keeps the package rooted at `errdain/` and separates:
 
-- `dataforge/domains/retail/` — Retail schemas, relationships, generator, rules.
-- `dataforge/domains/logistics/` — Logistics schemas, relationships, generator, rules.
-- `dataforge/domains/healthcare/` — Healthcare schemas, relationships, generator, fixtures, issue mappings, and rules.
-- `dataforge/domains/finance/` — Finance schemas, relationships, generator, fixtures, issue mappings, fraud tags, and rules.
-- `dataforge/domains/insurance/` — Insurance schemas, relationships, generator, fixtures, issue mappings, fraud tags, and rules.
-- `dataforge/domains/banking/` — Banking schemas, relationships, generator, fixtures, issue mappings, fraud/reconciliation tags, and rules.
-- `dataforge/audit.py` — shared audit, record hash, SCD2/time hierarchy enrichment.
-- `dataforge/injector.py` — shared issue injection engine.
-- `dataforge/modes.py` — shared bulk, incremental, delta, CDC, event stream builders.
-- `dataforge/validation.py` — shared PK/FK/schema/date/numeric/business validation.
-- `dataforge/exporter.py` — shared CSV, JSON, and Parquet export.
+- `errdain/domains/retail/` — Retail schemas, relationships, generator, rules.
+- `errdain/domains/logistics/` — Logistics schemas, relationships, generator, rules.
+- `errdain/domains/healthcare/` — Healthcare schemas, relationships, generator, fixtures, issue mappings, and rules.
+- `errdain/domains/finance/` — Finance schemas, relationships, generator, fixtures, issue mappings, fraud tags, and rules.
+- `errdain/domains/insurance/` — Insurance schemas, relationships, generator, fixtures, issue mappings, fraud tags, and rules.
+- `errdain/domains/banking/` — Banking schemas, relationships, generator, fixtures, issue mappings, fraud/reconciliation tags, and rules.
+- `errdain/audit.py` — shared audit, record hash, SCD2/time hierarchy enrichment.
+- `errdain/injector.py` — shared issue injection engine.
+- `errdain/modes.py` — shared bulk, incremental, delta, CDC, event stream builders.
+- `errdain/validation.py` — shared PK/FK/schema/date/numeric/business validation.
+- `errdain/exporter.py` — shared CSV, JSON, and Parquet export.
 
-Migration from the Retail-only version:
+Compatibility with the earlier Retail-only interface:
 
-- Old Retail imports still work: `from dataforge.generator import RetailGenerator`.
+- The compatibility import remains available: `from errdain.generator import RetailGenerator`.
 - Old `--load-type event` still works.
 - Old table-selection and timestamped output behavior is unchanged.
-- New code should prefer domain-specific imports under `dataforge.domains`.
+- New code should prefer domain-specific imports under `errdain.domains`.
