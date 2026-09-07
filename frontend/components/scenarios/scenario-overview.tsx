@@ -5,6 +5,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { titleCase } from "@/lib/utils";
 import type { ScenarioBuilderConfiguration } from "@/types/api";
 
+function readableText(value: string) {
+  return value
+    .replaceAll("_", " ")
+    .replace(/\brecord records\b/gi, "records")
+    .replace(/\bkyc\b/gi, "KYC")
+    .replace(/\bsms\b/gi, "SMS")
+    .replace(/\bsla\b/gi, "SLA")
+    .replace(/\bOut Of\b/g, "Out of")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function scenarioTitle(scenario: ScenarioBuilderConfiguration["scenario"]) {
+  const name = readableText(scenario.scenario_name);
+  const entity = titleCase(readableText(scenario.entity));
+  return name.toLowerCase().includes(entity.toLowerCase()) ? name : `${name}: ${entity}`;
+}
+
 export function ScenarioOverview({ config }: { config: ScenarioBuilderConfiguration }) {
   const scenario = config.scenario;
   return (
@@ -13,8 +31,8 @@ export function ScenarioOverview({ config }: { config: ScenarioBuilderConfigurat
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <Badge>{scenario.v1_ready ? "V1 Ready" : "Experimental"}</Badge>
-            <CardTitle className="mt-3 text-2xl">{scenario.scenario_name}</CardTitle>
-            <p className="mt-2 text-sm text-muted-foreground">{scenario.description}</p>
+            <CardTitle className="mt-3 text-2xl"><span className="text-muted-foreground">Scenario:</span> {scenarioTitle(scenario)}</CardTitle>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground"><span className="font-semibold text-foreground">Description:</span> {readableText(scenario.description)}</p>
           </div>
           <Badge>{titleCase(scenario.domain)}</Badge>
         </div>

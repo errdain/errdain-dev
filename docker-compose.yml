@@ -1,4 +1,40 @@
+name: errdain
+
 services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://127.0.0.1:8010
+    container_name: errdain-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: errdain-backend
+    command: ["sh", "-c", "alembic -c backend/alembic.ini upgrade head && uvicorn backend.app.main:app --host 0.0.0.0 --port 8000"]
+    environment:
+      APP_ENV: development
+      DATABASE_URL: postgresql+psycopg://errdain:errdain123@postgres:5432/errdain
+      OUTPUT_DIR: /var/lib/errdain/output
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+    ports:
+      - "8010:8000"
+    volumes:
+      - backend_output:/var/lib/errdain/output
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
   postgres:
     image: postgres:16
     container_name: errdain-postgres
@@ -15,6 +51,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   pgadmin:
     image: dpage/pgadmin4:8
@@ -34,7 +71,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
 volumes:
+  backend_output:
   postgres_data:
   pgadmin_data:

@@ -772,6 +772,7 @@ def scenario_library_items(
             "description": item.description,
             "domain": item.domain,
             "business_process": item.business_process,
+            "entity": item.entity,
             "severity": item.severity,
             "failure_category": item.failure_category,
             "failure_primitive": item.failure_primitive,

@@ -266,6 +266,7 @@ export type ScenarioLibrarySummary = {
   description: string;
   domain: Domain;
   business_process: string;
+  entity: string;
   severity: string;
   failure_category: string;
   failure_primitive: string;

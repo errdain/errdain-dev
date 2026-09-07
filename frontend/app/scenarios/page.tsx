@@ -53,7 +53,7 @@ export default function ScenarioBuilderPage() {
       domain: domain === "all" ? undefined : domain,
       v1_ready: true,
       execution_status: "executable",
-      limit: 100,
+      limit: 1000,
     })
       .then((data) => {
         setScenarios(data.items);
