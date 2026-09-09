@@ -8,7 +8,9 @@
     "dev:clean": "rm -rf .next && next dev",
     "build": "next build",
     "build:clean": "rm -rf .next && next build",
+    "lint": "eslint .",
     "start": "next start",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -16,11 +18,11 @@
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "next": "^16.2.11",
+    "next": "16.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.13.3",
-    "sharp": "^0.35.3",
+    "sharp": "0.35.4",
     "tailwind-merge": "^2.5.4",
     "zustand": "^5.0.1"
   },
@@ -29,9 +31,12 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
     "postcss": "^8.5.23",
     "tailwindcss": "^3.4.15",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "5.0.0"
   },
   "overrides": {
     "postcss": "$postcss",
