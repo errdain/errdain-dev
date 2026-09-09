@@ -65,7 +65,7 @@ def test_batch_7_promoted_scenarios_execute_end_to_end() -> None:
         for item in expanded_scenario_items()
         if item.execution_status == "executable" and item.primary_table in new_tables
     ]
-    assert len(scenarios) == 28
+    assert len(scenarios) == 30
     assert {item.domain for item in scenarios} == {"ecommerce", "education", "healthcare", "manufacturing"}
     assert all(REQUIREMENT_RESOLVER.resolve(item).execution_supported for item in scenarios)
 

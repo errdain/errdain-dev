@@ -7,7 +7,7 @@ from errdain.scenarios.capability_analysis import build_capability_leverage_repo
 
 def test_capability_leverage_report_ranks_reusable_capabilities() -> None:
     report = yaml.safe_load(open("errdain/scenarios/catalog/capability_leverage_report.yaml", encoding="utf-8"))
-    assert report["baseline_counts"]["runtime_capable"] == 623
+    assert report["baseline_counts"]["runtime_capable"] == 645
     assert report["after_batch_1_counts"]["runtime_capable"] == 151
     assert report["after_batch_2_counts"]["runtime_capable"] == 179
     assert report["after_batch_3_counts"]["runtime_capable"] == 264
@@ -17,8 +17,9 @@ def test_capability_leverage_report_ranks_reusable_capabilities() -> None:
     assert report["after_batch_7_counts"]["runtime_capable"] == 507
     assert report["after_batch_8_counts"]["runtime_capable"] == 522
     assert report["after_batch_9_counts"]["runtime_capable"] == 531
-    assert report["rankings"]["primitives"][0]["capability"] == "distribution_shift"
-    assert report["rankings"]["validators"][0]["capability"] == "distribution_validator"
+    assert report["rankings"]["primitives"] == []
+    assert report["rankings"]["validators"] == []
+    assert report["rankings"]["tables"][0]["capability"] == "refund_events"
 
 
 def test_batch_definitions_include_batch_2_reconciliation_scope() -> None:
@@ -51,5 +52,6 @@ def test_batch_definitions_include_batch_2_reconciliation_scope() -> None:
 def test_capability_report_builder_preserves_leverage_formula() -> None:
     report = build_capability_leverage_report(after_executable_count=151, after_batch_2_count=179, after_batch_3_count=264, after_batch_4_count=293, after_batch_5_count=439, after_batch_6_count=479, after_batch_7_count=507, after_batch_8_count=522, after_batch_9_count=531)
     assert "tier_a_scenarios*3" in report["leverage_score_formula"]
-    assert report["rankings"]["primitives"]
-    assert report["rankings"]["validators"]
+    assert report["rankings"]["primitives"] == []
+    assert report["rankings"]["tables"]
+    assert report["rankings"]["columns"]

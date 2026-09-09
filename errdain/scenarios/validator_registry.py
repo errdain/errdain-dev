@@ -595,6 +595,72 @@ def geographic_validator(context: ValidatorExecutionContext) -> dict[str, Any]:
     return _base_result(context, "geographic_validator", len(affected), affected, {"baseline_table": "__df_geographic_baseline", "jumps": jumps[:100]})
 
 
+def identity_validator(context: ValidatorExecutionContext) -> dict[str, Any]:
+    affected: list[Any] = []
+    mismatches: list[dict[str, Any]] = []
+    for baseline in context.dataset.get("__df_identity_baseline", []):
+        table = str(baseline.get("table"))
+        pk_column = str(baseline.get("pk_column"))
+        pk_value = baseline.get("pk_value")
+        identity_column = str(baseline.get("identity_column"))
+        matching = [row for row in context.dataset.get(table, []) if row.get(pk_column) == pk_value]
+        if not matching:
+            continue
+        actual = matching[0].get(identity_column)
+        expected = baseline.get("expected_value")
+        if actual != expected:
+            affected.append(baseline.get("entity_id"))
+            mismatches.append({"entity_id": baseline.get("entity_id"), "table": table, "identity_column": identity_column, "expected_value": expected, "actual_value": actual})
+    return _base_result(context, "identity_validator", len(affected), affected, {"baseline_table": "__df_identity_baseline", "mismatches": mismatches[:100]})
+
+
+def distribution_validator(context: ValidatorExecutionContext) -> dict[str, Any]:
+    affected: list[Any] = []
+    anomalies: list[dict[str, Any]] = []
+    for baseline in context.dataset.get("__df_distribution_baseline", []):
+        table = str(baseline.get("table"))
+        pk_column = str(baseline.get("pk_column"))
+        pk_value = baseline.get("pk_value")
+        column = str(baseline.get("column"))
+        matching = [row for row in context.dataset.get(table, []) if row.get(pk_column) == pk_value]
+        if not matching:
+            continue
+        actual = matching[0].get(column)
+        expected = baseline.get("expected_value")
+        if actual != expected:
+            affected.append(baseline.get("entity_id"))
+            anomalies.append({"entity_id": baseline.get("entity_id"), "table": table, "column": column, "baseline_value": expected, "observed_value": actual, "anomaly_type": baseline.get("anomaly_type")})
+    return _base_result(context, "distribution_validator", len(affected), affected, {"baseline_table": "__df_distribution_baseline", "anomalies": anomalies[:100]})
+
+
+def schema_validator(context: ValidatorExecutionContext) -> dict[str, Any]:
+    affected: list[Any] = []
+    changes: list[dict[str, Any]] = []
+    for baseline in context.dataset.get("__df_schema_baseline", []):
+        table = str(baseline.get("table"))
+        pk_column = str(baseline.get("pk_column"))
+        pk_value = baseline.get("pk_value")
+        expected_column = str(baseline.get("expected_column"))
+        unexpected_column = str(baseline.get("unexpected_column"))
+        matching = [row for row in context.dataset.get(table, []) if row.get(pk_column) == pk_value]
+        if not matching:
+            continue
+        row = matching[0]
+        if expected_column not in row or unexpected_column in row:
+            affected.append(baseline.get("entity_id"))
+            changes.append({"entity_id": baseline.get("entity_id"), "table": table, "missing_column": expected_column, "unexpected_column": unexpected_column})
+    return _base_result(context, "schema_validator", len(affected), affected, {"baseline_table": "__df_schema_baseline", "changes": changes[:100]})
+
+
+def reconciliation_validator(context: ValidatorExecutionContext) -> dict[str, Any]:
+    """Validate row-level numerical imbalance scenarios with the standard range detector."""
+    result = range_validator(context)
+    result["validation_id"] = "reconciliation_validator"
+    result["message"] = f"reconciliation_validator detected {result['detected_count']} records/events."
+    result["evidence"] = {"reconciliation_type": "negative_balance", **result["evidence"]}
+    return result
+
+
 def build_default_validator_registry() -> ValidatorRegistry:
     registry = ValidatorRegistry()
     registry.register(ValidatorDefinition("duplicate_key_validator", "Detect duplicate keys.", "runtime_implemented", duplicate_key_validator, aliases=("reconciliation",)))
@@ -617,14 +683,11 @@ def build_default_validator_registry() -> ValidatorRegistry:
     registry.register(ValidatorDefinition("policy_validator", "Detect structured business policy violations.", "runtime_implemented", policy_validator))
     registry.register(ValidatorDefinition("availability_validator", "Detect status-based availability failures.", "runtime_implemented", availability_validator))
     registry.register(ValidatorDefinition("geographic_validator", "Detect impossible location/zone transitions.", "runtime_implemented", geographic_validator))
-    registry.register(ValidatorDefinition("schema_validator", "Schema validation is implemented by the core validator.", "runtime_partial", aliases=("schema",)))
+    registry.register(ValidatorDefinition("distribution_validator", "Detect shifts and rare extreme activity against captured baselines.", "runtime_implemented", distribution_validator))
+    registry.register(ValidatorDefinition("identity_validator", "Detect business identity mismatches against captured baselines.", "runtime_implemented", identity_validator))
+    registry.register(ValidatorDefinition("schema_validator", "Detect missing and unexpectedly renamed fields.", "runtime_implemented", schema_validator, aliases=("schema",)))
+    registry.register(ValidatorDefinition("reconciliation_validator", "Detect numerical reconciliation imbalances.", "runtime_implemented", reconciliation_validator))
     registry.register(ValidatorDefinition("scenario_specific_validator", "Custom reference validators.", "custom_reference_only", aliases=("scenario_specific", "business_rule")))
-    for validator_id in (
-        "distribution_validator",
-        "reconciliation_validator",
-        "identity_validator",
-    ):
-        registry.register(ValidatorDefinition(validator_id, f"{validator_id} is specified but not generically executable yet.", "metadata_only"))
     return registry
 
 

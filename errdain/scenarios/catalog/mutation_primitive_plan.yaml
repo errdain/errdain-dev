@@ -36,7 +36,7 @@ primitives:
   implementation_complexity: medium
   priority: low
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: missing_entity
   failure_category: missing_data
   description: Reusable primitive for Missing Entity.
@@ -178,7 +178,7 @@ primitives:
   implementation_complexity: medium
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: future_timestamp
   failure_category: temporal
   description: Reusable primitive for Future Timestamp.
@@ -224,7 +224,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: timestamp_delay
   failure_category: temporal
   description: Reusable primitive for Timestamp Delay.
@@ -271,7 +271,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: sequence_gap
   failure_category: sequence
   description: Reusable primitive for Sequence Gap.
@@ -295,7 +295,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: invalid_state_transition
   failure_category: status_transition
   description: Reusable primitive for Invalid State Transition.
@@ -319,7 +319,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: aggregate_mismatch
   failure_category: aggregate_mismatch
   description: Reusable primitive for Aggregate Mismatch.
@@ -344,7 +344,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: cross_table_mismatch
   failure_category: cross_table_mismatch
   description: Reusable primitive for Cross Table Mismatch.
@@ -369,7 +369,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: calculation_error
   failure_category: calculation
   description: Reusable primitive for Calculation Error.
@@ -442,7 +442,7 @@ primitives:
   implementation_complexity: high
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: volume_drop
   failure_category: volume_anomaly
   description: Reusable primitive for Volume Drop.
@@ -463,7 +463,7 @@ primitives:
   implementation_complexity: medium
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: retry_burst
   failure_category: retry
   description: Reusable primitive for Retry Burst.
@@ -486,7 +486,7 @@ primitives:
   implementation_complexity: medium
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: duplicate_retry
   failure_category: retry
   description: Reusable primitive for Duplicate Retry.
@@ -510,7 +510,7 @@ primitives:
   implementation_complexity: low
   priority: high
   status: existing
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: duplicate_transaction
   failure_category: duplication
   description: Reusable primitive for Duplicate Transaction.
@@ -556,7 +556,7 @@ primitives:
   implementation_complexity: medium
   priority: high
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: timeout_violation
   failure_category: timeout
   description: Reusable primitive for Timeout Violation.
@@ -579,7 +579,7 @@ primitives:
   implementation_complexity: medium
   priority: medium
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: geographic_jump
   failure_category: geographic
   description: Reusable primitive for Geographic Jump.
@@ -599,7 +599,7 @@ primitives:
   implementation_complexity: medium
   priority: medium
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: policy_violation
   failure_category: policy_violation
   description: Reusable primitive for Policy Violation.
@@ -620,7 +620,7 @@ primitives:
   implementation_complexity: medium
   priority: medium
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: identity_mismatch
   failure_category: identity_mismatch
   description: Reusable primitive for Identity Mismatch.
@@ -638,7 +638,7 @@ primitives:
   implementation_complexity: medium
   priority: low
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: format_corruption
   failure_category: data_format
   description: Reusable primitive for Format Corruption.
@@ -656,7 +656,7 @@ primitives:
   implementation_complexity: medium
   priority: low
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: distribution_shift
   failure_category: distribution_anomaly
   description: Reusable primitive for Distribution Shift.
@@ -675,7 +675,7 @@ primitives:
   implementation_complexity: medium
   priority: low
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: schema_change
   failure_category: data_format
   description: Reusable primitive for Schema Change.
@@ -693,7 +693,7 @@ primitives:
   implementation_complexity: low
   priority: low
   status: existing
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: rare_high_value_activity
   failure_category: fraud_anomaly
   description: Reusable primitive for Rare High Value Activity.
@@ -710,7 +710,7 @@ primitives:
   implementation_complexity: medium
   priority: low
   status: proposed
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: defect_rate_spike
   failure_category: threshold_violation
   description: Reusable primitive for Defect Rate Spike.
@@ -798,7 +798,7 @@ primitives:
   implementation_complexity: low
   priority: low
   status: existing
-  runtime_status: metadata_only
+  runtime_status: runtime_implemented
 - primitive_id: grade_formula_error
   failure_category: calculation
   description: Reusable primitive for Grade Formula Error.

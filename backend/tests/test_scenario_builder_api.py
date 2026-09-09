@@ -22,7 +22,7 @@ def test_scenario_library_filter_prefers_v1_ready_executable_scenarios(client):
     )
     assert response.status_code == 200
     payload = response.json()
-    assert payload["total"] == 48
+    assert payload["total"] == 57
     assert all(item["execution_status"] == "executable" for item in payload["items"])
     assert all(item["v1_ready"] for item in payload["items"])
     assert all(item["failure_display_name"] for item in payload["items"])
@@ -31,7 +31,7 @@ def test_scenario_library_filter_prefers_v1_ready_executable_scenarios(client):
         "/api/v1/scenario-library/scenarios",
         params={"domain": "manufacturing", "v1_ready": True, "limit": 100},
     ).json()
-    assert runtime["total"] == 49
+    assert runtime["total"] == 58
 
 
 def test_failure_plan_preview_supports_percentage_exact_count_and_overlap_modes(client):

@@ -4608,7 +4608,7 @@ scenarios:
   - reconciliation_validator
   training_value: Useful for training users and future models to recognize banking
     boundary_violation failures in reconciliation workflows.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 5
@@ -4619,7 +4619,7 @@ scenarios:
     training_value_score: 5
     total_score: 28
     tier: A
-  implementation_readiness: needs_validator_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
@@ -4628,11 +4628,10 @@ scenarios:
     tables: []
     columns: []
     primitives: []
-    validators:
-    - reconciliation_validator
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: banking_missing_settlement
   domain: banking
   business_process: payments
@@ -27172,7 +27171,7 @@ scenarios:
   - patient_registration
   training_value: Trains mapping from patient_registration business rules to distribution_shift
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -27183,20 +27182,18 @@ scenarios:
     training_value_score: 5
     total_score: 26
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: healthcare_patient_registration_patient_geographic_jump_02
   domain: healthcare
   business_process: patient_registration
@@ -27407,7 +27404,7 @@ scenarios:
   - schema_validator
   training_value: Trains mapping from patient_registration business rules to schema_change
     and schema_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -27418,20 +27415,18 @@ scenarios:
     training_value_score: 5
     total_score: 25
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - schema_change
-    validators:
-    - schema_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: healthcare_patient_registration_patient_timeout_violation_01
   domain: healthcare
   business_process: patient_registration
@@ -27566,7 +27561,7 @@ scenarios:
   - payment
   training_value: Trains mapping from patient_registration business rules to format_corruption
     and datatype_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -27577,19 +27572,18 @@ scenarios:
     training_value_score: 5
     total_score: 23
     tier: B
-  implementation_readiness: needs_primitive_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - format_corruption
+    primitives: []
     validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: healthcare_patient_registration_prior_authorization_identity_mismatch_04
   domain: healthcare
   business_process: patient_registration
@@ -27647,7 +27641,7 @@ scenarios:
   - prior_authorization
   training_value: Trains mapping from patient_registration business rules to identity_mismatch
     and identity_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -27658,20 +27652,18 @@ scenarios:
     training_value_score: 5
     total_score: 20
     tier: B
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - identity_mismatch
-    validators:
-    - identity_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: healthcare_payments_diagnose_calculation_error_03
   domain: healthcare
   business_process: payments
@@ -34465,7 +34457,7 @@ scenarios:
   - reconciliation_validator
   training_value: Useful for training users and future models to recognize insurance
     boundary_violation failures in reconciliation workflows.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 5
@@ -34476,7 +34468,7 @@ scenarios:
     training_value_score: 5
     total_score: 28
     tier: A
-  implementation_readiness: needs_validator_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
@@ -34485,11 +34477,10 @@ scenarios:
     tables: []
     columns: []
     primitives: []
-    validators:
-    - reconciliation_validator
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: insurance_premium_premium_aggregate_mismatch_05
   domain: insurance
   business_process: premium
@@ -44321,7 +44312,7 @@ scenarios:
   - manufacturing
   training_value: Trains mapping from machine_operations business rules to format_corruption
     and datatype_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -44332,19 +44323,18 @@ scenarios:
     training_value_score: 5
     total_score: 23
     tier: B
-  implementation_readiness: needs_primitive_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - format_corruption
+    primitives: []
     validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_machine_operations_machine_distribution_shift_05
   domain: manufacturing
   business_process: machine_operations
@@ -44401,7 +44391,7 @@ scenarios:
   - manufacturing
   training_value: Trains mapping from machine_operations business rules to distribution_shift
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -44412,20 +44402,18 @@ scenarios:
     training_value_score: 5
     total_score: 24
     tier: B
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_machine_operations_machine_geographic_jump_01
   domain: manufacturing
   business_process: machine_operations
@@ -44558,7 +44546,7 @@ scenarios:
   - manufacturing
   training_value: Trains mapping from machine_operations business rules to identity_mismatch
     and identity_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -44569,20 +44557,18 @@ scenarios:
     training_value_score: 5
     total_score: 26
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - identity_mismatch
-    validators:
-    - identity_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_machine_operations_machine_policy_violation_02
   domain: manufacturing
   business_process: machine_operations
@@ -44715,7 +44701,7 @@ scenarios:
   - schema_validator
   training_value: Trains mapping from machine_operations business rules to schema_change
     and schema_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -44726,20 +44712,18 @@ scenarios:
     training_value_score: 5
     total_score: 25
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - schema_change
-    validators:
-    - schema_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_machine_operations_sensor_reading_rare_high_value_activity_07
   domain: manufacturing
   business_process: machine_operations
@@ -44798,7 +44782,7 @@ scenarios:
   - sensor_reading
   training_value: Trains mapping from machine_operations business rules to rare_high_value_activity
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -44809,20 +44793,18 @@ scenarios:
     training_value_score: 5
     total_score: 21
     tier: B
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - rare_high_value_activity
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_maintenance_inventory_volume_drop_02
   domain: manufacturing
   business_process: maintenance
@@ -45466,7 +45448,7 @@ scenarios:
   - plant_operations
   training_value: Trains mapping from plant_operations business rules to distribution_shift
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -45477,20 +45459,18 @@ scenarios:
     training_value_score: 5
     total_score: 26
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_plant_operations_factorie_format_corruption_06
   domain: manufacturing
   business_process: plant_operations
@@ -45547,7 +45527,7 @@ scenarios:
   - plant_operations
   training_value: Trains mapping from plant_operations business rules to format_corruption
     and datatype_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -45558,19 +45538,18 @@ scenarios:
     training_value_score: 5
     total_score: 25
     tier: A
-  implementation_readiness: needs_primitive_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - format_corruption
+    primitives: []
     validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_plant_operations_factorie_geographic_jump_03
   domain: manufacturing
   business_process: plant_operations
@@ -45783,7 +45762,7 @@ scenarios:
   - plant_operations
   training_value: Trains mapping from plant_operations business rules to identity_mismatch
     and identity_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -45794,20 +45773,18 @@ scenarios:
     training_value_score: 5
     total_score: 24
     tier: B
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - identity_mismatch
-    validators:
-    - identity_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_plant_operations_sensor_reading_policy_violation_04
   domain: manufacturing
   business_process: plant_operations
@@ -46115,7 +46092,7 @@ scenarios:
     training_value_score: 5
     total_score: 20
     tier: B
-  implementation_readiness: needs_schema_primitive_validator
+  implementation_readiness: needs_table
   table_support_status: requires_new_table
   proposed_tables:
   - production_orders
@@ -46127,11 +46104,8 @@ scenarios:
     - production_orders
     columns:
     - amount
-    - event_timestamp
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
   execution_status: specification_only
@@ -46202,7 +46176,7 @@ scenarios:
     training_value_score: 5
     total_score: 19
     tier: B
-  implementation_readiness: needs_schema_and_primitive
+  implementation_readiness: needs_table
   table_support_status: requires_new_table
   proposed_tables:
   - production_orders
@@ -46214,9 +46188,7 @@ scenarios:
     - production_orders
     columns:
     - amount
-    - event_timestamp
-    primitives:
-    - format_corruption
+    primitives: []
     validators: []
     unsupported_parameters: []
     custom_logic: false
@@ -46287,7 +46259,7 @@ scenarios:
     training_value_score: 5
     total_score: 20
     tier: B
-  implementation_readiness: needs_schema_primitive_validator
+  implementation_readiness: needs_table
   table_support_status: requires_new_table
   proposed_tables:
   - production_orders
@@ -46299,11 +46271,8 @@ scenarios:
     - production_orders
     columns:
     - amount
-    - event_timestamp
-    primitives:
-    - identity_mismatch
-    validators:
-    - identity_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
   execution_status: specification_only
@@ -46374,7 +46343,7 @@ scenarios:
     training_value_score: 5
     total_score: 21
     tier: B
-  implementation_readiness: needs_schema_primitive_validator
+  implementation_readiness: needs_table
   table_support_status: requires_new_table
   proposed_tables:
   - production_orders
@@ -46386,11 +46355,8 @@ scenarios:
     - production_orders
     columns:
     - amount
-    - event_timestamp
-    primitives:
-    - rare_high_value_activity
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
   execution_status: specification_only
@@ -46461,7 +46427,7 @@ scenarios:
     training_value_score: 5
     total_score: 19
     tier: B
-  implementation_readiness: needs_schema_primitive_validator
+  implementation_readiness: needs_table
   table_support_status: requires_new_table
   proposed_tables:
   - production_orders
@@ -46473,11 +46439,8 @@ scenarios:
     - production_orders
     columns:
     - amount
-    - event_timestamp
-    primitives:
-    - schema_change
-    validators:
-    - schema_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
   execution_status: specification_only
@@ -46865,7 +46828,7 @@ scenarios:
   - quality_check
   training_value: Trains mapping from quality business rules to distribution_shift
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -46876,20 +46839,18 @@ scenarios:
     training_value_score: 5
     total_score: 26
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: manufacturing_quality_quality_check_missing_child_record_03
   domain: manufacturing
   business_process: quality
@@ -50052,7 +50013,7 @@ scenarios:
   - retail
   training_value: Trains mapping from data_quality_control business rules to distribution_shift
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -50063,20 +50024,18 @@ scenarios:
     training_value_score: 5
     total_score: 26
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: retail_data_quality_control_categorie_missing_child_record_03
   domain: retail
   business_process: data_quality_control
@@ -50941,7 +50900,7 @@ scenarios:
   - stock
   training_value: Useful for training users and future models to recognize retail
     boundary_violation failures in reconciliation workflows.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 5
@@ -50952,7 +50911,7 @@ scenarios:
     training_value_score: 5
     total_score: 28
     tier: A
-  implementation_readiness: needs_validator_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
@@ -50961,11 +50920,10 @@ scenarios:
     tables: []
     columns: []
     primitives: []
-    validators:
-    - reconciliation_validator
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: retail_inventory_refund_event_negative_numeric_value_03
   domain: retail
   business_process: inventory
@@ -54911,7 +54869,7 @@ scenarios:
   - telecommunications
   training_value: Useful for training users and future models to recognize telecommunications
     boundary_violation failures in reconciliation workflows.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 5
@@ -54922,7 +54880,7 @@ scenarios:
     training_value_score: 5
     total_score: 28
     tier: A
-  implementation_readiness: needs_validator_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
@@ -54931,11 +54889,10 @@ scenarios:
     tables: []
     columns: []
     primitives: []
-    validators:
-    - reconciliation_validator
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: telecom_roaming_charge_error
   domain: telecommunications
   business_process: billing
@@ -56371,7 +56328,7 @@ scenarios:
   - telecommunications
   training_value: Trains mapping from network_outages business rules to format_corruption
     and datatype_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -56382,19 +56339,18 @@ scenarios:
     training_value_score: 5
     total_score: 25
     tier: A
-  implementation_readiness: needs_primitive_implementation
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - format_corruption
+    primitives: []
     validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: telecommunications_network_outages_network_event_identity_mismatch_01
   domain: telecommunications
   business_process: network_outages
@@ -56451,7 +56407,7 @@ scenarios:
   - telecommunications
   training_value: Trains mapping from network_outages business rules to identity_mismatch
     and identity_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -56462,20 +56418,18 @@ scenarios:
     training_value_score: 5
     total_score: 24
     tier: B
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - identity_mismatch
-    validators:
-    - identity_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: telecommunications_network_outages_network_event_rare_high_value_activity_05
   domain: telecommunications
   business_process: network_outages
@@ -56532,7 +56486,7 @@ scenarios:
   - telecommunications
   training_value: Trains mapping from network_outages business rules to rare_high_value_activity
     and distribution_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 4
@@ -56543,20 +56497,18 @@ scenarios:
     training_value_score: 5
     total_score: 27
     tier: A
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - rare_high_value_activity
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: telecommunications_network_outages_network_qos_sample_distribution_shift_03
   domain: telecommunications
   business_process: network_outages
@@ -56626,7 +56578,7 @@ scenarios:
     training_value_score: 5
     total_score: 20
     tier: B
-  implementation_readiness: needs_schema_primitive_validator
+  implementation_readiness: needs_table
   table_support_status: requires_new_table
   proposed_tables:
   - network_qos_samples
@@ -56638,11 +56590,8 @@ scenarios:
     - network_qos_samples
     columns:
     - network_qos_sample_id
-    - reason_code
-    primitives:
-    - distribution_shift
-    validators:
-    - distribution_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
   execution_status: specification_only
@@ -56703,7 +56652,7 @@ scenarios:
   - telecommunications
   training_value: Trains mapping from network_outages business rules to schema_change
     and schema_validator evidence.
-  status: specification_only
+  status: implemented
   version: 1.0.0
   score:
     business_realism_score: 3
@@ -56714,20 +56663,18 @@ scenarios:
     training_value_score: 5
     total_score: 23
     tier: B
-  implementation_readiness: needs_primitive_and_validator
+  implementation_readiness: ready_now
   table_support_status: fully_supported
   proposed_tables: []
   proposed_columns: []
   implementation_dependencies:
     tables: []
     columns: []
-    primitives:
-    - schema_change
-    validators:
-    - schema_validator
+    primitives: []
+    validators: []
     unsupported_parameters: []
     custom_logic: false
-  execution_status: specification_only
+  execution_status: executable
 - scenario_id: telecommunications_plans_network_qos_sample_volume_drop_03
   domain: telecommunications
   business_process: plans

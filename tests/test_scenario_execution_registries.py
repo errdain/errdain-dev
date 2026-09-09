@@ -20,7 +20,8 @@ def test_primitive_registry_resolves_legacy_aliases_to_canonical_primitives() ->
 def test_validator_registry_distinguishes_runtime_and_metadata_only_patterns() -> None:
     assert "duplicate_key_validator" in VALIDATOR_REGISTRY.runtime_implemented()
     assert "sla_validator" in VALIDATOR_REGISTRY.runtime_implemented()
-    assert "distribution_validator" in VALIDATOR_REGISTRY.metadata_only()
+    assert {"distribution_validator", "identity_validator", "schema_validator", "reconciliation_validator"} <= VALIDATOR_REGISTRY.runtime_implemented()
+    assert VALIDATOR_REGISTRY.metadata_only() == {"scenario_specific_validator"}
     with pytest.raises(KeyError):
         VALIDATOR_REGISTRY.get("unknown_future_validator")
 
@@ -64,10 +65,46 @@ def test_runtime_capable_subset_is_honest_and_not_forced_to_all_810() -> None:
     custom = [item for item in items if item.execution_status == "custom_reference"]
     specification_only = [item for item in items if item.execution_status == "specification_only"]
     assert len(items) == 810
-    assert len(executable) == 613
-    assert len(executable) + len(custom) == 623
+    assert len(executable) == 635
+    assert len(executable) + len(custom) == 645
     assert len(custom) == 10
     assert specification_only
+
+
+def test_distribution_identity_format_schema_and_rare_value_capabilities_are_registered() -> None:
+    assert {
+        "distribution_shift",
+        "identity_mismatch",
+        "format_corruption",
+        "schema_change",
+        "rare_high_value_activity",
+    } <= PRIMITIVE_REGISTRY.runtime_implemented()
+    assert {"duplicate_child_record", "invalid_enum_value", "orphan_relationship"} == PRIMITIVE_REGISTRY.metadata_only()
+
+
+def test_all_newly_promoted_scenarios_execute_end_to_end() -> None:
+    promoted_primitives = {
+        "distribution_shift",
+        "identity_mismatch",
+        "format_corruption",
+        "schema_change",
+        "rare_high_value_activity",
+    }
+    scenarios = [
+        item
+        for item in expanded_scenario_items()
+        if item.execution_status == "executable"
+        and (item.failure_primitive in promoted_primitives or item.validator_pattern == "reconciliation_validator")
+    ]
+    assert len(scenarios) == 22
+    assert len({item.domain for item in scenarios}) >= 6
+    for scenario in scenarios:
+        result = execute_generic_scenario(scenario, records=80, seed=507)
+        assert result.scenario_outcome == "PASS", scenario.scenario_id
+        assert result.primitive_result["actual_mutated_count"] > 0, scenario.scenario_id
+        assert result.validator_result["detected_count"] >= result.primitive_result["actual_mutated_count"], scenario.scenario_id
+        assert result.validator_result["reconciliation_status"] == "PASS", scenario.scenario_id
+        assert result.validator_result["evidence"], scenario.scenario_id
 
 
 def test_all_batch_1_promoted_scenarios_execute_end_to_end() -> None:

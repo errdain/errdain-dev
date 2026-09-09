@@ -13,24 +13,24 @@ quality_dimensions:
 - cross_domain_primitive_reuse
 - schema_realism
 - execution_reliability
-total_runtime_capable: 623
-v1_ready: 623
+total_runtime_capable: 645
+v1_ready: 645
 needs_fix: 0
 validator_independence_counts:
-  metadata_assisted: 9
-  partially_independent: 77
+  metadata_assisted: 27
+  partially_independent: 81
   strong_independent: 537
 average_quality_score_by_domain:
   banking: 9.76
   ecommerce: 9.73
   education: 9.67
   finance: 9.73
-  healthcare: 9.69
-  insurance: 9.74
+  healthcare: 9.67
+  insurance: 9.73
   logistics: 9.75
-  manufacturing: 9.7
-  retail: 9.78
-  telecommunications: 9.79
+  manufacturing: 9.65
+  retail: 9.77
+  telecommunications: 9.75
 primitive_reuse:
   aggregate_mismatch:
   - banking
@@ -84,6 +84,10 @@ primitive_reuse:
   - manufacturing
   - retail
   - telecommunications
+  distribution_shift:
+  - healthcare
+  - manufacturing
+  - retail
   duplicate_entity:
   - banking
   - ecommerce
@@ -96,6 +100,10 @@ primitive_reuse:
   - retail
   - telecommunications
   duplicate_event:
+  - telecommunications
+  format_corruption:
+  - healthcare
+  - manufacturing
   - telecommunications
   future_timestamp:
   - banking
@@ -114,6 +122,10 @@ primitive_reuse:
   - healthcare
   - logistics
   - manufacturing
+  identity_mismatch:
+  - healthcare
+  - manufacturing
+  - telecommunications
   invalid_datatype:
   - banking
   - ecommerce
@@ -147,11 +159,17 @@ primitive_reuse:
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   policy_violation:
   - banking
   - ecommerce
   - healthcare
   - insurance
+  - manufacturing
+  - telecommunications
+  rare_high_value_activity:
   - manufacturing
   - telecommunications
   retry_burst:
@@ -161,6 +179,10 @@ primitive_reuse:
   - healthcare
   - insurance
   - logistics
+  - manufacturing
+  - telecommunications
+  schema_change:
+  - healthcare
   - manufacturing
   - telecommunications
   sequence_gap:
@@ -296,6 +318,13 @@ validator_reuse:
   - education
   - finance
   - healthcare
+  - manufacturing
+  - telecommunications
+  distribution_validator:
+  - healthcare
+  - manufacturing
+  - retail
+  - telecommunications
   duplicate_key_validator:
   - banking
   - ecommerce
@@ -313,6 +342,10 @@ validator_reuse:
   - healthcare
   - logistics
   - manufacturing
+  identity_validator:
+  - healthcare
+  - manufacturing
+  - telecommunications
   missing_record_validator:
   - banking
   - ecommerce
@@ -334,6 +367,11 @@ validator_reuse:
   - banking
   - ecommerce
   - finance
+  reconciliation_validator:
+  - banking
+  - insurance
+  - retail
+  - telecommunications
   referential_integrity_validator:
   - banking
   - healthcare
@@ -348,6 +386,10 @@ validator_reuse:
   - logistics
   - manufacturing
   - retail
+  - telecommunications
+  schema_validator:
+  - healthcare
+  - manufacturing
   - telecommunications
   sequence_validator:
   - banking
@@ -456,7 +498,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.51
+    runtime_ms: 48.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -518,7 +560,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.12
+    runtime_ms: 47.83
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -576,7 +618,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.21
+    runtime_ms: 47.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -639,7 +681,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.8
+    runtime_ms: 48.0
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -702,7 +744,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.45
+    runtime_ms: 47.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -767,7 +809,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.03
+    runtime_ms: 47.87
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -829,7 +871,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.86
+    runtime_ms: 47.67
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -893,7 +935,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.63
+    runtime_ms: 47.95
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -950,7 +992,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.19
+    runtime_ms: 47.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1013,7 +1055,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.42
+    runtime_ms: 47.4
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1071,7 +1113,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 144.09
+    runtime_ms: 48.07
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1136,7 +1178,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 252.57
+    runtime_ms: 47.82
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1201,7 +1243,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 110.49
+    runtime_ms: 47.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1265,7 +1307,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 148.89
+    runtime_ms: 47.25
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1327,7 +1369,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 155.87
+    runtime_ms: 47.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1389,7 +1431,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.13
+    runtime_ms: 47.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1452,7 +1494,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.43
+    runtime_ms: 47.1
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1515,7 +1557,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.61
+    runtime_ms: 47.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1580,7 +1622,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.04
+    runtime_ms: 47.6
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1642,7 +1684,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.57
+    runtime_ms: 47.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1699,7 +1741,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.41
+    runtime_ms: 47.32
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1759,7 +1801,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.97
+    runtime_ms: 47.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1823,7 +1865,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.18
+    runtime_ms: 47.16
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1886,7 +1928,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.08
+    runtime_ms: 47.21
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -1944,7 +1986,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.91
+    runtime_ms: 48.28
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2005,7 +2047,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.55
+    runtime_ms: 47.98
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2066,13 +2108,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.3
+    runtime_ms: 47.59
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -2116,7 +2161,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.64
+    runtime_ms: 47.77
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2179,7 +2224,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.87
+    runtime_ms: 47.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2237,7 +2282,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.42
+    runtime_ms: 47.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2301,7 +2346,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 109.89
+    runtime_ms: 48.31
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2364,7 +2409,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 107.82
+    runtime_ms: 47.98
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2421,7 +2466,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 110.35
+    runtime_ms: 47.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2482,7 +2527,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 108.63
+    runtime_ms: 48.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2545,7 +2590,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.51
+    runtime_ms: 47.76
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2559,6 +2604,8 @@ scenarios:
   - education
   - finance
   - healthcare
+  - manufacturing
+  - telecommunications
 - scenario_id: banking_kyc_customer_negative_numeric_value_02
   domain: banking
   execution_status: executable
@@ -2598,13 +2645,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.5
+    runtime_ms: 47.89
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -2648,7 +2698,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.75
+    runtime_ms: 47.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2709,7 +2759,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.33
+    runtime_ms: 47.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2772,7 +2822,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.72
+    runtime_ms: 47.69
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2833,7 +2883,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.82
+    runtime_ms: 47.95
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2895,7 +2945,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.8
+    runtime_ms: 47.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -2957,7 +3007,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.68
+    runtime_ms: 47.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3019,7 +3069,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.92
+    runtime_ms: 47.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3082,7 +3132,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.66
+    runtime_ms: 47.51
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3140,7 +3190,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.73
+    runtime_ms: 47.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3204,7 +3254,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.24
+    runtime_ms: 47.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3267,7 +3317,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.68
+    runtime_ms: 47.61
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3327,7 +3377,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.18
+    runtime_ms: 47.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3346,6 +3396,61 @@ scenarios:
   - insurance
   - logistics
   - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: banking_ledger_imbalance
+  domain: banking
+  execution_status: executable
+  failure_primitive: negative_numeric_value
+  validator_pattern: reconciliation_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 10
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - reconciliation_type
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 47.34
+    warnings: []
+  primitive_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - insurance
+  - retail
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - insurance
   - retail
   - telecommunications
 - scenario_id: banking_missing_settlement
@@ -3386,7 +3491,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.23
+    runtime_ms: 50.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3442,7 +3547,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.33
+    runtime_ms: 50.81
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3506,7 +3611,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.04
+    runtime_ms: 50.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3569,7 +3674,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.68
+    runtime_ms: 50.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3632,7 +3737,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.03
+    runtime_ms: 48.16
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3695,7 +3800,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.69
+    runtime_ms: 47.8
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3758,7 +3863,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.58
+    runtime_ms: 48.24
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3819,7 +3924,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.52
+    runtime_ms: 47.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3882,7 +3987,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.74
+    runtime_ms: 47.79
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -3943,7 +4048,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.58
+    runtime_ms: 47.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4004,7 +4109,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.36
+    runtime_ms: 47.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4065,7 +4170,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.24
+    runtime_ms: 47.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4125,7 +4230,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.55
+    runtime_ms: 47.93
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4246,7 +4351,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.94
+    runtime_ms: 47.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4312,7 +4417,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 103.31
+    runtime_ms: 47.62
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4374,7 +4479,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 102.22
+    runtime_ms: 47.82
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4435,7 +4540,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 101.98
+    runtime_ms: 48.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4496,7 +4601,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 230.14
+    runtime_ms: 109.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4559,7 +4664,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 230.38
+    runtime_ms: 105.96
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4617,7 +4722,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 232.8
+    runtime_ms: 106.86
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4682,7 +4787,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.21
+    runtime_ms: 107.19
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4747,7 +4852,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.84
+    runtime_ms: 105.9
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4804,7 +4909,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.1
+    runtime_ms: 106.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4865,7 +4970,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.35
+    runtime_ms: 107.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4928,7 +5033,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.57
+    runtime_ms: 105.11
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -4988,7 +5093,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.91
+    runtime_ms: 105.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5045,7 +5150,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.55
+    runtime_ms: 106.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5110,7 +5215,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.3
+    runtime_ms: 105.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5176,7 +5281,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 230.12
+    runtime_ms: 105.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5238,7 +5343,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.6
+    runtime_ms: 105.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5252,6 +5357,8 @@ scenarios:
   - education
   - finance
   - healthcare
+  - manufacturing
+  - telecommunications
 - scenario_id: ecommerce_payment_retry
   domain: ecommerce
   execution_status: executable
@@ -5292,7 +5399,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.61
+    runtime_ms: 105.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5355,7 +5462,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.64
+    runtime_ms: 104.74
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -5419,7 +5526,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.31
+    runtime_ms: 105.45
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -5479,7 +5586,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.63
+    runtime_ms: 105.89
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5542,7 +5649,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.43
+    runtime_ms: 104.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5671,7 +5778,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.77
+    runtime_ms: 105.76
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5737,7 +5844,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 230.18
+    runtime_ms: 105.85
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -5801,7 +5908,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.74
+    runtime_ms: 106.78
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -5862,13 +5969,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 270.91
+    runtime_ms: 105.68
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -5912,7 +6022,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 235.52
+    runtime_ms: 106.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -5972,7 +6082,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 225.96
+    runtime_ms: 104.9
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6035,7 +6145,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 225.07
+    runtime_ms: 105.16
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6088,7 +6198,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 225.86
+    runtime_ms: 105.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6145,7 +6255,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.22
+    runtime_ms: 104.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6206,7 +6316,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 225.22
+    runtime_ms: 105.32
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6271,7 +6381,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 225.9
+    runtime_ms: 105.67
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6333,7 +6443,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.43
+    runtime_ms: 105.51
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6391,7 +6501,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.74
+    runtime_ms: 105.62
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6456,7 +6566,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.68
+    runtime_ms: 105.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6519,7 +6629,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.28
+    runtime_ms: 105.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6583,7 +6693,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.2
+    runtime_ms: 106.03
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6646,7 +6756,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.39
+    runtime_ms: 106.07
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6706,7 +6816,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.07
+    runtime_ms: 104.99
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6774,7 +6884,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.55
+    runtime_ms: 105.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6835,7 +6945,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.93
+    runtime_ms: 106.97
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -6890,7 +7000,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.11
+    runtime_ms: 106.03
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -6953,7 +7063,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.88
+    runtime_ms: 105.97
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7016,7 +7126,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.17
+    runtime_ms: 106.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7079,7 +7189,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.16
+    runtime_ms: 106.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7141,7 +7251,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.48
+    runtime_ms: 105.45
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7198,7 +7308,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 231.04
+    runtime_ms: 105.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7259,7 +7369,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 232.01
+    runtime_ms: 105.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7324,7 +7434,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.79
+    runtime_ms: 105.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7390,7 +7500,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.2
+    runtime_ms: 106.4
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7452,7 +7562,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.87
+    runtime_ms: 114.35
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7513,7 +7623,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.94
+    runtime_ms: 105.34
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7580,7 +7690,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.85
+    runtime_ms: 106.17
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7646,7 +7756,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.76
+    runtime_ms: 105.82
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7708,7 +7818,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.59
+    runtime_ms: 107.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7769,7 +7879,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.22
+    runtime_ms: 107.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7832,7 +7942,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 229.17
+    runtime_ms: 105.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7895,7 +8005,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 228.65
+    runtime_ms: 105.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -7960,7 +8070,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 227.21
+    runtime_ms: 106.09
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8026,7 +8136,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 235.45
+    runtime_ms: 106.01
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8087,7 +8197,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.36
+    runtime_ms: 68.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8153,7 +8263,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.7
+    runtime_ms: 68.85
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -8214,7 +8324,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.15
+    runtime_ms: 68.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8277,7 +8387,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.63
+    runtime_ms: 68.95
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8338,7 +8448,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.84
+    runtime_ms: 68.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8400,7 +8510,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.56
+    runtime_ms: 68.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8466,7 +8576,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.03
+    runtime_ms: 68.25
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -8527,7 +8637,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.54
+    runtime_ms: 68.17
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8590,7 +8700,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.9
+    runtime_ms: 68.04
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -8651,7 +8761,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.28
+    runtime_ms: 68.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8714,7 +8824,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.25
+    runtime_ms: 69.9
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8777,7 +8887,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.53
+    runtime_ms: 68.36
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8841,7 +8951,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.89
+    runtime_ms: 68.15
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8900,7 +9010,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.54
+    runtime_ms: 68.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -8963,7 +9073,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.61
+    runtime_ms: 68.93
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9026,7 +9136,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 151.03
+    runtime_ms: 68.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9091,7 +9201,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.72
+    runtime_ms: 68.36
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9153,7 +9263,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.0
+    runtime_ms: 68.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9218,7 +9328,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.8
+    runtime_ms: 68.87
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9281,7 +9391,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.05
+    runtime_ms: 68.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9344,7 +9454,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.42
+    runtime_ms: 68.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9407,7 +9517,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.6
+    runtime_ms: 68.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9470,7 +9580,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.38
+    runtime_ms: 68.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9531,7 +9641,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.11
+    runtime_ms: 68.11
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9545,6 +9655,8 @@ scenarios:
   - education
   - finance
   - healthcare
+  - manufacturing
+  - telecommunications
 - scenario_id: education_exams_academic_standing_event_timestamp_delay_03
   domain: education
   execution_status: executable
@@ -9584,7 +9696,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.63
+    runtime_ms: 68.93
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9645,7 +9757,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.37
+    runtime_ms: 68.39
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9708,7 +9820,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 152.85
+    runtime_ms: 68.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9770,7 +9882,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.28
+    runtime_ms: 68.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9899,7 +10011,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.66
+    runtime_ms: 69.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -9964,7 +10076,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.26
+    runtime_ms: 69.16
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10029,7 +10141,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.6
+    runtime_ms: 69.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10085,7 +10197,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.33
+    runtime_ms: 69.26
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10147,7 +10259,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.42
+    runtime_ms: 68.73
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10210,7 +10322,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.36
+    runtime_ms: 69.91
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10272,7 +10384,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 152.17
+    runtime_ms: 68.86
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10334,7 +10446,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.31
+    runtime_ms: 68.31
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10396,7 +10508,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.32
+    runtime_ms: 68.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10462,7 +10574,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 150.15
+    runtime_ms: 68.61
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -10523,7 +10635,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 148.71
+    runtime_ms: 68.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10584,7 +10696,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.21
+    runtime_ms: 68.3
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10647,7 +10759,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.41
+    runtime_ms: 68.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10709,7 +10821,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.35
+    runtime_ms: 68.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10772,7 +10884,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.25
+    runtime_ms: 68.91
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10835,7 +10947,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.94
+    runtime_ms: 69.28
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10898,7 +11010,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.1
+    runtime_ms: 68.26
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -10961,13 +11073,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 149.76
+    runtime_ms: 68.68
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -11017,7 +11132,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 152.18
+    runtime_ms: 70.82
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11080,7 +11195,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 152.72
+    runtime_ms: 70.14
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11140,7 +11255,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 154.88
+    runtime_ms: 69.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11208,7 +11323,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 153.06
+    runtime_ms: 69.08
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11269,7 +11384,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 143.02
+    runtime_ms: 64.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11331,7 +11446,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 143.51
+    runtime_ms: 63.74
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11394,7 +11509,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 142.29
+    runtime_ms: 63.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11457,7 +11572,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 323.18
+    runtime_ms: 63.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11522,7 +11637,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.75
+    runtime_ms: 63.93
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11588,7 +11703,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.69
+    runtime_ms: 63.78
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11654,7 +11769,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.42
+    runtime_ms: 63.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11720,7 +11835,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.2
+    runtime_ms: 63.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11782,7 +11897,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.17
+    runtime_ms: 64.09
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11845,7 +11960,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 139.9
+    runtime_ms: 63.51
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11906,7 +12021,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.52
+    runtime_ms: 63.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -11964,7 +12079,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 139.33
+    runtime_ms: 63.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12025,7 +12140,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.41
+    runtime_ms: 63.58
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12086,7 +12201,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 139.96
+    runtime_ms: 65.85
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12149,13 +12264,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 139.93
+    runtime_ms: 63.6
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -12199,7 +12317,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.27
+    runtime_ms: 63.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12260,7 +12378,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.3
+    runtime_ms: 63.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12323,7 +12441,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.95
+    runtime_ms: 63.39
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12383,7 +12501,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.77
+    runtime_ms: 63.6
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -12444,7 +12562,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 144.83
+    runtime_ms: 63.87
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12506,7 +12624,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.52
+    runtime_ms: 63.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12569,7 +12687,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.4
+    runtime_ms: 63.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12632,7 +12750,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.18
+    runtime_ms: 63.13
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12697,7 +12815,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.26
+    runtime_ms: 63.77
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12759,7 +12877,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.31
+    runtime_ms: 63.5
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -12824,7 +12942,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.8
+    runtime_ms: 63.86
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12886,7 +13004,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.58
+    runtime_ms: 63.31
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -12953,7 +13071,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.08
+    runtime_ms: 64.1
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13019,7 +13137,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.51
+    runtime_ms: 63.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13081,7 +13199,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.7
+    runtime_ms: 63.83
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13142,7 +13260,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.46
+    runtime_ms: 63.81
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13203,7 +13321,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.95
+    runtime_ms: 63.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13266,7 +13384,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.4
+    runtime_ms: 63.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13333,7 +13451,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.58
+    runtime_ms: 63.78
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13395,7 +13513,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.94
+    runtime_ms: 63.81
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13460,7 +13578,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.53
+    runtime_ms: 63.69
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13522,7 +13640,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.77
+    runtime_ms: 63.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13583,7 +13701,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 143.78
+    runtime_ms: 63.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13646,7 +13764,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.98
+    runtime_ms: 63.62
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13711,7 +13829,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.12
+    runtime_ms: 65.0
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13773,7 +13891,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.42
+    runtime_ms: 64.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13835,7 +13953,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.91
+    runtime_ms: 64.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13896,7 +14014,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.35
+    runtime_ms: 64.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -13959,7 +14077,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.87
+    runtime_ms: 64.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14022,7 +14140,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.77
+    runtime_ms: 64.12
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14085,7 +14203,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.85
+    runtime_ms: 64.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14147,7 +14265,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.09
+    runtime_ms: 63.83
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14210,7 +14328,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 142.46
+    runtime_ms: 63.75
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14273,7 +14391,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.58
+    runtime_ms: 63.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14336,13 +14454,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.47
+    runtime_ms: 63.44
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -14386,7 +14507,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.05
+    runtime_ms: 63.65
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14444,7 +14565,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 139.89
+    runtime_ms: 63.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14508,7 +14629,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.36
+    runtime_ms: 63.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14571,7 +14692,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.26
+    runtime_ms: 63.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14628,7 +14749,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.71
+    runtime_ms: 63.8
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14689,7 +14810,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 142.96
+    runtime_ms: 64.52
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14752,7 +14873,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.39
+    runtime_ms: 63.4
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14813,7 +14934,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.93
+    runtime_ms: 63.62
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14874,7 +14995,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.06
+    runtime_ms: 64.08
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14935,7 +15056,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.57
+    runtime_ms: 63.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -14996,7 +15117,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.18
+    runtime_ms: 64.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15057,7 +15178,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 140.22
+    runtime_ms: 63.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15115,7 +15236,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 142.65
+    runtime_ms: 63.52
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15178,7 +15299,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 148.34
+    runtime_ms: 63.8
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15241,7 +15362,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 146.42
+    runtime_ms: 63.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15306,7 +15427,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 142.68
+    runtime_ms: 63.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15372,7 +15493,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 143.12
+    runtime_ms: 63.98
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15434,7 +15555,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 142.11
+    runtime_ms: 63.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15448,6 +15569,8 @@ scenarios:
   - education
   - finance
   - healthcare
+  - manufacturing
+  - telecommunications
 - scenario_id: finance_duplicate_trade
   domain: finance
   execution_status: executable
@@ -15488,7 +15611,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 143.3
+    runtime_ms: 63.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15551,13 +15674,16 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 143.18
+    runtime_ms: 63.41
     warnings: []
   primitive_reuse_domains:
   - banking
   - ecommerce
   - education
   - finance
+  - insurance
+  - retail
+  - telecommunications
   validator_reuse_domains:
   - banking
   - ecommerce
@@ -15609,7 +15735,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.57
+    runtime_ms: 63.5
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15735,7 +15861,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 141.49
+    runtime_ms: 63.6
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15796,7 +15922,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.37
+    runtime_ms: 41.81
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15849,7 +15975,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.62
+    runtime_ms: 41.72
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15909,7 +16035,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.67
+    runtime_ms: 41.64
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -15973,7 +16099,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.62
+    runtime_ms: 42.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16036,7 +16162,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.41
+    runtime_ms: 42.07
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16093,7 +16219,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.18
+    runtime_ms: 41.72
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16154,7 +16280,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.38
+    runtime_ms: 41.99
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16211,7 +16337,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.33
+    runtime_ms: 41.76
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16268,7 +16394,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.93
+    runtime_ms: 41.72
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16328,7 +16454,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.87
+    runtime_ms: 41.69
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16378,7 +16504,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.97
+    runtime_ms: 41.78
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16502,7 +16628,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.63
+    runtime_ms: 41.68
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16564,7 +16690,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.28
+    runtime_ms: 41.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16630,7 +16756,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.09
+    runtime_ms: 42.24
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -16691,7 +16817,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.43
+    runtime_ms: 42.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16754,7 +16880,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.47
+    runtime_ms: 42.33
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -16815,7 +16941,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 93.0
+    runtime_ms: 42.05
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -16870,7 +16996,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 95.03
+    runtime_ms: 41.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -16936,7 +17062,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.76
+    runtime_ms: 41.79
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -16997,7 +17123,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.81
+    runtime_ms: 41.91
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17060,7 +17186,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.92
+    runtime_ms: 41.64
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17121,7 +17247,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.81
+    runtime_ms: 41.79
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -17182,7 +17308,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.82
+    runtime_ms: 42.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17244,7 +17370,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.77
+    runtime_ms: 41.83
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17304,7 +17430,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.43
+    runtime_ms: 42.08
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -17365,7 +17491,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.14
+    runtime_ms: 41.61
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17429,7 +17555,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.11
+    runtime_ms: 41.52
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17492,7 +17618,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.54
+    runtime_ms: 42.01
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -17558,7 +17684,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.8
+    runtime_ms: 41.86
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17618,7 +17744,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.82
+    runtime_ms: 41.52
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17681,7 +17807,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.37
+    runtime_ms: 41.84
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -17695,6 +17821,56 @@ scenarios:
   - healthcare
   - insurance
   - logistics
+  - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: healthcare_patient_registration_patient_distribution_shift_06
+  domain: healthcare
+  execution_status: executable
+  failure_primitive: distribution_shift
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.5
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 3
+    actual_mutated_count: 3
+  reconciliation:
+    status: PASS
+    detected_count: 3
+    expected_count: 3
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 42.65
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  validator_reuse_domains:
+  - healthcare
   - manufacturing
   - retail
   - telecommunications
@@ -17737,7 +17913,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.28
+    runtime_ms: 41.83
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17790,7 +17966,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.14
+    runtime_ms: 42.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17806,6 +17982,55 @@ scenarios:
   - finance
   - healthcare
   - insurance
+  - manufacturing
+  - telecommunications
+- scenario_id: healthcare_patient_registration_patient_schema_change_07
+  domain: healthcare
+  execution_status: executable
+  failure_primitive: schema_change
+  validator_pattern: schema_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.3
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 3
+    actual_mutated_count: 3
+  reconciliation:
+    status: PASS
+    detected_count: 3
+    expected_count: 3
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - changes
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 42.06
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
   - manufacturing
   - telecommunications
 - scenario_id: healthcare_patient_registration_patient_timeout_violation_01
@@ -17847,7 +18072,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.14
+    runtime_ms: 41.89
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17868,6 +18093,108 @@ scenarios:
   - logistics
   - manufacturing
   - retail
+  - telecommunications
+- scenario_id: healthcare_patient_registration_payment_format_corruption_05
+  domain: healthcare
+  execution_status: executable
+  failure_primitive: format_corruption
+  validator_pattern: datatype_validator
+  validator_independence: partially_independent
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 8
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 41.7
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - healthcare
+  - manufacturing
+  - telecommunications
+- scenario_id: healthcare_patient_registration_prior_authorization_identity_mismatch_04
+  domain: healthcare
+  execution_status: executable
+  failure_primitive: identity_mismatch
+  validator_pattern: identity_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.2
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - mismatches
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 41.75
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
   - telecommunications
 - scenario_id: healthcare_payments_diagnose_calculation_error_03
   domain: healthcare
@@ -17907,7 +18234,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.02
+    runtime_ms: 41.8
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -17970,7 +18297,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.86
+    runtime_ms: 42.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18032,7 +18359,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.56
+    runtime_ms: 41.74
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18096,7 +18423,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.58
+    runtime_ms: 41.87
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18160,7 +18487,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 95.33
+    runtime_ms: 41.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18223,7 +18550,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 96.5
+    runtime_ms: 41.81
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18284,7 +18611,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.75
+    runtime_ms: 42.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18347,7 +18674,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.49
+    runtime_ms: 42.92
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18407,7 +18734,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.2
+    runtime_ms: 42.9
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18473,7 +18800,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.56
+    runtime_ms: 42.53
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -18534,7 +18861,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.13
+    runtime_ms: 42.32
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18601,7 +18928,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.8
+    runtime_ms: 42.14
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18663,7 +18990,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.96
+    runtime_ms: 42.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18677,6 +19004,8 @@ scenarios:
   - education
   - finance
   - healthcare
+  - manufacturing
+  - telecommunications
 - scenario_id: healthcare_procedures_diagnose_volume_drop_06
   domain: healthcare
   execution_status: executable
@@ -18716,7 +19045,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.95
+    runtime_ms: 42.45
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -18772,7 +19101,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.58
+    runtime_ms: 42.09
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18835,7 +19164,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.81
+    runtime_ms: 42.52
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -18896,7 +19225,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.76
+    runtime_ms: 42.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -18958,7 +19287,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.51
+    runtime_ms: 41.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19024,7 +19353,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.29
+    runtime_ms: 42.12
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -19086,7 +19415,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.72
+    runtime_ms: 41.87
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19149,7 +19478,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.47
+    runtime_ms: 41.82
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19202,7 +19531,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.73
+    runtime_ms: 41.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19262,7 +19591,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.7
+    runtime_ms: 41.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19330,7 +19659,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.26
+    runtime_ms: 41.93
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19391,7 +19720,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.54
+    runtime_ms: 41.88
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19452,7 +19781,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.64
+    runtime_ms: 42.21
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -19508,7 +19837,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.13
+    runtime_ms: 41.45
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19570,7 +19899,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.31
+    runtime_ms: 41.53
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19632,7 +19961,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.14
+    runtime_ms: 41.64
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19695,7 +20024,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 91.55
+    runtime_ms: 41.67
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19758,7 +20087,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.17
+    runtime_ms: 42.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19820,7 +20149,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.69
+    runtime_ms: 42.72
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19883,7 +20212,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.67
+    runtime_ms: 42.14
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -19944,7 +20273,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 95.98
+    runtime_ms: 41.77
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20007,7 +20336,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 93.14
+    runtime_ms: 41.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20072,7 +20401,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.26
+    runtime_ms: 42.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20138,7 +20467,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 92.36
+    runtime_ms: 42.21
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20200,7 +20529,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.37
+    runtime_ms: 52.79
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20256,7 +20585,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.77
+    runtime_ms: 52.32
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20305,7 +20634,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.79
+    runtime_ms: 52.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20427,7 +20756,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.9
+    runtime_ms: 52.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20493,7 +20822,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.2
+    runtime_ms: 52.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20553,7 +20882,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.68
+    runtime_ms: 52.33
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20615,7 +20944,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.86
+    runtime_ms: 52.31
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20681,7 +21010,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.3
+    runtime_ms: 52.33
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -20742,7 +21071,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.52
+    runtime_ms: 52.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20803,7 +21132,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.55
+    runtime_ms: 52.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20866,7 +21195,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.34
+    runtime_ms: 52.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20929,7 +21258,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.63
+    runtime_ms: 52.15
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -20996,7 +21325,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.07
+    runtime_ms: 52.67
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21062,7 +21391,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.26
+    runtime_ms: 52.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21124,7 +21453,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.63
+    runtime_ms: 52.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21188,7 +21517,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.73
+    runtime_ms: 52.63
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -21249,7 +21578,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.06
+    runtime_ms: 52.34
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21312,7 +21641,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.74
+    runtime_ms: 52.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21377,7 +21706,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.15
+    runtime_ms: 52.64
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21443,7 +21772,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.88
+    runtime_ms: 52.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21504,7 +21833,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.28
+    runtime_ms: 52.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21567,7 +21896,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.0
+    runtime_ms: 52.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21629,7 +21958,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.51
+    runtime_ms: 52.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21695,7 +22024,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.38
+    runtime_ms: 52.37
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -21756,7 +22085,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.97
+    runtime_ms: 52.32
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21819,7 +22148,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.29
+    runtime_ms: 52.36
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -21880,7 +22209,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.42
+    runtime_ms: 52.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -21941,7 +22270,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.09
+    runtime_ms: 52.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22004,7 +22333,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.41
+    runtime_ms: 52.65
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22069,7 +22398,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.63
+    runtime_ms: 52.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22135,7 +22464,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.76
+    runtime_ms: 52.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22197,7 +22526,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.48
+    runtime_ms: 52.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22258,7 +22587,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 274.1
+    runtime_ms: 52.21
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22318,7 +22647,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 189.4
+    runtime_ms: 52.25
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22382,7 +22711,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.88
+    runtime_ms: 52.85
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22445,7 +22774,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.32
+    runtime_ms: 52.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22511,7 +22840,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.69
+    runtime_ms: 52.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22572,7 +22901,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.09
+    runtime_ms: 52.26
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22635,7 +22964,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.89
+    runtime_ms: 52.6
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22657,6 +22986,61 @@ scenarios:
   - logistics
   - manufacturing
   - retail
+- scenario_id: insurance_premium_miscalculation
+  domain: insurance
+  execution_status: executable
+  failure_primitive: negative_numeric_value
+  validator_pattern: reconciliation_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 10
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 4
+    actual_mutated_count: 4
+  reconciliation:
+    status: PASS
+    detected_count: 4
+    expected_count: 4
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - reconciliation_type
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 53.5
+    warnings: []
+  primitive_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - insurance
+  - retail
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - insurance
+  - retail
+  - telecommunications
 - scenario_id: insurance_premium_premium_aggregate_mismatch_05
   domain: insurance
   execution_status: executable
@@ -22696,7 +23080,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.59
+    runtime_ms: 54.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22763,7 +23147,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.61
+    runtime_ms: 53.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22825,7 +23209,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.11
+    runtime_ms: 52.72
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22890,7 +23274,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.74
+    runtime_ms: 52.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -22952,7 +23336,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.41
+    runtime_ms: 52.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23014,7 +23398,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.13
+    runtime_ms: 52.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23076,7 +23460,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.57
+    runtime_ms: 52.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23139,7 +23523,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.35
+    runtime_ms: 52.64
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23202,7 +23586,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.3
+    runtime_ms: 52.21
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23265,7 +23649,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.16
+    runtime_ms: 52.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23328,7 +23712,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.04
+    runtime_ms: 52.25
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23393,7 +23777,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.1
+    runtime_ms: 52.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23455,7 +23839,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.47
+    runtime_ms: 53.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23520,7 +23904,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.74
+    runtime_ms: 53.69
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23582,7 +23966,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.27
+    runtime_ms: 52.45
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23645,7 +24029,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.65
+    runtime_ms: 52.92
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23706,7 +24090,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.02
+    runtime_ms: 53.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23769,7 +24153,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.94
+    runtime_ms: 52.64
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23830,7 +24214,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.61
+    runtime_ms: 53.13
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23891,7 +24275,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 113.8
+    runtime_ms: 53.33
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -23955,7 +24339,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.07
+    runtime_ms: 81.64
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -24016,7 +24400,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.7
+    runtime_ms: 57.53
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24080,7 +24464,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 117.93
+    runtime_ms: 57.78
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24143,7 +24527,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.87
+    runtime_ms: 55.6
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -24209,7 +24593,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.3
+    runtime_ms: 53.08
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24269,7 +24653,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 114.67
+    runtime_ms: 52.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24332,7 +24716,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.09
+    runtime_ms: 47.33
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24395,7 +24779,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.34
+    runtime_ms: 47.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24460,7 +24844,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.31
+    runtime_ms: 47.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24522,7 +24906,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.95
+    runtime_ms: 47.35
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24587,7 +24971,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.63
+    runtime_ms: 48.0
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24650,7 +25034,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.49
+    runtime_ms: 48.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24713,7 +25097,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.54
+    runtime_ms: 47.69
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24774,7 +25158,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.19
+    runtime_ms: 47.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24830,7 +25214,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.41
+    runtime_ms: 47.36
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24893,7 +25277,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.66
+    runtime_ms: 47.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -24953,7 +25337,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.28
+    runtime_ms: 47.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25017,7 +25401,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.19
+    runtime_ms: 47.15
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25077,7 +25461,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 107.3
+    runtime_ms: 47.3
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25141,7 +25525,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.1
+    runtime_ms: 47.77
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25201,7 +25585,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.27
+    runtime_ms: 47.17
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25264,7 +25648,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.09
+    runtime_ms: 47.36
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25327,7 +25711,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.08
+    runtime_ms: 47.14
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25392,7 +25776,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.7
+    runtime_ms: 47.35
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25454,7 +25838,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.52
+    runtime_ms: 47.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25519,7 +25903,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 107.53
+    runtime_ms: 47.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25646,7 +26030,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.98
+    runtime_ms: 47.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25709,7 +26093,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.53
+    runtime_ms: 46.87
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25774,7 +26158,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.38
+    runtime_ms: 47.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25840,7 +26224,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.52
+    runtime_ms: 47.13
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25902,7 +26286,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.15
+    runtime_ms: 47.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -25962,7 +26346,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.29
+    runtime_ms: 47.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26028,7 +26412,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.26
+    runtime_ms: 48.26
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -26089,7 +26473,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.03
+    runtime_ms: 47.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26152,7 +26536,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.69
+    runtime_ms: 47.42
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -26213,7 +26597,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.23
+    runtime_ms: 47.11
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26274,7 +26658,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.83
+    runtime_ms: 47.17
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26327,7 +26711,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.28
+    runtime_ms: 47.31
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26384,7 +26768,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.37
+    runtime_ms: 47.17
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26446,7 +26830,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.73
+    runtime_ms: 47.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26510,7 +26894,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.07
+    runtime_ms: 47.11
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26570,7 +26954,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.95
+    runtime_ms: 47.1
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26633,7 +27017,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.81
+    runtime_ms: 46.99
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26695,7 +27079,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.22
+    runtime_ms: 47.0
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26758,7 +27142,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.28
+    runtime_ms: 47.15
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26821,7 +27205,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.75
+    runtime_ms: 47.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26882,7 +27266,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.09
+    runtime_ms: 46.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -26945,7 +27329,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.19
+    runtime_ms: 47.32
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27005,7 +27389,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.44
+    runtime_ms: 47.68
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27069,7 +27453,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.28
+    runtime_ms: 47.3
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27137,7 +27521,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.12
+    runtime_ms: 47.19
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27198,7 +27582,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.65
+    runtime_ms: 47.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27259,7 +27643,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.95
+    runtime_ms: 47.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27324,7 +27708,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 110.99
+    runtime_ms: 47.51
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27390,7 +27774,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 109.21
+    runtime_ms: 47.45
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27452,7 +27836,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.46
+    runtime_ms: 47.35
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27513,7 +27897,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.91
+    runtime_ms: 47.07
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27576,7 +27960,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 112.91
+    runtime_ms: 46.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27638,7 +28022,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 107.95
+    runtime_ms: 47.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27695,7 +28079,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.62
+    runtime_ms: 47.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27748,7 +28132,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.53
+    runtime_ms: 47.68
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27805,7 +28189,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 106.25
+    runtime_ms: 48.08
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27867,7 +28251,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.97
+    runtime_ms: 47.73
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27932,7 +28316,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.06
+    runtime_ms: 47.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -27994,7 +28378,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.21
+    runtime_ms: 47.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28056,7 +28440,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 105.35
+    runtime_ms: 49.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28122,7 +28506,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.86
+    runtime_ms: 47.68
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -28183,7 +28567,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.94
+    runtime_ms: 47.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28246,7 +28630,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 104.87
+    runtime_ms: 47.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28307,7 +28691,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.91
+    runtime_ms: 52.96
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -28367,7 +28751,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.82
+    runtime_ms: 52.81
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28433,7 +28817,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.64
+    runtime_ms: 52.12
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -28494,7 +28878,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 119.51
+    runtime_ms: 52.45
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28562,7 +28946,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.15
+    runtime_ms: 53.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28623,7 +29007,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.79
+    runtime_ms: 54.14
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -28678,7 +29062,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.87
+    runtime_ms: 52.83
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28741,7 +29125,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.07
+    runtime_ms: 52.83
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -28802,7 +29186,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.65
+    runtime_ms: 53.31
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28866,7 +29250,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 117.29
+    runtime_ms: 53.48
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -28885,6 +29269,109 @@ scenarios:
   - healthcare
   - insurance
   - logistics
+  - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: manufacturing_machine_operations_factorie_format_corruption_04
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: format_corruption
+  validator_pattern: datatype_validator
+  validator_independence: partially_independent
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 8
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 52.99
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - healthcare
+  - manufacturing
+  - telecommunications
+- scenario_id: manufacturing_machine_operations_machine_distribution_shift_05
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: distribution_shift
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 53.57
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  validator_reuse_domains:
+  - healthcare
   - manufacturing
   - retail
   - telecommunications
@@ -28927,7 +29414,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.84
+    runtime_ms: 53.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28941,6 +29428,55 @@ scenarios:
   - healthcare
   - logistics
   - manufacturing
+- scenario_id: manufacturing_machine_operations_machine_identity_mismatch_03
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: identity_mismatch
+  validator_pattern: identity_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.3
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - mismatches
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 52.64
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
 - scenario_id: manufacturing_machine_operations_machine_policy_violation_02
   domain: manufacturing
   execution_status: executable
@@ -28980,7 +29516,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.15
+    runtime_ms: 52.5
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -28997,6 +29533,104 @@ scenarios:
   - healthcare
   - insurance
   - manufacturing
+  - telecommunications
+- scenario_id: manufacturing_machine_operations_machine_schema_change_06
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: schema_change
+  validator_pattern: schema_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.3
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - changes
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 52.63
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+- scenario_id: manufacturing_machine_operations_sensor_reading_rare_high_value_activity_07
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: rare_high_value_activity
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.2
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 8
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 2
+    actual_mutated_count: 2
+  reconciliation:
+    status: PASS
+    detected_count: 2
+    expected_count: 2
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 52.55
+    warnings: []
+  primitive_reuse_domains:
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
   - telecommunications
 - scenario_id: manufacturing_maintenance_inventory_volume_drop_02
   domain: manufacturing
@@ -29037,7 +29671,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.7
+    runtime_ms: 52.81
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -29093,7 +29727,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.72
+    runtime_ms: 52.78
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -29154,7 +29788,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.65
+    runtime_ms: 52.9
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29172,6 +29806,109 @@ scenarios:
   - healthcare
   - insurance
   - logistics
+  - manufacturing
+  - telecommunications
+- scenario_id: manufacturing_plant_operations_factorie_distribution_shift_07
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: distribution_shift
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.5
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 52.64
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: manufacturing_plant_operations_factorie_format_corruption_06
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: format_corruption
+  validator_pattern: datatype_validator
+  validator_independence: partially_independent
+  quality_score: 9.5
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 8
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 52.42
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - healthcare
   - manufacturing
   - telecommunications
 - scenario_id: manufacturing_plant_operations_factorie_geographic_jump_03
@@ -29213,7 +29950,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.41
+    runtime_ms: 52.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29266,7 +30003,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.05
+    runtime_ms: 53.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29287,6 +30024,55 @@ scenarios:
   - logistics
   - manufacturing
   - retail
+  - telecommunications
+- scenario_id: manufacturing_plant_operations_inventory_identity_mismatch_05
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: identity_mismatch
+  validator_pattern: identity_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.2
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - mismatches
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 53.3
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
   - telecommunications
 - scenario_id: manufacturing_plant_operations_sensor_reading_policy_violation_04
   domain: manufacturing
@@ -29327,7 +30113,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.57
+    runtime_ms: 52.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29387,7 +30173,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.87
+    runtime_ms: 52.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29447,7 +30233,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.19
+    runtime_ms: 52.21
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29568,7 +30354,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 118.34
+    runtime_ms: 53.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29628,7 +30414,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 117.62
+    runtime_ms: 52.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29691,7 +30477,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.73
+    runtime_ms: 54.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29709,6 +30495,56 @@ scenarios:
   - finance
   - insurance
   - logistics
+  - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: manufacturing_quality_quality_check_distribution_shift_04
+  domain: manufacturing
+  execution_status: executable
+  failure_primitive: distribution_shift
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.5
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 2
+    actual_mutated_count: 2
+  reconciliation:
+    status: PASS
+    detected_count: 2
+    expected_count: 2
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 53.11
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  validator_reuse_domains:
+  - healthcare
   - manufacturing
   - retail
   - telecommunications
@@ -29750,7 +30586,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 118.78
+    runtime_ms: 52.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29810,7 +30646,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.36
+    runtime_ms: 52.98
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29870,7 +30706,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.39
+    runtime_ms: 52.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29933,7 +30769,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.25
+    runtime_ms: 52.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -29995,7 +30831,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.69
+    runtime_ms: 52.66
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30058,7 +30894,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.68
+    runtime_ms: 52.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30121,7 +30957,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.73
+    runtime_ms: 52.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30187,7 +31023,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.02
+    runtime_ms: 52.44
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30247,7 +31083,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.73
+    runtime_ms: 52.5
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30310,7 +31146,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.29
+    runtime_ms: 52.54
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30372,7 +31208,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.75
+    runtime_ms: 52.57
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30435,7 +31271,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.39
+    runtime_ms: 53.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30498,7 +31334,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.5
+    runtime_ms: 52.46
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30559,7 +31395,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.89
+    runtime_ms: 52.4
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -30614,7 +31450,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.66
+    runtime_ms: 52.6
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30680,7 +31516,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.79
+    runtime_ms: 53.09
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -30742,7 +31578,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.68
+    runtime_ms: 52.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30810,7 +31646,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.85
+    runtime_ms: 52.86
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -30871,7 +31707,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.9
+    runtime_ms: 52.7
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -30933,7 +31769,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 115.97
+    runtime_ms: 52.55
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31001,7 +31837,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 117.55
+    runtime_ms: 52.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31062,7 +31898,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 117.4
+    runtime_ms: 52.73
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31122,7 +31958,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.53
+    runtime_ms: 52.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31185,7 +32021,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.88
+    runtime_ms: 52.5
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -31241,7 +32077,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 116.3
+    runtime_ms: 53.12
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -31302,7 +32138,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.86
+    runtime_ms: 31.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31363,7 +32199,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 111.95
+    runtime_ms: 31.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31430,7 +32266,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.63
+    runtime_ms: 31.17
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31496,7 +32332,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.7
+    runtime_ms: 31.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31561,7 +32397,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.69
+    runtime_ms: 31.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31618,7 +32454,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.43
+    runtime_ms: 31.3
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31685,7 +32521,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.11
+    runtime_ms: 31.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31747,7 +32583,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.55
+    runtime_ms: 31.08
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31805,7 +32641,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.51
+    runtime_ms: 31.4
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31870,7 +32706,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.2
+    runtime_ms: 31.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31932,7 +32768,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.53
+    runtime_ms: 31.2
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -31996,7 +32832,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.74
+    runtime_ms: 31.13
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32059,7 +32895,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.39
+    runtime_ms: 31.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32077,6 +32913,56 @@ scenarios:
   - finance
   - insurance
   - logistics
+  - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: retail_data_quality_control_categorie_distribution_shift_04
+  domain: retail
+  execution_status: executable
+  failure_primitive: distribution_shift
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.5
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 30.89
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  validator_reuse_domains:
+  - healthcare
   - manufacturing
   - retail
   - telecommunications
@@ -32118,7 +33004,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.42
+    runtime_ms: 31.1
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32178,7 +33064,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.97
+    runtime_ms: 31.41
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32242,7 +33128,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.03
+    runtime_ms: 31.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32304,7 +33190,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.48
+    runtime_ms: 31.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32367,7 +33253,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.7
+    runtime_ms: 31.24
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32432,7 +33318,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.61
+    runtime_ms: 30.97
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32497,7 +33383,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.92
+    runtime_ms: 31.3
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -32561,7 +33447,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.59
+    runtime_ms: 31.27
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -32581,6 +33467,61 @@ scenarios:
   - insurance
   - logistics
   - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: retail_inventory_mismatch
+  domain: retail
+  execution_status: executable
+  failure_primitive: negative_numeric_value
+  validator_pattern: reconciliation_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 10
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - reconciliation_type
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 31.14
+    warnings: []
+  primitive_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - insurance
+  - retail
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - insurance
   - retail
   - telecommunications
 - scenario_id: retail_duplicate_order
@@ -32623,7 +33564,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.88
+    runtime_ms: 31.12
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32686,7 +33627,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.97
+    runtime_ms: 31.19
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32749,7 +33690,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.97
+    runtime_ms: 31.19
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -32809,7 +33750,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.8
+    runtime_ms: 31.09
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -32875,7 +33816,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.0
+    runtime_ms: 31.03
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33004,7 +33945,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 71.47
+    runtime_ms: 31.0
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33066,7 +34007,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.85
+    runtime_ms: 31.01
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33130,7 +34071,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.13
+    runtime_ms: 31.1
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33193,7 +34134,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.83
+    runtime_ms: 31.35
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33254,7 +34195,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.03
+    runtime_ms: 31.27
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33315,7 +34256,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.85
+    runtime_ms: 31.29
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33382,7 +34323,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.79
+    runtime_ms: 31.14
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33444,7 +34385,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.64
+    runtime_ms: 31.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33506,7 +34447,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.62
+    runtime_ms: 31.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33571,7 +34512,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.4
+    runtime_ms: 31.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33628,7 +34569,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.67
+    runtime_ms: 30.85
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33691,7 +34632,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.56
+    runtime_ms: 31.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33754,7 +34695,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.45
+    runtime_ms: 31.85
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33819,7 +34760,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.62
+    runtime_ms: 31.59
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33885,7 +34826,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.32
+    runtime_ms: 31.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -33946,7 +34887,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.44
+    runtime_ms: 31.25
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34009,7 +34950,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.43
+    runtime_ms: 31.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34072,7 +35013,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.23
+    runtime_ms: 31.28
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34138,7 +35079,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.89
+    runtime_ms: 31.47
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34195,7 +35136,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.45
+    runtime_ms: 31.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34258,7 +35199,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 70.12
+    runtime_ms: 31.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34320,7 +35261,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.88
+    runtime_ms: 32.33
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34382,7 +35323,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 71.42
+    runtime_ms: 31.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34445,7 +35386,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 70.26
+    runtime_ms: 31.52
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34503,7 +35444,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 70.19
+    runtime_ms: 31.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34568,7 +35509,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 72.14
+    runtime_ms: 31.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34633,7 +35574,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 71.89
+    runtime_ms: 32.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34690,7 +35631,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.61
+    runtime_ms: 35.07
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34753,7 +35694,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.28
+    runtime_ms: 34.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34811,7 +35752,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.95
+    runtime_ms: 32.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34875,7 +35816,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.35
+    runtime_ms: 33.4
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34938,7 +35879,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.17
+    runtime_ms: 32.05
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -34995,7 +35936,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 70.27
+    runtime_ms: 32.37
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35060,7 +36001,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 69.2
+    runtime_ms: 32.42
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35122,7 +36063,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.86
+    runtime_ms: 32.61
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35180,7 +36121,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.83
+    runtime_ms: 32.43
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35245,7 +36186,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 68.82
+    runtime_ms: 33.51
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35266,6 +36207,61 @@ scenarios:
   - insurance
   - logistics
   - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: telecom_billing_mismatch
+  domain: telecommunications
+  execution_status: executable
+  failure_primitive: negative_numeric_value
+  validator_pattern: reconciliation_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.4
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 10
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 2
+    actual_mutated_count: 2
+  reconciliation:
+    status: PASS
+    detected_count: 2
+    expected_count: 2
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - reconciliation_type
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 97.36
+    warnings: []
+  primitive_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - insurance
+  - retail
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - insurance
   - retail
   - telecommunications
 - scenario_id: telecom_roaming_charge_error
@@ -35310,7 +36306,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.2
+    runtime_ms: 97.14
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35371,7 +36367,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.61
+    runtime_ms: 97.18
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35435,7 +36431,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.26
+    runtime_ms: 99.53
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35503,7 +36499,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.82
+    runtime_ms: 150.06
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35564,7 +36560,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.08
+    runtime_ms: 103.34
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -35619,7 +36615,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.52
+    runtime_ms: 102.04
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35746,7 +36742,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 386.35
+    runtime_ms: 97.96
     warnings: []
   primitive_reuse_domains:
   - telecommunications
@@ -35804,7 +36800,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 317.05
+    runtime_ms: 98.56
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -35866,7 +36862,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.18
+    runtime_ms: 99.36
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -35930,7 +36926,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.34
+    runtime_ms: 98.74
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -35992,7 +36988,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.42
+    runtime_ms: 99.39
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36060,7 +37056,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.5
+    runtime_ms: 98.39
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36121,7 +37117,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.06
+    runtime_ms: 96.85
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -36177,7 +37173,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.76
+    runtime_ms: 96.04
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -36241,7 +37237,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.28
+    runtime_ms: 94.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36261,6 +37257,206 @@ scenarios:
   - logistics
   - manufacturing
   - retail
+  - telecommunications
+- scenario_id: telecommunications_network_outages_network_event_format_corruption_02
+  domain: telecommunications
+  execution_status: executable
+  failure_primitive: format_corruption
+  validator_pattern: datatype_validator
+  validator_independence: partially_independent
+  quality_score: 9.5
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 8
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - columns
+    - table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 95.93
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - banking
+  - ecommerce
+  - education
+  - finance
+  - healthcare
+  - manufacturing
+  - telecommunications
+- scenario_id: telecommunications_network_outages_network_event_identity_mismatch_01
+  domain: telecommunications
+  execution_status: executable
+  failure_primitive: identity_mismatch
+  validator_pattern: identity_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.2
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - mismatches
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 94.56
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+- scenario_id: telecommunications_network_outages_network_event_rare_high_value_activity_05
+  domain: telecommunications
+  execution_status: executable
+  failure_primitive: rare_high_value_activity
+  validator_pattern: distribution_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.3
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 9
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 10
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 8
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 1
+    actual_mutated_count: 1
+  reconciliation:
+    status: PASS
+    detected_count: 1
+    expected_count: 1
+  evidence:
+    quality: high
+    sample_keys:
+    - anomalies
+    - baseline_table
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 96.16
+    warnings: []
+  primitive_reuse_domains:
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
+  - retail
+  - telecommunications
+- scenario_id: telecommunications_network_outages_telecom_customer_schema_change_04
+  domain: telecommunications
+  execution_status: executable
+  failure_primitive: schema_change
+  validator_pattern: schema_validator
+  validator_independence: metadata_assisted
+  quality_score: 9.2
+  quality_status: v1_ready
+  dimensions:
+    business_realism: 8
+    baseline_validity: 10
+    mutation_correctness: 10
+    validator_independence: 6
+    reconciliation_correctness: 10
+    evidence_usefulness: 8
+    deterministic_reproducibility: 10
+    cross_domain_primitive_reuse: 10
+    schema_realism: 10
+    execution_reliability: 10
+  baseline_validity:
+    status: PASS
+    clean_generation_expected_quality_score: 100
+  mutation_effectiveness:
+    status: PASS
+    selected_count: 3
+    actual_mutated_count: 3
+  reconciliation:
+    status: PASS
+    detected_count: 3
+    expected_count: 3
+  evidence:
+    quality: medium
+    sample_keys:
+    - baseline_table
+    - changes
+  determinism:
+    status: PASS
+  reliability:
+    status: PASS
+    runtime_ms: 97.85
+    warnings: []
+  primitive_reuse_domains:
+  - healthcare
+  - manufacturing
+  - telecommunications
+  validator_reuse_domains:
+  - healthcare
+  - manufacturing
   - telecommunications
 - scenario_id: telecommunications_plans_plan_capacity_exceeded_01
   domain: telecommunications
@@ -36304,7 +37500,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 208.15
+    runtime_ms: 98.97
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -36366,7 +37562,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.07
+    runtime_ms: 95.33
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36430,7 +37626,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.64
+    runtime_ms: 94.7
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36493,7 +37689,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.81
+    runtime_ms: 93.21
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -36559,7 +37755,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.77
+    runtime_ms: 94.82
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36620,7 +37816,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.88
+    runtime_ms: 94.33
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36683,7 +37879,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.82
+    runtime_ms: 93.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36745,7 +37941,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.13
+    runtime_ms: 94.48
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36808,7 +38004,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.2
+    runtime_ms: 93.47
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36871,7 +38067,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.74
+    runtime_ms: 93.71
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36934,7 +38130,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.08
+    runtime_ms: 93.97
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -36994,7 +38190,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 237.56
+    runtime_ms: 93.69
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37062,7 +38258,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 235.86
+    runtime_ms: 93.77
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37123,7 +38319,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 226.96
+    runtime_ms: 93.78
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37184,7 +38380,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 225.94
+    runtime_ms: 93.67
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -37241,7 +38437,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.97
+    runtime_ms: 94.49
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37304,7 +38500,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.17
+    runtime_ms: 93.53
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37372,7 +38568,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 207.07
+    runtime_ms: 93.5
     warnings: []
   primitive_reuse_domains:
   - telecommunications
@@ -37430,7 +38626,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.05
+    runtime_ms: 93.93
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37496,7 +38692,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 208.29
+    runtime_ms: 94.22
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37558,7 +38754,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.06
+    runtime_ms: 94.64
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -37624,7 +38820,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.59
+    runtime_ms: 93.64
     warnings: []
   primitive_reuse_domains:
   - telecommunications
@@ -37681,7 +38877,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.16
+    runtime_ms: 93.26
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37744,7 +38940,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.83
+    runtime_ms: 93.6
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37804,7 +39000,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.73
+    runtime_ms: 94.63
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37864,7 +39060,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.52
+    runtime_ms: 103.23
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37923,7 +39119,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.13
+    runtime_ms: 94.58
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -37986,7 +39182,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.82
+    runtime_ms: 94.28
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38048,7 +39244,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 208.95
+    runtime_ms: 96.97
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38112,7 +39308,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 210.21
+    runtime_ms: 93.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38180,7 +39376,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.56
+    runtime_ms: 94.02
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38241,7 +39437,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.34
+    runtime_ms: 93.68
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -38297,7 +39493,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.57
+    runtime_ms: 93.96
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38356,7 +39552,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.99
+    runtime_ms: 94.28
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38415,7 +39611,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 203.87
+    runtime_ms: 94.08
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38481,7 +39677,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.71
+    runtime_ms: 93.94
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38544,7 +39740,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.42
+    runtime_ms: 94.01
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38604,7 +39800,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 207.25
+    runtime_ms: 93.69
     warnings: []
   primitive_reuse_domains:
   - ecommerce
@@ -38670,7 +39866,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 209.26
+    runtime_ms: 93.57
     warnings: []
   primitive_reuse_domains:
   - telecommunications
@@ -38729,7 +39925,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.36
+    runtime_ms: 92.89
     warnings: []
   primitive_reuse_domains:
   - telecommunications
@@ -38787,7 +39983,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.73
+    runtime_ms: 93.38
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38853,7 +40049,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 205.55
+    runtime_ms: 93.91
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38919,7 +40115,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 204.9
+    runtime_ms: 93.21
     warnings: []
   primitive_reuse_domains:
   - banking
@@ -38981,7 +40177,7 @@ scenarios:
     status: PASS
   reliability:
     status: PASS
-    runtime_ms: 206.25
+    runtime_ms: 94.12
     warnings: []
   primitive_reuse_domains:
   - ecommerce

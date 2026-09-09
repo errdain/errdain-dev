@@ -754,6 +754,123 @@ def geographic_jump(context: PrimitiveExecutionContext) -> PrimitiveResult:
     return result
 
 
+def _preferred_mutation_column(
+    context: PrimitiveExecutionContext,
+    rows: list[dict[str, Any]],
+    *,
+    prefer_numeric: bool = False,
+    prefer_identity: bool = False,
+) -> str:
+    """Choose a real business column while avoiding the physical primary key when possible."""
+    if not rows:
+        return _column(context, rows)
+    table = str(context.parameters.get("table") or context.parameters.get("primary_table") or "")
+    primary_key = context.spec.schemas[table].primary_key if table in context.spec.schemas else None
+    candidates = [
+        str(item)
+        for item in context.parameters.get("columns", [])
+        if isinstance(item, str) and item in rows[0] and item != primary_key
+    ]
+    candidates.extend(column for column in rows[0] if column != primary_key and column not in candidates)
+    if prefer_identity:
+        identity = [column for column in candidates if column.endswith("_id") or any(token in column.lower() for token in ("email", "phone", "account", "name", "mrn"))]
+        if identity:
+            return identity[0]
+    if prefer_numeric:
+        for column in candidates:
+            for row in rows:
+                try:
+                    Decimal(str(row.get(column)))
+                    return column
+                except (InvalidOperation, TypeError):
+                    continue
+    return candidates[0] if candidates else primary_key or next(iter(rows[0]))
+
+
+def identity_mismatch(context: PrimitiveExecutionContext) -> PrimitiveResult:
+    table, rows, id_column = _table_and_rows(context)
+    schema = context.spec.schemas[table]
+    column = _preferred_mutation_column(context, rows, prefer_identity=True)
+    indices = _target_indices(rows, context.seed, _rate(context))
+    baselines = context.dataset.setdefault("__df_identity_baseline", [])
+    entity_ids: list[Any] = []
+    for offset, index in enumerate(indices, 1):
+        row = rows[index]
+        entity_id = row.get(schema.primary_key)
+        original = row.get(column)
+        entity_ids.append(entity_id)
+        baselines.append({"table": table, "pk_column": schema.primary_key, "pk_value": entity_id, "entity_id": entity_id, "identity_column": column, "expected_value": original})
+        row[column] = f"DF_IDENTITY_MISMATCH_{context.seed}_{offset}"
+    result = _result(context, "identity_mismatch", table, rows, id_column, indices, column)
+    result.affected_entity_ids = entity_ids
+    result.mutation_metadata.update({"baseline_table": "__df_identity_baseline", "identity_column": column})
+    return result
+
+
+def format_corruption(context: PrimitiveExecutionContext) -> PrimitiveResult:
+    table, rows, id_column = _table_and_rows(context)
+    column = _preferred_mutation_column(context, rows)
+    indices = _target_indices(rows, context.seed, _rate(context))
+    for index in indices:
+        rows[index][column] = "DF_INVALID_TYPE"
+    result = _result(context, "format_corruption", table, rows, id_column, indices, column)
+    result.mutation_metadata.update({"corruption_marker": "DF_INVALID_TYPE", "corruption_type": "invalid_format"})
+    return result
+
+
+def _distribution_anomaly(context: PrimitiveExecutionContext, primitive_id: str, *, rare_high_value: bool) -> PrimitiveResult:
+    table, rows, id_column = _table_and_rows(context)
+    schema = context.spec.schemas[table]
+    column = _preferred_mutation_column(context, rows, prefer_numeric=True)
+    indices = _target_indices(rows, context.seed, _rate(context))
+    baselines = context.dataset.setdefault("__df_distribution_baseline", [])
+    entity_ids: list[Any] = []
+    for offset, index in enumerate(indices, 1):
+        row = rows[index]
+        entity_id = row.get(schema.primary_key)
+        original = row.get(column)
+        entity_ids.append(entity_id)
+        baselines.append({"table": table, "pk_column": schema.primary_key, "pk_value": entity_id, "entity_id": entity_id, "column": column, "expected_value": original, "anomaly_type": primitive_id})
+        try:
+            numeric = Decimal(str(original))
+            magnitude = max(abs(numeric), Decimal("1"))
+            row[column] = str(numeric + magnitude * (Decimal("100") if rare_high_value else Decimal("10")))
+        except (InvalidOperation, TypeError):
+            row[column] = f"DF_{primitive_id.upper()}_{context.seed}_{offset}"
+    result = _result(context, primitive_id, table, rows, id_column, indices, column)
+    result.affected_entity_ids = entity_ids
+    result.mutation_metadata.update({"baseline_table": "__df_distribution_baseline", "anomaly_type": primitive_id})
+    return result
+
+
+def distribution_shift(context: PrimitiveExecutionContext) -> PrimitiveResult:
+    return _distribution_anomaly(context, "distribution_shift", rare_high_value=False)
+
+
+def rare_high_value_activity(context: PrimitiveExecutionContext) -> PrimitiveResult:
+    return _distribution_anomaly(context, "rare_high_value_activity", rare_high_value=True)
+
+
+def schema_change(context: PrimitiveExecutionContext) -> PrimitiveResult:
+    table, rows, id_column = _table_and_rows(context)
+    schema = context.spec.schemas[table]
+    column = _preferred_mutation_column(context, rows)
+    indices = _target_indices(rows, context.seed, _rate(context))
+    baselines = context.dataset.setdefault("__df_schema_baseline", [])
+    entity_ids: list[Any] = []
+    changed_column = f"{column}__schema_v2"
+    for index in indices:
+        row = rows[index]
+        entity_id = row.get(schema.primary_key)
+        entity_ids.append(entity_id)
+        baselines.append({"table": table, "pk_column": schema.primary_key, "pk_value": entity_id, "entity_id": entity_id, "expected_column": column, "unexpected_column": changed_column})
+        row[changed_column] = row.pop(column, None)
+    result = _result(context, "schema_change", table, rows, id_column, indices, column)
+    result.affected_entity_ids = entity_ids
+    result.mutation_metadata.update({"baseline_table": "__df_schema_baseline", "expected_column": column, "unexpected_column": changed_column})
+    return result
+
+
 def build_default_primitive_registry() -> PrimitiveRegistry:
     registry = PrimitiveRegistry()
     registry.register(PrimitiveDefinition("duplicate_entity", "Duplicate selected entities.", "runtime_implemented", duplicate_entity, aliases=("duplicate_transaction",)))
@@ -782,15 +899,15 @@ def build_default_primitive_registry() -> PrimitiveRegistry:
     registry.register(PrimitiveDefinition("policy_violation", "Inject structured policy violations.", "runtime_implemented", policy_violation, aliases=("coverage_limit_violation",)))
     registry.register(PrimitiveDefinition("availability_failure", "Inject status-based availability failures.", "runtime_implemented", availability_failure))
     registry.register(PrimitiveDefinition("geographic_jump", "Inject impossible location/zone jumps.", "runtime_implemented", geographic_jump))
+    registry.register(PrimitiveDefinition("identity_mismatch", "Replace selected business identities with conflicting values.", "runtime_implemented", identity_mismatch))
+    registry.register(PrimitiveDefinition("format_corruption", "Replace selected values with an invalid format marker.", "runtime_implemented", format_corruption))
+    registry.register(PrimitiveDefinition("distribution_shift", "Shift selected values outside their baseline distribution.", "runtime_implemented", distribution_shift))
+    registry.register(PrimitiveDefinition("schema_change", "Rename a required field for selected rows to simulate schema drift.", "runtime_implemented", schema_change))
+    registry.register(PrimitiveDefinition("rare_high_value_activity", "Inject rare, extreme values into selected activity records.", "runtime_implemented", rare_high_value_activity))
     for primitive_id in (
         "duplicate_child_record",
         "orphan_relationship",
         "invalid_enum_value",
-        "identity_mismatch",
-        "format_corruption",
-        "distribution_shift",
-        "schema_change",
-        "rare_high_value_activity",
     ):
         registry.register(PrimitiveDefinition(primitive_id, f"{primitive_id} is specified but not generically executable yet.", "metadata_only"))
     return registry
