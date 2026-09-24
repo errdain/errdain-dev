@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "sourceOfTruth": ".errdain/workflow/tasks.json",
+  "auditLog": ".errdain/workflow/events.jsonl",
+  "dashboardRefreshSeconds": 15,
+  "states": ["Backlog", "Ready", "In Progress", "In Review", "Changes Requested", "Ready for Verification", "Blocked", "Completed"],
+  "requiredEvidence": {
+    "In Review": ["commit or diff", "tests and exact result", "known limitations"],
+    "Completed": ["independent review verdict", "verification tests", "closed blocking findings"]
+  },
+  "separationOfDuties": "The task owner cannot approve completion; a named reviewer must issue PASS.",
+  "dependencyRule": "All dependsOn tasks must be Completed before work can enter Ready or In Progress."
+}
