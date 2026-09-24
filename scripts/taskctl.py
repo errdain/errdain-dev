@@ -164,6 +164,8 @@ def promote_ready(data: dict[str, Any], actor: str) -> None:
             continue
         stamp = now()
         candidate.update(status="Ready", updated=stamp[:10], updatedAt=stamp, updatedBy=actor)
+        if str(candidate.get("blocker", "")).startswith("Depends on"):
+            candidate["blocker"] = ""
         append_event({
             "at": stamp, "taskId": candidate["id"], "actor": actor,
             "from": "Backlog", "to": "Ready",

@@ -260,11 +260,28 @@ def value_above_threshold(context: PrimitiveExecutionContext) -> PrimitiveResult
 
 def future_timestamp(context: PrimitiveExecutionContext) -> PrimitiveResult:
     table, rows, id_column = _table_and_rows(context)
-    column = _column(context, rows, context.spec.date_columns.get(table))
+    column = _temporal_column(context, rows, context.spec.date_columns.get(table))
     indices = _target_indices(rows, context.seed, _rate(context))
+    before_after_samples: list[dict[str, Any]] = []
     for index in indices:
+        original_value = rows[index].get(column)
         rows[index][column] = "2035-15-99"
-    return _result(context, "future_timestamp", table, rows, id_column, indices, column)
+        if len(before_after_samples) < 20:
+            before_after_samples.append(
+                {
+                    "entity_id": rows[index].get(id_column),
+                    "before": original_value,
+                    "after": rows[index][column],
+                }
+            )
+    result = _result(context, "future_timestamp", table, rows, id_column, indices, column)
+    result.mutation_metadata.update(
+        {
+            "before_after_samples": before_after_samples,
+            "temporal_defect": "invalid_calendar_date",
+        }
+    )
+    return result
 
 
 def missing_entity(context: PrimitiveExecutionContext) -> PrimitiveResult:
@@ -298,6 +315,7 @@ def timestamp_delay(context: PrimitiveExecutionContext) -> PrimitiveResult:
     column = _temporal_column(context, rows, context.spec.date_columns.get(table))
     indices = _target_indices(rows, context.seed, _rate(context))
     baseline_rows = context.dataset.setdefault("__df_sla_baseline", [])
+    before_after_samples: list[dict[str, Any]] = []
     for offset, index in enumerate(indices, 1):
         row = rows[index]
         original_value = row.get(column)
@@ -305,6 +323,14 @@ def timestamp_delay(context: PrimitiveExecutionContext) -> PrimitiveResult:
             rows[index][column] = (datetime.fromisoformat(str(original_value)) + timedelta(days=7)).isoformat()
         except (TypeError, ValueError):
             rows[index][column] = "2035-01-01T00:00:00"
+        if len(before_after_samples) < 20:
+            before_after_samples.append(
+                {
+                    "entity_id": row.get(id_column),
+                    "before": original_value,
+                    "after": rows[index][column],
+                }
+            )
         baseline_rows.append(
             {
                 "baseline_id": f"SLA-DLY-{context.seed}-{offset:04d}",
@@ -322,6 +348,7 @@ def timestamp_delay(context: PrimitiveExecutionContext) -> PrimitiveResult:
     result = _result(context, "timestamp_delay", table, rows, id_column, indices, column)
     result.mutation_metadata["baseline_table"] = "__df_sla_baseline"
     result.mutation_metadata["sla_mode"] = "duration"
+    result.mutation_metadata["before_after_samples"] = before_after_samples
     return result
 
 
@@ -329,10 +356,21 @@ def timestamp_out_of_order(context: PrimitiveExecutionContext) -> PrimitiveResul
     table, rows, id_column = _table_and_rows(context)
     column = _temporal_column(context, rows, context.spec.date_columns.get(table))
     indices = _target_indices(rows, context.seed, _rate(context))
+    before_after_samples: list[dict[str, Any]] = []
     for offset, index in enumerate(indices, 1):
+        original_value = rows[index].get(column)
         rows[index][column] = f"1900-01-{min(offset, 28):02d}T00:00:00"
+        if len(before_after_samples) < 20:
+            before_after_samples.append(
+                {
+                    "entity_id": rows[index].get(id_column),
+                    "before": original_value,
+                    "after": rows[index][column],
+                }
+            )
     result = _result(context, "timestamp_out_of_order", table, rows, id_column, indices, column)
     result.mutation_metadata["sequence_issue_type"] = "timestamp_out_of_order"
+    result.mutation_metadata["before_after_samples"] = before_after_samples
     return result
 
 
@@ -553,8 +591,10 @@ def stale_timestamp(context: PrimitiveExecutionContext) -> PrimitiveResult:
     allowed_seconds = int(context.parameters.get("allowed_seconds", 86400))
     stale_value = "2000-01-01T00:00:00"
     baseline_rows = context.dataset.setdefault("__df_sla_baseline", [])
+    before_after_samples: list[dict[str, Any]] = []
     for offset, index in enumerate(indices, 1):
         row = rows[index]
+        original_value = row.get(column)
         baseline_rows.append(
             {
                 "baseline_id": f"SLA-AGE-{context.seed}-{offset:04d}",
@@ -570,8 +610,16 @@ def stale_timestamp(context: PrimitiveExecutionContext) -> PrimitiveResult:
             }
         )
         row[column] = stale_value
+        if len(before_after_samples) < 20:
+            before_after_samples.append(
+                {
+                    "entity_id": row.get(id_column),
+                    "before": original_value,
+                    "after": row[column],
+                }
+            )
     result = _result(context, "stale_timestamp", table, rows, id_column, indices, column)
-    result.mutation_metadata.update({"baseline_table": "__df_sla_baseline", "sla_mode": "age", "reference_time": reference_time, "allowed_seconds": allowed_seconds})
+    result.mutation_metadata.update({"baseline_table": "__df_sla_baseline", "sla_mode": "age", "reference_time": reference_time, "allowed_seconds": allowed_seconds, "before_after_samples": before_after_samples})
     return result
 
 
@@ -585,6 +633,7 @@ def timeout_violation(context: PrimitiveExecutionContext) -> PrimitiveResult:
     allowed_seconds = int(context.parameters.get("allowed_seconds", 86400))
     end_time = (datetime.fromisoformat(start_time) + timedelta(seconds=allowed_seconds + 7200)).isoformat()
     baseline_rows = context.dataset.setdefault("__df_sla_baseline", [])
+    before_after_samples: list[dict[str, Any]] = []
     for offset, index in enumerate(indices, 1):
         row = rows[index]
         baseline_rows.append(
@@ -602,8 +651,18 @@ def timeout_violation(context: PrimitiveExecutionContext) -> PrimitiveResult:
             }
         )
         row[column] = end_time
+        if len(before_after_samples) < 20:
+            # Timeout conformance compares the generated end time with the SLA
+            # window's start time, not with the cell's pre-mutation value.
+            before_after_samples.append(
+                {
+                    "entity_id": row.get(id_column),
+                    "before": start_time,
+                    "after": row[column],
+                }
+            )
     result = _result(context, "timeout_violation", table, rows, id_column, indices, column)
-    result.mutation_metadata.update({"baseline_table": "__df_sla_baseline", "sla_mode": "duration", "start_time": start_time, "allowed_seconds": allowed_seconds})
+    result.mutation_metadata.update({"baseline_table": "__df_sla_baseline", "sla_mode": "duration", "start_time": start_time, "allowed_seconds": allowed_seconds, "before_after_samples": before_after_samples})
     return result
 
 

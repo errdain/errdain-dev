@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "project": "Errdain",
   "releaseTarget": "2026-11-10",
-  "updatedAt": "2026-09-24T12:00:00Z",
+  "updatedAt": "2026-09-24T23:00:25Z",
   "tasks": [
     {
       "id": "FOUND-01",
@@ -154,67 +154,68 @@
       "id": "TRUST-01",
       "workstream": "Scenario Trust",
       "title": "Build the scenario conformance harness",
-      "status": "In Review",
+      "status": "Completed",
       "priority": "P0",
       "owner": "Codex",
       "reviewer": "Claude",
-      "completed": "Implemented repeatable certification checks for positive mutation, ground-truth agreement, validator detection, semantic target compatibility, and deterministic seed replay. All five temporal primitives now emit evidence and have independent regression cases.",
-      "next": "Claude re-reviews the corrected temporal primitive diff. After approval, mark Complete and begin certification of the launch scenarios.",
-      "blocker": "Reviewer re-approval is pending. Final certification set still depends on GOV-01.",
+      "completed": "Independent review passed; all temporal direction and evidence findings are closed.",
+      "next": "Independent review passed; all temporal direction and evidence findings are closed.",
+      "blocker": "",
       "finding": "Initial review found a blocker: the harness required after > before for all temporal primitives and only timestamp_delay emitted samples, causing false-negative certification for four primitives.",
       "change": "Added before/after evidence to stale_timestamp, timeout_violation, timestamp_out_of_order, and future_timestamp. Added primitive-specific forward/backward rules and a separate malformed-calendar-date rule for future_timestamp.",
-      "evidence": "386 backend tests passed, 13 skipped, 2 existing deprecation warnings on 2026-09-24; five temporal regression cases pass",
+      "evidence": "Claude independently reviewed the implementation and ran the full suite: 386 passed, 13 skipped, 2 deprecation warnings, exit code 0; scenario conformance tests 7/7 passed.",
       "updated": "2026-09-24",
       "dependsOn": [
         "TRUST-00"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-24T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:00:25Z",
+      "updatedBy": "Claude",
+      "reviewVerdict": "PASS"
     },
     {
       "id": "TRUST-02",
       "workstream": "Scenario Trust",
       "title": "Block invalid primitive, field, and type combinations",
-      "status": "Backlog",
+      "status": "Ready",
       "priority": "P0",
       "owner": "Codex",
       "reviewer": "Claude + Domain Reviewer",
       "completed": "",
       "next": "Add compatibility declarations and negative tests after TRUST-01.",
-      "blocker": "Depends on the conformance harness contract.",
+      "blocker": "",
       "finding": "Current metadata can allow semantically invalid target-field combinations.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "TRUST-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:00:25Z",
+      "updatedBy": "workflow"
     },
     {
       "id": "TRUST-03",
       "workstream": "Scenario Trust",
       "title": "Create one canonical result status and issue-rate calculation",
-      "status": "Backlog",
+      "status": "Ready",
       "priority": "P0",
       "owner": "Codex",
       "reviewer": "Claude",
       "completed": "",
       "next": "Define result schema, then update API, manifest, validator, and UI together.",
-      "blocker": "Depends on agreed evidence contract.",
+      "blocker": "",
       "finding": "Validation PASS, reconciliation FAIL, detector count, and issue rate can disagree.",
       "change": "Not started.",
       "evidence": "Retail generated package audit",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "TRUST-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:00:25Z",
+      "updatedBy": "workflow"
     },
     {
       "id": "AUTH-01",

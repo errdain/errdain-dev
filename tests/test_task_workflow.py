@@ -55,3 +55,13 @@ def test_completion_promotes_direct_dependent(monkeypatch):
     monkeypatch.setattr(taskctl, "append_event", lambda event: None)
     taskctl.transition(data, task, "Completed", "Claude", "accepted", "review evidence", "PASS")
     assert data["tasks"][2]["status"] == "Ready"
+
+
+def test_promotion_clears_a_dependency_only_blocker(monkeypatch):
+    taskctl = _module()
+    data = _data()
+    data["tasks"][1]["blocker"] = "Depends on A."
+    monkeypatch.setattr(taskctl, "append_event", lambda event: None)
+    taskctl.promote_ready(data, actor="workflow")
+    assert data["tasks"][1]["status"] == "Ready"
+    assert data["tasks"][1]["blocker"] == ""
