@@ -9,5 +9,7 @@
     "Completed": ["independent review verdict", "verification tests", "closed blocking findings"]
   },
   "separationOfDuties": "The task owner cannot approve completion; a named reviewer must issue PASS.",
-  "dependencyRule": "All dependsOn tasks must be Completed before work can enter Ready or In Progress."
+  "dependencyRule": "All dependsOn tasks must be Completed before work can enter Ready or In Progress.",
+  "assignmentPolicy": "Unfinished engineering work is balanced between Codex and Claude. The opposite agent is always the peer reviewer; domain, product, security, and release reviewers remain additional reviewers where applicable.",
+  "pullPolicy": "Each agent uses claim-next to pull its highest-priority Ready task. Ownership can be reassigned only before implementation starts and every reassignment is audited."
 }

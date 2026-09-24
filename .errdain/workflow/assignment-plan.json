@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "strategy": "deterministic-balanced-alternation",
+  "reason": "Rebalanced unfinished engineering work so Codex and Claude alternate implementation and mandatory peer review; specialist reviewers remain additional reviewers.",
+  "assignments": [
+    {"taskId": "TRUST-02", "owner": "Claude", "specialistReviewers": ["Domain Reviewer"]},
+    {"taskId": "TRUST-03", "owner": "Codex", "specialistReviewers": []},
+    {"taskId": "SEC-02", "owner": "Claude", "specialistReviewers": ["Security Reviewer"]},
+    {"taskId": "JOB-01", "owner": "Codex", "specialistReviewers": []},
+    {"taskId": "JOB-02", "owner": "Claude", "specialistReviewers": ["Security Reviewer"]},
+    {"taskId": "SCHEMA-02", "owner": "Claude", "specialistReviewers": ["Domain Reviewer"]},
+    {"taskId": "SCHEMA-03", "owner": "Codex", "specialistReviewers": ["Product Owner", "Domain Reviewer"]},
+    {"taskId": "SCHEMA-04", "owner": "Claude", "specialistReviewers": ["Security Reviewer"]},
+    {"taskId": "CHANNEL-API", "owner": "Codex", "specialistReviewers": ["Security Reviewer"]},
+    {"taskId": "CHANNEL-UI", "owner": "Claude", "specialistReviewers": ["Product Owner"]},
+    {"taskId": "CHANNEL-CLI", "owner": "Codex", "specialistReviewers": ["Product Owner"]},
+    {"taskId": "CHANNEL-SDK", "owner": "Claude", "specialistReviewers": []},
+    {"taskId": "CHANNEL-CONN", "owner": "Codex", "specialistReviewers": ["Security Reviewer", "Product Owner"]},
+    {"taskId": "UX-02", "owner": "Claude", "specialistReviewers": ["Product Owner"]},
+    {"taskId": "UX-03", "owner": "Codex", "specialistReviewers": ["Product Owner"]},
+    {"taskId": "ADM-01", "owner": "Claude", "specialistReviewers": ["Product Owner", "Security Reviewer"]},
+    {"taskId": "OPS-01", "owner": "Codex", "specialistReviewers": ["Release Operator"]}
+  ]
+}

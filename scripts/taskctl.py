@@ -25,6 +25,7 @@ STATUSES = (
     "Backlog", "Ready", "In Progress", "In Review", "Changes Requested",
     "Ready for Verification", "Blocked", "Completed",
 )
+AGENTS = ("Codex", "Claude")
 TRANSITIONS = {
     "Backlog": {"Ready", "Blocked"},
     "Ready": {"In Progress", "Blocked"},
@@ -80,8 +81,18 @@ def validate(data: dict[str, Any]) -> None:
     for task in tasks:
         if task.get("status") not in STATUSES:
             raise WorkflowError(f"{task['id']}: invalid status {task.get('status')!r}")
-        if task.get("owner") == task.get("reviewer"):
+        if task.get("owner") in reviewer_names(task):
             raise WorkflowError(f"{task['id']}: owner and reviewer must differ")
+        if (
+            int(data.get("assignmentRevision", 0)) >= 1
+            and
+            task.get("status") != "Completed"
+            and task.get("owner") in AGENTS
+            and task.get("priority") in {"P0", "P1"}
+        ):
+            peer = "Claude" if task["owner"] == "Codex" else "Codex"
+            if peer not in reviewer_names(task):
+                raise WorkflowError(f"{task['id']}: {peer} must be a peer reviewer")
         unknown = set(task.get("dependsOn", [])) - known
         if unknown:
             raise WorkflowError(f"{task['id']}: unknown dependencies {sorted(unknown)}")
@@ -208,6 +219,102 @@ def cmd_block(data: dict[str, Any], args: argparse.Namespace) -> None:
     print(f"{task['id']}: Blocked")
 
 
+def cmd_assign(data: dict[str, Any], args: argparse.Namespace) -> None:
+    task = by_id(data, args.task_id)
+    if task["status"] not in {"Backlog", "Ready", "Blocked"}:
+        raise WorkflowError("Ownership can change only before implementation starts")
+    if args.owner not in AGENTS:
+        raise WorkflowError(f"Implementation owner must be one of: {', '.join(AGENTS)}")
+    peer = "Claude" if args.owner == "Codex" else "Codex"
+    reviewers = [peer, *args.specialist_reviewer]
+    previous_owner = task.get("owner", "")
+    stamp = now()
+    task.update(
+        owner=args.owner,
+        reviewer=" + ".join(dict.fromkeys(reviewers)),
+        updated=stamp[:10],
+        updatedAt=stamp,
+        updatedBy=args.actor,
+    )
+    append_event({
+        "at": stamp,
+        "taskId": task["id"],
+        "actor": args.actor,
+        "type": "ownership_assigned",
+        "fromOwner": previous_owner,
+        "toOwner": args.owner,
+        "reviewer": task["reviewer"],
+        "note": args.note,
+    })
+    data["assignmentRevision"] = int(data.get("assignmentRevision", 0)) + 1
+    validate(data)
+    data["updatedAt"] = stamp
+    atomic_json(TASKS_PATH, data)
+    print(f"{task['id']}: owner={task['owner']} reviewer={task['reviewer']}")
+
+
+def cmd_claim_next(data: dict[str, Any], args: argparse.Namespace) -> None:
+    if args.actor not in AGENTS:
+        raise WorkflowError(f"Actor must be one of: {', '.join(AGENTS)}")
+    priority = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}
+    candidates = [
+        task for task in data["tasks"]
+        if task["status"] == "Ready"
+        and task.get("owner") == args.actor
+        and not unmet_dependencies(data, task)
+    ]
+    if not candidates:
+        raise WorkflowError(f"No Ready task is assigned to {args.actor}")
+    order = {task["id"]: index for index, task in enumerate(data["tasks"])}
+    task = min(candidates, key=lambda item: (priority.get(item.get("priority"), 9), order[item["id"]]))
+    transition(data, task, "In Progress", args.actor, args.note)
+    atomic_json(TASKS_PATH, data)
+    print(f"{task['id']}: claimed by {args.actor}")
+
+
+def cmd_apply_assignment_plan(data: dict[str, Any], args: argparse.Namespace) -> None:
+    plan_path = Path(args.plan).resolve()
+    try:
+        plan = json.loads(plan_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise WorkflowError(f"Cannot load assignment plan: {exc}") from exc
+    assignments = plan.get("assignments", [])
+    if not assignments:
+        raise WorkflowError("Assignment plan contains no assignments")
+    stamp = now()
+    events = []
+    for assignment in assignments:
+        task = by_id(data, assignment["taskId"])
+        if task["status"] not in {"Backlog", "Ready", "Blocked"}:
+            raise WorkflowError(f"{task['id']}: cannot reassign status {task['status']}")
+        owner = assignment["owner"]
+        if owner not in AGENTS:
+            raise WorkflowError(f"{task['id']}: invalid owner {owner}")
+        peer = "Claude" if owner == "Codex" else "Codex"
+        specialists = assignment.get("specialistReviewers", [])
+        previous_owner = task.get("owner", "")
+        task.update(
+            owner=owner,
+            reviewer=" + ".join(dict.fromkeys([peer, *specialists])),
+            updated=stamp[:10],
+            updatedAt=stamp,
+            updatedBy=args.actor,
+        )
+        events.append({
+            "at": stamp, "taskId": task["id"], "actor": args.actor,
+            "type": "ownership_assigned", "fromOwner": previous_owner,
+            "toOwner": owner, "reviewer": task["reviewer"],
+            "note": plan.get("reason", "Balanced two-agent allocation."),
+        })
+    data["assignmentRevision"] = int(data.get("assignmentRevision", 0)) + 1
+    validate(data)
+    for event in events:
+        append_event(event)
+    data["updatedAt"] = stamp
+    atomic_json(TASKS_PATH, data)
+    print(f"Applied {len(assignments)} assignments from {plan_path.name}")
+
+
 def parser() -> argparse.ArgumentParser:
     result = argparse.ArgumentParser(description=__doc__)
     commands = result.add_subparsers(dest="command", required=True)
@@ -230,6 +337,21 @@ def parser() -> argparse.ArgumentParser:
     block.add_argument("--reason", required=True)
     block.add_argument("--next", required=True)
     block.set_defaults(handler=cmd_block)
+    assign = commands.add_parser("assign")
+    assign.add_argument("task_id")
+    assign.add_argument("--owner", required=True, choices=AGENTS)
+    assign.add_argument("--specialist-reviewer", action="append", default=[])
+    assign.add_argument("--actor", required=True)
+    assign.add_argument("--note", required=True)
+    assign.set_defaults(handler=cmd_assign)
+    claim = commands.add_parser("claim-next")
+    claim.add_argument("--actor", required=True, choices=AGENTS)
+    claim.add_argument("--note", required=True)
+    claim.set_defaults(handler=cmd_claim_next)
+    apply_plan = commands.add_parser("apply-assignment-plan")
+    apply_plan.add_argument("plan")
+    apply_plan.add_argument("--actor", required=True)
+    apply_plan.set_defaults(handler=cmd_apply_assignment_plan)
     return result
 
 

@@ -9,3 +9,8 @@ submit it to In Review with exact evidence. A reviewer records either Changes
 Requested or PASS/Completed. Do not self-approve, bypass dependencies, or edit the
 ledger JSON manually. Commit and push workflow state after every transition so the
 delivery dashboard updates automatically.
+
+Neither agent owns a permanent product area. Use `claim-next` to pull the next Ready
+task already allocated to you. The opposite agent performs mandatory peer review;
+domain, security, product, and release reviewers supplement that review. Ownership
+may be rebalanced only before implementation begins, through `taskctl.py assign`.

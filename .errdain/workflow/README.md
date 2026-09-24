@@ -18,6 +18,7 @@ Run these from the repository root:
 
 ```bash
 python scripts/taskctl.py list
+python scripts/taskctl.py claim-next --actor Claude --note "Starting the highest-priority Ready task assigned to Claude."
 python scripts/taskctl.py move SCHEMA-02 --to "In Progress" --actor Codex --note "Implement parser and validation adapters."
 python scripts/taskctl.py move SCHEMA-02 --to "In Review" --actor Codex --note "Implementation ready for independent review." --evidence "commit URL; exact test command and result"
 python scripts/taskctl.py move SCHEMA-02 --to "Changes Requested" --actor Claude --note "R-SCHEMA-02-01: concrete finding" --verdict CHANGES_REQUIRED
@@ -38,3 +39,16 @@ secret is placed in the dashboard.
 6. Every transition creates an immutable timestamped event.
 7. Critical or major findings return the task to Changes Requested.
 8. New scope is a new task; completed history is not rewritten.
+9. Unfinished work is balanced between Codex and Claude; neither agent owns a permanent product area.
+10. The opposite agent is the mandatory peer reviewer. Specialist reviewers are additional, not substitutes.
+11. Agents pull their next eligible assignment with `claim-next`; dependencies and priority determine order.
+
+## Reassigning work before it starts
+
+The Product Owner can rebalance a Backlog, Ready, or Blocked task. The command
+automatically makes the opposite agent the peer reviewer and preserves any named
+specialist reviewers supplied on the command line:
+
+```bash
+python scripts/taskctl.py assign SCHEMA-02 --owner Claude --specialist-reviewer "Domain Reviewer" --actor "Product Owner" --note "Balanced two-agent allocation."
+```

@@ -16,9 +16,9 @@ def _module():
 def _data():
     return {
         "tasks": [
-            {"id": "A", "status": "Completed", "owner": "Codex", "reviewer": "Claude", "dependsOn": []},
-            {"id": "B", "status": "Backlog", "owner": "Codex", "reviewer": "Claude", "dependsOn": ["A"]},
-            {"id": "C", "status": "Backlog", "owner": "Claude", "reviewer": "Codex", "dependsOn": ["B"]},
+            {"id": "A", "status": "Completed", "priority": "P0", "owner": "Codex", "reviewer": "Claude", "dependsOn": []},
+            {"id": "B", "status": "Backlog", "priority": "P0", "owner": "Codex", "reviewer": "Claude", "dependsOn": ["A"]},
+            {"id": "C", "status": "Backlog", "priority": "P1", "owner": "Claude", "reviewer": "Codex", "dependsOn": ["B"]},
         ]
     }
 
@@ -65,3 +65,23 @@ def test_promotion_clears_a_dependency_only_blocker(monkeypatch):
     taskctl.promote_ready(data, actor="workflow")
     assert data["tasks"][1]["status"] == "Ready"
     assert data["tasks"][1]["blocker"] == ""
+
+
+def test_validation_requires_opposite_peer_reviewer():
+    taskctl = _module()
+    data = _data()
+    data["assignmentRevision"] = 1
+    data["tasks"][1]["reviewer"] = "Security Reviewer"
+    with pytest.raises(taskctl.WorkflowError, match="Claude must be a peer reviewer"):
+        taskctl.validate(data)
+
+
+def test_claim_next_selects_owned_highest_priority(monkeypatch):
+    taskctl = _module()
+    data = _data()
+    data["tasks"][1]["status"] = "Ready"
+    args = type("Args", (), {"actor": "Codex", "note": "starting"})()
+    monkeypatch.setattr(taskctl, "append_event", lambda event: None)
+    monkeypatch.setattr(taskctl, "atomic_json", lambda path, value: None)
+    taskctl.cmd_claim_next(data, args)
+    assert data["tasks"][1]["status"] == "In Progress"

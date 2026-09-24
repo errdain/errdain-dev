@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "project": "Errdain",
   "releaseTarget": "2026-11-10",
-  "updatedAt": "2026-09-24T23:00:25Z",
+  "updatedAt": "2026-09-24T23:11:01Z",
   "tasks": [
     {
       "id": "FOUND-01",
@@ -179,8 +179,8 @@
       "title": "Block invalid primitive, field, and type combinations",
       "status": "Ready",
       "priority": "P0",
-      "owner": "Codex",
-      "reviewer": "Claude + Domain Reviewer",
+      "owner": "Claude",
+      "reviewer": "Codex + Domain Reviewer",
       "completed": "",
       "next": "Add compatibility declarations and negative tests after TRUST-01.",
       "blocker": "",
@@ -192,8 +192,8 @@
         "TRUST-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-24T23:00:25Z",
-      "updatedBy": "workflow"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "TRUST-03",
@@ -214,8 +214,8 @@
         "TRUST-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-24T23:00:25Z",
-      "updatedBy": "workflow"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "AUTH-01",
@@ -243,21 +243,21 @@
       "title": "Tenant isolation for runs, files, templates, benchmarks, and analytics",
       "status": "Backlog",
       "priority": "P0",
-      "owner": "Codex",
-      "reviewer": "Security Reviewer",
+      "owner": "Claude",
+      "reviewer": "Codex + Security Reviewer",
       "completed": "",
       "next": "Approve tenant model and authorization matrix, then add tenant-owned persistence and negative tests.",
       "blocker": "Depends on AUTH-01 and a Product Owner decision about organization membership.",
       "finding": "Current data paths are not tenant-isolated.",
       "change": "Not started.",
       "evidence": "Product assessment gap register",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "AUTH-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "JOB-01",
@@ -273,13 +273,13 @@
       "finding": "In-process background work can be lost on restart and cannot scale safely.",
       "change": "Not started.",
       "evidence": "Product assessment gap register",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "TRUST-03"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "JOB-02",
@@ -287,21 +287,21 @@
       "title": "Managed object storage, signed downloads, and lifecycle deletion",
       "status": "Backlog",
       "priority": "P1",
-      "owner": "Codex",
-      "reviewer": "Security Reviewer",
+      "owner": "Claude",
+      "reviewer": "Codex + Security Reviewer",
       "completed": "",
       "next": "Define retention tiers and storage key ownership.",
       "blocker": "Depends on tenant isolation and cloud platform choice.",
       "finding": "Generated packages need durable, private, expiring storage.",
       "change": "Not started.",
       "evidence": "Product assessment gap register",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "SEC-02"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "SCHEMA-01",
@@ -330,8 +330,8 @@
       "title": "Schema parser, normalization, validation, and compatibility report",
       "status": "Ready",
       "priority": "P0",
-      "owner": "Codex",
-      "reviewer": "Claude + Domain Reviewer",
+      "owner": "Claude",
+      "reviewer": "Codex + Domain Reviewer",
       "completed": "SCHEMA-01 contract is approved and available.",
       "next": "Implement JSON Schema, CSV definition, and SQL DDL adapters; add cycle detection, a five-hop relationship-depth limit, aggregate row enforcement, and field-level errors.",
       "blocker": "Product Owner must select the beta aggregate-row cap. Recommended default: 2,000,000 rows per generation request, configurable lower by tenant.",
@@ -343,8 +343,8 @@
         "SCHEMA-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-24T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "SCHEMA-03",
@@ -353,21 +353,21 @@
       "status": "Backlog",
       "priority": "P1",
       "owner": "Codex",
-      "reviewer": "Product Owner + Domain Reviewer",
+      "reviewer": "Claude + Product Owner + Domain Reviewer",
       "completed": "",
       "next": "Design explicit mapping with confidence, assumptions, editable constraints, sample preview, and size estimate.",
       "blocker": "Depends on SCHEMA-02 and approved generator capability metadata.",
       "finding": "Type-only generation is structurally valid but often unrealistic for business testing.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "SCHEMA-02",
         "TRUST-02"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "SCHEMA-04",
@@ -375,22 +375,22 @@
       "title": "Versioned schema registry, templates, and compatibility history",
       "status": "Backlog",
       "priority": "P1",
-      "owner": "Codex",
-      "reviewer": "Claude + Security Reviewer",
+      "owner": "Claude",
+      "reviewer": "Codex + Security Reviewer",
       "completed": "",
       "next": "Define immutable schema versions, tenant ownership, diff rules, archive policy, and rerun references.",
       "blocker": "Depends on tenant isolation and managed PostgreSQL.",
       "finding": "Enterprise teams need repeatable datasets and controlled schema evolution.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "SCHEMA-02",
         "SEC-02"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "CHANNEL-API",
@@ -406,7 +406,7 @@
       "finding": "Separate UI and CLI logic would create inconsistent results and double maintenance.",
       "change": "All clients will call one versioned API.",
       "evidence": "Channels and schema plan in this dashboard",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "AUTH-01",
         "SEC-02",
@@ -414,8 +414,8 @@
         "TRUST-03"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "CHANNEL-UI",
@@ -423,15 +423,15 @@
       "title": "Guided custom-schema and generation workflow in the web UI",
       "status": "Backlog",
       "priority": "P1",
-      "owner": "Codex",
-      "reviewer": "Product Owner",
+      "owner": "Claude",
+      "reviewer": "Codex + Product Owner",
       "completed": "",
       "next": "Build import, mapping, constraints, preview, generate, validate, download, and rerun steps after API contracts stabilize.",
       "blocker": "Depends on SCHEMA-02, SCHEMA-03, CHANNEL-API, and durable jobs.",
       "finding": "Users need a low-friction path that explains assumptions and errors before expensive generation starts.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "SCHEMA-02",
         "SCHEMA-03",
@@ -439,8 +439,8 @@
         "JOB-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "CHANNEL-CLI",
@@ -456,14 +456,14 @@
       "finding": "Data engineers and CI pipelines need reproducible, non-interactive access.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "CHANNEL-API",
         "AUTH-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "CHANNEL-SDK",
@@ -471,21 +471,21 @@
       "title": "Python SDK generated from the stable API contract",
       "status": "Backlog",
       "priority": "P2",
-      "owner": "Codex",
-      "reviewer": "Claude",
+      "owner": "Claude",
+      "reviewer": "Codex",
       "completed": "",
       "next": "Start after beta API behavior and errors stabilize.",
       "blocker": "Post-beta dependency on CHANNEL-API stability.",
       "finding": "Python teams need typed programmatic access without maintaining raw HTTP calls.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "CHANNEL-API"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "CHANNEL-CONN",
@@ -494,22 +494,22 @@
       "status": "Backlog",
       "priority": "P2",
       "owner": "Codex",
-      "reviewer": "Security Reviewer + Product Owner",
+      "reviewer": "Claude + Security Reviewer + Product Owner",
       "completed": "",
       "next": "Prioritize S3-compatible delivery and webhooks from beta interviews; add GCS and Azure only on demand.",
       "blocker": "Post-beta; depends on object storage, tenant isolation, audit logging, and customer demand.",
       "finding": "Enterprise workflows may require data to land in controlled storage rather than browser downloads.",
       "change": "Not started.",
       "evidence": "",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "CHANNEL-API",
         "JOB-02",
         "SEC-02"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "UX-02",
@@ -517,22 +517,22 @@
       "title": "Test Packages workflow",
       "status": "Backlog",
       "priority": "P1",
-      "owner": "Codex",
-      "reviewer": "Product Owner + Claude",
+      "owner": "Claude",
+      "reviewer": "Codex + Product Owner",
       "completed": "Dashboard route currently shows Coming Soon.",
       "next": "Define create, rerun, export, and evidence package journey.",
       "blocker": "Depends on certified scenarios, canonical evidence, and object storage.",
       "finding": "Users cannot yet manage reusable test packages end to end.",
       "change": "Not started.",
       "evidence": "Current frontend audit",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "TRUST-03",
         "JOB-02"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "UX-03",
@@ -541,21 +541,21 @@
       "status": "Backlog",
       "priority": "P1",
       "owner": "Codex",
-      "reviewer": "Product Owner",
+      "reviewer": "Claude + Product Owner",
       "completed": "Dashboard route currently shows Coming Soon.",
       "next": "Design from the canonical job and package models.",
       "blocker": "Depends on durable jobs and Test Packages.",
       "finding": "Users lack an operational view of their runs and evidence.",
       "change": "Not started.",
       "evidence": "Current frontend audit",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "JOB-01",
         "UX-02"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "ADM-01",
@@ -563,22 +563,22 @@
       "title": "Admin dashboard for tenants, failures, cost, and abuse",
       "status": "Backlog",
       "priority": "P1",
-      "owner": "Codex",
-      "reviewer": "Product Owner + Security Reviewer",
+      "owner": "Claude",
+      "reviewer": "Codex + Product Owner + Security Reviewer",
       "completed": "",
       "next": "Define admin metrics and least-privilege routes after SEC-02.",
       "blocker": "Depends on tenant isolation, admin permissions, and job telemetry.",
       "finding": "Operators lack enterprise controls and fleet-level visibility.",
       "change": "Not started.",
       "evidence": "Delivery handbook ordered backlog",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "SEC-02",
         "JOB-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     },
     {
       "id": "OPS-01",
@@ -587,20 +587,21 @@
       "status": "Backlog",
       "priority": "P1",
       "owner": "Codex",
-      "reviewer": "Release Operator",
+      "reviewer": "Claude + Release Operator",
       "completed": "",
       "next": "Choose observability services with the hosting platform.",
       "blocker": "Cloud platform and worker architecture are not finalized.",
       "finding": "Production failures cannot yet be detected and handled reliably.",
       "change": "Not started.",
       "evidence": "Product assessment gap register",
-      "updated": "2026-09-23",
+      "updated": "2026-09-24",
       "dependsOn": [
         "JOB-01"
       ],
       "autoReady": true,
-      "updatedAt": "2026-09-23T12:00:00Z",
-      "updatedBy": "migration"
+      "updatedAt": "2026-09-24T23:11:01Z",
+      "updatedBy": "Product Owner"
     }
-  ]
+  ],
+  "assignmentRevision": 1
 }
