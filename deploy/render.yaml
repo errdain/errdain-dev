@@ -17,8 +17,14 @@ services:
         fromDatabase:
           name: errdain-postgres
           property: connectionString
-      - key: ERRDAIN_API_KEY
-        generateValue: true
+      - key: AUTH_MODE
+        value: jwt
+      - key: AUTH_JWKS_URL
+        value: https://your-project.supabase.co/auth/v1/.well-known/jwks.json
+      - key: AUTH_JWT_ISSUER
+        value: https://your-project.supabase.co/auth/v1
+      - key: AUTH_JWT_AUDIENCE
+        value: authenticated
       - key: OUTPUT_DIR
         value: /var/lib/errdain/output
       - key: CORS_ORIGINS

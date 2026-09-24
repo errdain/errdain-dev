@@ -13,6 +13,17 @@ from backend.app.db.session import get_db
 from backend.app.main import create_app
 
 
+@pytest.fixture(autouse=True)
+def explicit_test_local_auth(monkeypatch):
+    """Tests opt into the local identity; application defaults remain closed."""
+
+    monkeypatch.setenv("ALLOW_LOCAL_AUTH", "true")
+    monkeypatch.setenv("LOCAL_AUTH_ROLE", "admin")
+    get_settings.cache_clear()
+    yield
+    get_settings.cache_clear()
+
+
 @pytest.fixture
 def db_session(tmp_path, monkeypatch) -> Generator[Session, None, None]:
     monkeypatch.setenv("OUTPUT_DIR", str(tmp_path / "backend-output"))

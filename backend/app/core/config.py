@@ -11,6 +11,15 @@ class Settings(BaseSettings):
     app_env: str = Field(default="development", alias="APP_ENV")
     log_level: str = Field(default="INFO", alias="LOG_LEVEL")
     api_key: str | None = Field(default=None, alias="ERRDAIN_API_KEY")
+    auth_mode: str = Field(default="local", alias="AUTH_MODE")
+    auth_jwt_secret: str | None = Field(default=None, alias="AUTH_JWT_SECRET")
+    auth_jwks_url: str | None = Field(default=None, alias="AUTH_JWKS_URL")
+    auth_jwt_issuer: str | None = Field(default=None, alias="AUTH_JWT_ISSUER")
+    auth_jwt_audience: str = Field(default="authenticated", alias="AUTH_JWT_AUDIENCE")
+    local_auth_email: str = Field(default="developer@errdain.local", alias="LOCAL_AUTH_EMAIL")
+    local_auth_tenant_id: str = Field(default="local-development", alias="LOCAL_AUTH_TENANT_ID")
+    local_auth_role: str = Field(default="user", alias="LOCAL_AUTH_ROLE")
+    allow_local_auth: bool = Field(default=False, alias="ALLOW_LOCAL_AUTH")
     database_url: str = Field(
         default="postgresql+psycopg://errdain:errdain123@127.0.0.1:55434/errdain",
         alias="DATABASE_URL",

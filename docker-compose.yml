@@ -23,6 +23,9 @@ services:
     command: ["sh", "-c", "alembic -c backend/alembic.ini upgrade head && uvicorn backend.app.main:app --host 0.0.0.0 --port 8000"]
     environment:
       APP_ENV: development
+      AUTH_MODE: local
+      ALLOW_LOCAL_AUTH: "true"
+      LOCAL_AUTH_ROLE: admin
       DATABASE_URL: postgresql+psycopg://errdain:errdain123@postgres:5432/errdain
       OUTPUT_DIR: /var/lib/errdain/output
       CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000

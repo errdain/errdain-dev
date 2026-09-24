@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 from datetime import datetime, timedelta, timezone
 
+import jwt
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -17,13 +18,16 @@ from backend.app.models import DatasetRun, GeneratedFile, GenerationJob, User
 from backend.app.services.retention import cleanup_expired_run_history, cleanup_generated_files, cleanup_stored_generated_files
 
 
-def test_production_requires_api_key(monkeypatch):
+def test_production_requires_jwt_auth(monkeypatch):
     monkeypatch.setenv("APP_ENV", "production")
+    monkeypatch.delenv("AUTH_MODE", raising=False)
+    monkeypatch.delenv("AUTH_JWKS_URL", raising=False)
+    monkeypatch.delenv("AUTH_JWT_SECRET", raising=False)
     monkeypatch.delenv("ERRDAIN_API_KEY", raising=False)
     get_settings.cache_clear()
 
     try:
-        with pytest.raises(RuntimeError, match="ERRDAIN_API_KEY is required"):
+        with pytest.raises(RuntimeError, match="AUTH_MODE=jwt is required"):
             create_app()
     finally:
         get_settings.cache_clear()
@@ -39,7 +43,9 @@ def test_production_requires_api_key(monkeypatch):
 )
 def test_production_rejects_unsafe_cors_origins(monkeypatch, cors_origins, error):
     monkeypatch.setenv("APP_ENV", "production")
-    monkeypatch.setenv("ERRDAIN_API_KEY", "secret-test-key")
+    monkeypatch.setenv("AUTH_MODE", "jwt")
+    monkeypatch.setenv("AUTH_JWT_SECRET", "secret-test-key-that-is-long-enough-for-tests")
+    monkeypatch.delenv("ERRDAIN_API_KEY", raising=False)
     monkeypatch.setenv("CORS_ORIGINS", cors_origins)
     get_settings.cache_clear()
 
@@ -48,6 +54,69 @@ def test_production_rejects_unsafe_cors_origins(monkeypatch, cors_origins, error
             create_app()
     finally:
         get_settings.cache_clear()
+
+
+def _access_token(*, role: str = "user", tenant_id: str = "tenant-a") -> str:
+    now = datetime.now(timezone.utc)
+    return jwt.encode(
+        {
+            "sub": f"subject-{role}",
+            "email": f"{role}@example.com",
+            "aud": "authenticated",
+            "iat": now,
+            "exp": now + timedelta(minutes=15),
+            "app_metadata": {"tenant_id": tenant_id, "app_role": role},
+        },
+        "secret-test-key-that-is-long-enough-for-tests",
+        algorithm="HS256",
+    )
+
+
+def test_bearer_identity_and_admin_role_are_enforced(client, monkeypatch):
+    monkeypatch.setenv("AUTH_MODE", "jwt")
+    monkeypatch.setenv("AUTH_JWT_SECRET", "secret-test-key-that-is-long-enough-for-tests")
+    monkeypatch.delenv("ERRDAIN_API_KEY", raising=False)
+    get_settings.cache_clear()
+
+    denied = client.get("/api/v1/auth/me")
+    user_token = _access_token()
+    identity = client.get("/api/v1/auth/me", headers={"Authorization": f"Bearer {user_token}"})
+    forbidden = client.get("/api/v1/admin/analytics/overview", headers={"Authorization": f"Bearer {user_token}"})
+    admin_token = _access_token(role="admin")
+    allowed = client.get("/api/v1/admin/analytics/overview", headers={"Authorization": f"Bearer {admin_token}"})
+
+    assert denied.status_code == 401
+    assert identity.status_code == 200
+    assert identity.json() == {
+        "subject": "subject-user",
+        "email": "user@example.com",
+        "tenant_id": "tenant-a",
+        "role": "user",
+    }
+    assert forbidden.status_code == 403
+    assert allowed.status_code == 200
+    get_settings.cache_clear()
+
+
+def test_local_auth_requires_explicit_opt_in_and_defaults_to_user(client, monkeypatch):
+    monkeypatch.setenv("AUTH_MODE", "local")
+    monkeypatch.delenv("ALLOW_LOCAL_AUTH", raising=False)
+    monkeypatch.delenv("LOCAL_AUTH_ROLE", raising=False)
+    monkeypatch.delenv("ERRDAIN_API_KEY", raising=False)
+    get_settings.cache_clear()
+
+    denied = client.get("/api/v1/auth/me")
+    assert denied.status_code == 401
+
+    monkeypatch.setenv("ALLOW_LOCAL_AUTH", "true")
+    get_settings.cache_clear()
+    identity = client.get("/api/v1/auth/me")
+    forbidden = client.get("/api/v1/admin/analytics/overview")
+
+    assert identity.status_code == 200
+    assert identity.json()["role"] == "user"
+    assert forbidden.status_code == 403
+    get_settings.cache_clear()
 
 
 def test_api_key_is_required_when_configured(tmp_path, monkeypatch):

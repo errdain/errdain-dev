@@ -21,7 +21,7 @@ from backend.app.analytics import AnalyticsService
 from backend.app.core.config import get_settings
 from backend.app.core.rate_limit import enforce_rate_limit
 from backend.app.core.rate_limit import rate_limiter
-from backend.app.core.security import require_api_key
+from backend.app.core.security import AuthPrincipal, require_admin, require_api_key, require_user
 from backend.app.db.session import get_db
 from backend.app.models import GenerationJob
 from backend.app.repositories import (
@@ -93,6 +93,16 @@ from backend.app.services.validation import ValidationService
 
 router = APIRouter(prefix="/api/v1")
 logger = logging.getLogger(__name__)
+
+
+@router.get("/auth/me")
+def authenticated_identity(principal: AuthPrincipal = Depends(require_user)) -> dict[str, str]:
+    return {
+        "subject": principal.subject,
+        "email": principal.email,
+        "tenant_id": principal.tenant_id,
+        "role": principal.role,
+    }
 
 
 @router.post("/generate", response_model=GenerateResponse, dependencies=[Depends(require_api_key)])
@@ -2232,46 +2242,46 @@ def preview_file(run_id: str, file_id: str, rows: int = Query(default=50, ge=1, 
     return preview_generated_file(generated_file, get_storage_service(), max_rows=rows)
 
 
-@router.get("/admin/analytics/overview", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/overview", dependencies=[Depends(require_admin)])
 def analytics_overview(db: Session = Depends(get_db)) -> dict:
     return AnalyticsService(db).overview()
 
 
-@router.get("/admin/analytics/domains", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/domains", dependencies=[Depends(require_admin)])
 def analytics_domains(db: Session = Depends(get_db)) -> dict[str, int]:
     return AnalyticsService(db).domains()
 
 
-@router.get("/admin/analytics/formats", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/formats", dependencies=[Depends(require_admin)])
 def analytics_formats(db: Session = Depends(get_db)) -> dict[str, int]:
     return AnalyticsService(db).formats()
 
 
-@router.get("/admin/analytics/load-types", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/load-types", dependencies=[Depends(require_admin)])
 def analytics_load_types(db: Session = Depends(get_db)) -> dict[str, int]:
     return AnalyticsService(db).load_types()
 
 
-@router.get("/admin/analytics/quality/domains", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/quality/domains", dependencies=[Depends(require_admin)])
 def analytics_quality_domains(db: Session = Depends(get_db)) -> dict[str, float]:
     return AnalyticsService(db).quality_by_domain()
 
 
-@router.get("/admin/analytics/quality/load-types", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/quality/load-types", dependencies=[Depends(require_admin)])
 def analytics_quality_load_types(db: Session = Depends(get_db)) -> dict[str, float]:
     return AnalyticsService(db).quality_by_load_type()
 
 
-@router.get("/admin/analytics/quality/trends", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/quality/trends", dependencies=[Depends(require_admin)])
 def analytics_quality_trends(db: Session = Depends(get_db)) -> list[dict]:
     return AnalyticsService(db).quality_trends()
 
 
-@router.get("/admin/analytics/quality/lowest-runs", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/quality/lowest-runs", dependencies=[Depends(require_admin)])
 def analytics_lowest_quality_runs(db: Session = Depends(get_db)) -> list[dict]:
     return AnalyticsService(db).ranked_quality_runs(lowest=True)
 
 
-@router.get("/admin/analytics/quality/highest-runs", dependencies=[Depends(require_api_key)])
+@router.get("/admin/analytics/quality/highest-runs", dependencies=[Depends(require_admin)])
 def analytics_highest_quality_runs(db: Session = Depends(get_db)) -> list[dict]:
     return AnalyticsService(db).ranked_quality_runs(lowest=False)

@@ -16,14 +16,14 @@ All protected examples assume:
 
 ```bash
 export ERRDAIN_API=http://127.0.0.1:8010
-export ERRDAIN_API_KEY=your-api-key
+export ERRDAIN_ACCESS_TOKEN=your-user-access-token
 ```
 
 ## 1. Create a benchmark definition
 
 ```bash
 curl -s -X POST "$ERRDAIN_API/api/v1/benchmarks" \
-  -H "X-API-Key: $ERRDAIN_API_KEY" \
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Payment Retry Detector Benchmark",
@@ -58,7 +58,7 @@ This creates a benchmark run, snapshots benchmark configuration, starts Scenario
 
 ```bash
 curl -s -X POST "$ERRDAIN_API/api/v1/benchmarks/<benchmark_id>/runs" \
-  -H "X-API-Key: $ERRDAIN_API_KEY" \
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN" \
   -H "Idempotency-Key: payment-retry-run-001" \
   -H "Content-Type: application/json" \
   -d '{
@@ -81,7 +81,7 @@ Response:
 
 ```bash
 curl -s "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>" \
-  -H "X-API-Key: $ERRDAIN_API_KEY"
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN"
 ```
 
 Lifecycle:
@@ -106,7 +106,7 @@ Get artifact manifest:
 
 ```bash
 curl -s "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/artifact-manifest" \
-  -H "X-API-Key: $ERRDAIN_API_KEY"
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN"
 ```
 
 Common artifact URLs in the manifest:
@@ -121,7 +121,7 @@ Common artifact URLs in the manifest:
 
 ```bash
 curl -s "$ERRDAIN_API/api/v1/evaluations/detector-contract" \
-  -H "X-API-Key: $ERRDAIN_API_KEY"
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN"
 ```
 
 Detector JSON shape:
@@ -153,7 +153,7 @@ entity,PAY123,true,duplicate_payment,0.98
 
 ```bash
 curl -s -X POST "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/detector-output" \
-  -H "X-API-Key: $ERRDAIN_API_KEY" \
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "detector_name": "my-detector",
@@ -181,7 +181,7 @@ Supported extensions:
 
 ```bash
 curl -s -X POST "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/detector-output/upload?detector_name=my-detector" \
-  -H "X-API-Key: $ERRDAIN_API_KEY" \
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN" \
   -F "file=@detector_output.jsonl"
 ```
 
@@ -191,7 +191,7 @@ Uploads are UTF-8 text only, size-limited by `BENCHMARK_DETECTOR_UPLOAD_MAX_BYTE
 
 ```bash
 curl -s "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>" \
-  -H "X-API-Key: $ERRDAIN_API_KEY"
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN"
 ```
 
 Completed run fields include:
@@ -214,7 +214,7 @@ Use `Idempotency-Key` when launching benchmark runs. Same key + same request ret
 
 ```bash
 curl -s -X POST "$ERRDAIN_API/api/v1/benchmark-runs/<benchmark_run_id>/cancel" \
-  -H "X-API-Key: $ERRDAIN_API_KEY"
+  -H "Authorization: Bearer $ERRDAIN_ACCESS_TOKEN"
 ```
 
 Queued runs can be cancelled immediately. Running generation may become `cancellation_requested`; Errdain does not claim hard cancellation unless the underlying generation step has actually stopped.

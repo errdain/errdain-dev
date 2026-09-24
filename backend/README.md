@@ -31,8 +31,15 @@ The default local database URL is:
 DATABASE_URL=postgresql+psycopg://errdain:errdain123@127.0.0.1:55434/errdain
 ```
 
-For deployment, set `ERRDAIN_API_KEY` to require `X-API-Key` on protected
-generation, validation, run history, download, and admin endpoints.
+Local development can use a fixed local identity only when both
+`AUTH_MODE=local` and `ALLOW_LOCAL_AUTH=true` are explicitly configured. Its
+default role is `user`; use `LOCAL_AUTH_ROLE=admin` only for private local
+development. The checked-in Docker Compose file opts into local admin access.
+Production requires `AUTH_MODE=jwt` plus either `AUTH_JWKS_URL` or
+`AUTH_JWT_SECRET`. Protected requests use `Authorization: Bearer <access-token>`.
+User tokens cannot access `/api/v1/admin/*`; the signed `app_role` claim must be
+`admin`. `ERRDAIN_API_KEY` is transitional local-only compatibility and is
+rejected when `APP_ENV=production`.
 
 If you see `password authentication failed for user "errdain"`, the
 PostgreSQL server or Docker volume on the configured port was probably

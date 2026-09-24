@@ -22,8 +22,12 @@ logger = logging.getLogger(__name__)
 def create_app() -> FastAPI:
     settings = get_settings()
     if settings.app_env.lower() == "production":
-        if not settings.api_key:
-            raise RuntimeError("ERRDAIN_API_KEY is required when APP_ENV=production")
+        if settings.auth_mode.lower() != "jwt":
+            raise RuntimeError("AUTH_MODE=jwt is required when APP_ENV=production")
+        if not (settings.auth_jwks_url or settings.auth_jwt_secret):
+            raise RuntimeError("AUTH_JWKS_URL or AUTH_JWT_SECRET is required when APP_ENV=production")
+        if settings.api_key:
+            raise RuntimeError("ERRDAIN_API_KEY must not be configured when APP_ENV=production")
         if not settings.cors_origins:
             raise RuntimeError("CORS_ORIGINS must include at least one exact https:// origin when APP_ENV=production")
         if "*" in settings.cors_origins:

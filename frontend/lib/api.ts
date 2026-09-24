@@ -37,10 +37,20 @@ export const api = axios.create({
   timeout: 120000,
 });
 
-const browserApiKey = process.env.NEXT_PUBLIC_ENABLE_DEMO_API_KEY === "true" ? process.env.NEXT_PUBLIC_ERRDAIN_API_KEY : undefined;
-if (browserApiKey) {
-  api.defaults.headers.common["X-API-Key"] = browserApiKey;
+let accessToken: string | null = null;
+
+export function setApiAccessToken(token: string | null) {
+  accessToken = token;
 }
+
+api.interceptors.request.use((config) => {
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  } else {
+    delete config.headers.Authorization;
+  }
+  return config;
+});
 
 api.interceptors.response.use(
   (response) => response,
